@@ -7,5 +7,11 @@
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "SylviaMartin1",
-  "license": "ISC"
+  "license": "ISC",
+  "devDependencies": {
+    "@babel/core": "^7.28.6",
+    "@babel/node": "^7.28.6",
+    "@babel/preset-env": "^7.28.6",
+    "nodemon": "^3.1.11"
+  }
 }
