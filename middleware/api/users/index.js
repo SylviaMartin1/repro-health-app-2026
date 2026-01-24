@@ -15,12 +15,35 @@ router.post('/', asyncHandler(async (req, res) => {
         });
     }
     else {
-        const user = await User.findOne(req.body);
+
+        const { email, password } = req.body;
+
+        // Find user by email instead of whole body
+        const user = await User.findOne({ email });
+        if (!user) {
+            return res.status(401).json({ code: 401, msg: "Authentication Failed" });
+        }
+
+        // Compare provided password with hashed password
+        const isMatch = await user.comparePassword(password);
+        if (!isMatch) {
+            return res.status(401).json({ code: 401, msg: "Authentication Failed" });
+        }
+
+        return res.status(200).json({ 
+            code: 200, 
+            msg: "Authentication Successful", 
+            token: 'TEMPORARY_TOKEN' 
+        });
+        
+
+
+       /*  const user = await User.findOne(req.body);
         if (!user) {
             return res.status(401).json({ code: 401, msg: "Authentication Failed"});
         }else{
             return res.status(200).json({ code: 200, msg: "Authentication Successful", token: 'TEMPORARY_TOKEN' });
-        }
+        } */
     }
 }));
 
