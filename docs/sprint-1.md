@@ -51,22 +51,22 @@ Sprint 1 focused on setting up the backend foundation of the reproductive health
 
 ## Images/Screenshots
 **Node.js server running in terminal**
-![Node terminal](images/node-terminal.png)
+![Node terminal](images/sprint-1/node-terminal.png)
 
 **Node.js server response in browser**
-![Node browser](images/node-browser.png)
+![Node browser](images/sprint-1/node-browser.png)
 
 **Express server running in terminal**
-![Express terminal](images/express-terminal.png)
+![Express terminal](images/sprint-1/express-terminal.png)
 
 **Express server response in browser**
-![Express browser](images/express-browser.png)
+![Express browser](images/sprint-1/express-browser.png)
 
 **MongoDB connection running in terminal**
-![MongoDB connection](images/mongodb-connection-terminal.png)
+![MongoDB connection](images/sprint-1/mongodb-connection-terminal.png)
 
 **Sprint 1 application structure**
-![Sprint 1 application structure](images/sprint1-application-structure.png)
+![Sprint 1 application structure](images/sprint-1/sprint1-application-structure.png)
 
 
 

@@ -3,8 +3,6 @@ import User from './userModel';
 import asyncHandler from 'express-async-handler'
 import jwt from 'jsonwebtoken';
 
-
-
 const router = express.Router()
 
 //1. Register a user or authenticate a user
@@ -53,7 +51,6 @@ async function authenticateUser(req, res) {
         res.status(401).json({ success: false, msg: 'Wrong password.' });
     }
 }
-
 
 export default router;
 
