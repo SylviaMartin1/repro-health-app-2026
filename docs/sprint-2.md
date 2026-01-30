@@ -57,14 +57,5 @@ Sprint 2 focused on setting up authentication in the application. This involved 
 **MongoDB Collection in Compass**
 ![MongoDB Collection](images/sprint-2/mongodb-collection.png)
 
-
 **Sprint 2 application structure**
 ![Sprint 2 application structure](images/sprint-2/sprint2-application-structure.png)
-
-
-
-
-
-
-
-
