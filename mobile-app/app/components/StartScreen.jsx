@@ -15,7 +15,7 @@ const StartPage = () => {
             <Text style={{ marginBottom: 20 }}>Login or Register to continue</Text>
 
             {/* Buttons side by side */}
-            <View style={{ flexDirection: 'row', gap: 10 }}>
+            <View style={{ flexDirection: 'row', gap: 10, marginBottom: 10}}>
                 <Pressable 
                     onPress={() => router.push("/login")}
                     style={{ backgroundColor: '#2196F3', paddingVertical: 10, paddingHorizontal: 20, borderRadius: 5 }}>
@@ -26,6 +26,27 @@ const StartPage = () => {
                     onPress={() => router.push("/register")}
                     style={{ backgroundColor: '#4CAF50', paddingVertical: 10, paddingHorizontal: 20, borderRadius: 5 }}>
                     <Text style={{ color: 'white', fontWeight: 'bold' }}>Register</Text>
+                </Pressable>
+            </View>
+
+             {/* Link Buttons */}
+            <View style={{ flexDirection: 'row', gap: 10}}>
+                <Pressable 
+                    onPress={() => router.push("/log")}
+                    style={{ backgroundColor: 'orange', paddingVertical: 10, paddingHorizontal: 20, borderRadius: 5 }}>
+                    <Text style={{ color: 'white', fontWeight: 'bold' }}>Log</Text>
+                </Pressable>
+
+                <Pressable 
+                    onPress={() => router.push("/stats")}
+                    style={{ backgroundColor: 'orange', paddingVertical: 10, paddingHorizontal: 20, borderRadius: 5 }}>
+                    <Text style={{ color: 'white', fontWeight: 'bold' }}>Stats</Text>
+                </Pressable>
+
+                 <Pressable 
+                    onPress={() => router.push("/dashboard")}
+                    style={{ backgroundColor: 'orange', paddingVertical: 10, paddingHorizontal: 20, borderRadius: 5 }}>
+                    <Text style={{ color: 'white', fontWeight: 'bold' }}>Dashboard</Text>
                 </Pressable>
             </View>
         </View>

@@ -1,4 +1,4 @@
-import StartScreen from "./screens/StartScreen"
+import StartScreen from "./components/StartScreen"
 
 export default function Index() {
   return <StartScreen />;
