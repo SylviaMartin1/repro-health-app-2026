@@ -1,7 +1,7 @@
-function Symptom(){
+function Symptom(props){
     
     return (
-        <p>This is a symptom!</p>
+       <text> Symptom: {props.name}</text>
     )
 }
 
