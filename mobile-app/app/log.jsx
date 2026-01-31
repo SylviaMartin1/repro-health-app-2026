@@ -1,5 +1,4 @@
 import { View, Text} from 'react-native'
-import AddSymptomForm from '../components/SymptomForm';
 
 export default function Log() {
   return (
@@ -10,16 +9,15 @@ export default function Log() {
 
          {/* Cycle length input */}
 
-         {/* Symptoms input */}
-         <AddSymptomForm/>
+         {/* Symptoms input*/}
 
-         {/* Mood input*/}
+         {/* Mood input */}
 
          {/* Contraceptives input */}
 
-         {/* Supplements input*/}
+         {/* Supplements input */} 
 
-         {/* Hormones input */}
+         {/* Hormones input*/}
     </View>
   );
 }
