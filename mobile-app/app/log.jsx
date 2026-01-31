@@ -5,19 +5,19 @@ export default function Log() {
     <View>
         <Text>Log</Text>
 
-         {/* Last period date */}
+         {/* Last period date input */}
 
-         {/* Cycle length */}
+         {/* Cycle length input */}
 
-         {/* Symptoms */}
+         {/* Symptoms input */}
 
-         {/* Mood */}
+         {/* Mood input*/}
 
-         {/* Contraceptives */}
+         {/* Contraceptives input */}
 
-         {/* Supplements */}
+         {/* Supplements input*/}
 
-         {/* Hormones */}
+         {/* Hormones input */}
     </View>
   );
 }
