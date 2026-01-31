@@ -1,7 +1,9 @@
-function Symptom(){
+import { Text } from "react-native";
+
+function Symptom(props){
     
     return (
-        <p>This is a symptom!</p>
+        <Text>{props.name}</Text>
     )
 }
 
