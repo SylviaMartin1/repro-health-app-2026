@@ -1,6 +1,8 @@
 import { View, Text, TextInput, Button, Pressable} from 'react-native'
 import { colours } from '../theme/colours'
 import { useState } from 'react';
+import { v4 as uuidv4 } from 'uuid';
+
 
 export default function Log() {
   const [date, setDate] = useState('');
@@ -8,6 +10,7 @@ export default function Log() {
 
   const handleSubmit = () => {
     console.log({
+      id: uuidv4(),
       date,
       symptoms
     });
