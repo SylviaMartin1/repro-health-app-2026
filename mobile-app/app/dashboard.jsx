@@ -5,8 +5,9 @@ export default function Dashboard() {
   return (
     <View>
         <Text>Dashboard</Text>
-        <Symptom name = "Cramps"></Symptom>
-        <Symptom name = "Headaches"></Symptom>
+        <Symptom name = "Symptoms">
+          Headaches, Cramps, Muscle Aches
+        </Symptom>
     </View>
   );
 }

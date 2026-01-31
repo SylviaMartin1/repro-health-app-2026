@@ -1,7 +1,11 @@
-function Symptom(props){
-    
+import { View, Text} from 'react-native'
+
+function Symptom(props){ 
     return (
-       <text> Symptom: {props.name}</text>
+    <View>
+       <Text> Symptom: {props.name}</Text>
+       <Text> {props.children}</Text>
+    </View>
     )
 }
 
