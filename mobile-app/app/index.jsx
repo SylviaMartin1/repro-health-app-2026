@@ -6,9 +6,9 @@ export default function Index() {
   const router = useRouter();
 
     return (
-        <View style={{ flex: 1, justifyContent: "center", alignItems: "center", padding: 16, backgroundColor: colours.background.default }}>
+        <View style={{ flex: 1, justifyContent: "center", alignItems: "center", backgroundColor: colours.background.default }}>
             {/* Logo placeholder */}
-            <Image source={require('../assets/images/icon.png')} style={{ width: 150, height: 150, marginBottom: 20, backgroundColor: '#ccc' }} />
+            <Image style={{ width: 150, height: 150, marginBottom: 20, backgroundColor: '#ccc' }} />
 
             {/* Title and tagline */}
             <Text style={{ fontSize: 24, fontWeight: 'bold', marginBottom: 10 }}>Welcome to the App</Text>
@@ -30,7 +30,7 @@ export default function Index() {
             </View>
 
              {/* Link Buttons */}
-            <View style={{ flexDirection: 'row', gap: 10}}>
+            <View style={{ flexDirection: 'row', gap: 10, marginBottom: 10}}>
                 <Pressable 
                     onPress={() => router.push("/log")}
                     style={{ backgroundColor: colours.primary.main, paddingVertical: 10, paddingHorizontal: 20, borderRadius: 5 }}>
@@ -49,6 +49,21 @@ export default function Index() {
                     <Text style={{ color: 'white', fontWeight: 'bold' }}>Dashboard</Text>
                 </Pressable>
             </View>
+
+             {/* Link Buttons */}
+             <View style={{ flexDirection: 'row', gap: 10}}>
+                <Pressable 
+                    onPress={() => router.push("/articles")}
+                    style={{ backgroundColor: colours.primary.main, paddingVertical: 10, paddingHorizontal: 20, borderRadius: 5 }}>
+                    <Text style={{ color: 'white', fontWeight: 'bold' }}>Articles</Text>
+                </Pressable>
+
+                <Pressable 
+                    onPress={() => router.push("/supplements")}
+                    style={{ backgroundColor: colours.primary.main, paddingVertical: 10, paddingHorizontal: 20, borderRadius: 5 }}>
+                    <Text style={{ color: 'white', fontWeight: 'bold' }}>Supplements</Text>
+                </Pressable>
+                </View>
         </View>
     );
 }

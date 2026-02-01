@@ -3,7 +3,6 @@ import { colours } from '../theme/colours'
 import { useState } from 'react';
 import { v4 as uuidv4 } from 'uuid';
 
-
 export default function Log() {
   const [date, setDate] = useState('');
   const [symptoms, setSymptoms] = useState('');
@@ -15,7 +14,6 @@ export default function Log() {
       symptoms
     });
   };
-
 
   return (
     <View style={{ flex: 1, justifyContent: "center", alignItems: "center", padding: 16, backgroundColor: colours.background.default }}>
