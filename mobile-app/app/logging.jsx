@@ -1,12 +1,10 @@
-import { useState } from 'react';
-import { View, Text, TextInput, Button } from 'react-native';
+import { View, Text } from 'react-native';
 
-export default function Logging({ addLog }) {
-
+export default function Logging() {
 
   return (
     <View style={{ marginTop: 20 }}>
-      <Text style={{ fontSize: 18 }}>Add New Log</Text>
+      <Text>Logging</Text>
     </View>
   );
 }
