@@ -1,6 +1,6 @@
-import { View, Text} from 'react-native'
+import { View, Text, TextInput, Pressable} from 'react-native'
 
-export default function Signup() {
+export default function Register() {
   return (
     <View>
         <Text>Signup</Text>
