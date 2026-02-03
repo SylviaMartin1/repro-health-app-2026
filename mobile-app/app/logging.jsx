@@ -1,36 +1,12 @@
 import { useState } from 'react';
-import { View, Text, TextInput} from 'react-native'
+import { View, Text, TextInput, Button } from 'react-native';
 
-export default function Logging() {
-  const [date, setDate] = useState("")
-  const [cycleLength, setCycleLength] = useState("")
+export default function Logging({ addLog }) {
+
 
   return (
-    <View>
-        <Text>Logging</Text>
-        <TextInput 
-          value={date}
-          onChangeText={setDate}
-          style={{
-          borderWidth: 1,
-          borderColor: '#ccc',
-          padding: 10,
-          borderRadius: 5,
-          marginTop: 5,
-        }}
-        />
-        <TextInput 
-          value={cycleLength}
-          onChangeText={setCycleLength}
-          style={{
-          borderWidth: 1,
-          borderColor: '#ccc',
-          padding: 10,
-          borderRadius: 5,
-          marginTop: 5,
-        }}
-        />
+    <View style={{ marginTop: 20 }}>
+      <Text style={{ fontSize: 18 }}>Add New Log</Text>
     </View>
-
   );
 }
