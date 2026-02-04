@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { v4 as uuidv4 } from 'uuid';
+import uuid from 'react-native-uuid';
 
 export const LogsContext = React.createContext(null)
 
@@ -13,7 +13,7 @@ const LogsContextProvider = (props) => {
     const addLog = (log) => {
     const newLog = {
       ...log,
-      id: uuidv4()
+      id: uuid.v4()
     };
     setLogs((prevLogs) => [...prevLogs, newLog]);
 }
