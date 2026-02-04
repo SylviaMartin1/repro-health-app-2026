@@ -50,8 +50,23 @@ Sprint 3 focused on setting up the frontend of the application. This involved im
 - Articles and Supplements screens yet to be implemented.
 
 ## Images/Screenshots
-**Sprint 3 application structure**
-![Sprint 3 application structure](images/sprint-3/sprint3-application-structure.png)
+**Start Screen**
+![Start Screen](images/sprint-3/start-screen.png)
+
+**Register Screen**
+![Register Screen](images/sprint-3/register-screen.png)
+
+**Login Screen**
+![Login Screen](images/sprint-3/login-screen.png)
+
+**Dashboard Screen**
+![Dashboard Screen](images/sprint-3/dashboard-screen.png)
+
+**Stats Screen**
+![Stats Screen](images/sprint-3/stats-screen.png)
+
+**npm run tunnel command working**
+![Stats Screen](images/npm-run-tunnel/stats-screen.png)
 
 **Sprint 3 application structure**
 ![Sprint 3 application structure](images/sprint-3/sprint3-application-structure.png)
