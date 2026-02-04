@@ -5,9 +5,8 @@ import { LogsContext } from '../contexts/logsContext';
 export default function Stats() {
   const { logs } = useContext(LogsContext);
 
-   const totalLogs = logs.length;
+  const totalLogs = logs.length;
   
-
   return (
     <View>
         <Text>Stats</Text>
