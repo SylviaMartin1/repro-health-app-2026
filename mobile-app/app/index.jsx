@@ -26,6 +26,21 @@ export default function Index() {
                     <Text style={{ color: 'white', fontWeight: 'bold' }}>Login</Text>
                 </Pressable>
                 </View>
+
+
+            <Pressable 
+                    onPress={() => router.push("/dashboard")}
+                    style={{ width: 280, backgroundColor: "orange", paddingVertical: 10, paddingHorizontal: 20, borderRadius: 8, marginBottom: 10, alignItems: "center" }}>
+                    <Text style={{ color: 'white', fontWeight: 'bold' }}>Dashboard</Text>
+                </Pressable>
+
+                <Pressable 
+                    onPress={() => router.push("/logging")}
+                    style={{ width: 280, backgroundColor: "orange", paddingVertical: 10, paddingHorizontal: 20, borderRadius: 8, marginBottom: 10, alignItems: "center" }}>
+                    <Text style={{ color: 'white', fontWeight: 'bold' }}>Logging</Text>
+                </Pressable>
+
+            
         </View>
     );
 }

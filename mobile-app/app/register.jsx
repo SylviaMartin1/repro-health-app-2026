@@ -1,9 +1,9 @@
-import { View, Text, TextInput, Pressable} from 'react-native'
+import { View, Text} from 'react-native'
 
 export default function Register() {
   return (
     <View>
-        <Text>Signup</Text>
+        <Text>Register</Text>
     </View>
   );
 }
