@@ -1,5 +1,11 @@
 import { Stack } from "expo-router";
+import LogsContextProvider from "../contexts/logsContext";
 
 export default function RootLayout() {
-  return <Stack />;
+  
+  return(
+    <LogsContextProvider>
+      <Stack />;
+      </LogsContextProvider>
+  ) 
 }
