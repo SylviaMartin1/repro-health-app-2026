@@ -6,8 +6,6 @@ import { LogsContext } from '../contexts/logsContext';
 export default function Dashboard() {
 const { logs } = useContext(LogsContext);
 
-
-
   return (
     <View>
       <Text>Dashboard</Text>
@@ -18,9 +16,6 @@ const { logs } = useContext(LogsContext);
           key={log.id}
         />
       ))}
-
-    
-     
     </View>
   );
 }
