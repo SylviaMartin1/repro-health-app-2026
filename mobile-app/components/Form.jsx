@@ -7,6 +7,7 @@ export default function Form(props){
                 value={props.formState.date}
                 onChangeText={(text) => props.change('date', text)}
                 placeholder="DD-MM-YYYY"
+                placeholderTextColor="#999"
                 style={{
                     borderWidth:1,
                     borderColor: '#ccc',
@@ -20,6 +21,7 @@ export default function Form(props){
                 value={props.formState.cycleLength}
                 onChangeText={(text) => props.change('cycleLength', text)}
                 placeholder="e.g. 28"
+                placeholderTextColor="#999"
                 style={{
                     borderWidth:1,
                     borderColor: '#ccc',
