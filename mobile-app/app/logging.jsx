@@ -27,6 +27,12 @@ const { addLog } = useContext(LogsContext);
      router.push("/dashboard");
   };
 
+  /*   const formSubmitHandler = async () => {
+    if (!formState.date || !formState.cycleLength) return;
+    await addLog(formState)
+    setFormState({ date: '', cycleLength: '' });
+     router.push("/dashboard");
+  }; */
 
   return (
     <View style={{ marginTop: 20 }}>
