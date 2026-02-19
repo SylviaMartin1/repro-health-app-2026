@@ -13,6 +13,11 @@ const { logs } = useContext(LogsContext);
         <Log 
           date={log.date}
           cycleLength={log.cycleLength}
+          startDate={log.startDate}
+          flowLevel={log.flowLevel}
+          painLevel={log.painLevel}
+          symptoms={log.symptoms}
+          emotions={log.emotions}
           key={log.id}
         />
       ))}
