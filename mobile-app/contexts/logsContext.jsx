@@ -6,9 +6,9 @@ export const LogsContext = React.createContext(null)
 
 const LogsContextProvider = (props) => {
       const [ logs, setLogs] = useState([
-      {id:1, date:"13-11-2024", cycleLength:"26", startDate: "2026-02-19", flowLevel:"5"},
-      {id:2, date:"12-11-2024", cycleLength:"28", startDate: "2026-02-19", flowLevel:"5"},
-      {id:3, date:"10-11-2024", cycleLength:"30", startDate: "2026-02-19", flowLevel:"5"}
+      {id:1, date:"13-11-2024", cycleLength:"26", startDate: "2026-02-19", flowLevel:"5", painLevel:"4"},
+      {id:2, date:"12-11-2024", cycleLength:"28", startDate: "2026-02-19", flowLevel:"5", painLevel:"4"},
+      {id:3, date:"10-11-2024", cycleLength:"30", startDate: "2026-02-19", flowLevel:"5", painLevel:"4"}
   ])
 
     const addLog = (log) => {

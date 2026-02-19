@@ -15,6 +15,7 @@ const { logs } = useContext(LogsContext);
           cycleLength={log.cycleLength}
           startDate={log.startDate}
           flowLevel={log.flowLevel}
+          painLevel={log.painLevel}
 
           key={log.id}
         />

@@ -8,6 +8,7 @@ export default function Log(props){
             <Text>{props.cycleLength}</Text>
             <Text>{props.startDate}</Text>
             <Text>{props.flowLevel}</Text>
+            <Text>{props.painLevel}</Text>
 
         </View>
     )
