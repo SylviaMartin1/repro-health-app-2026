@@ -6,6 +6,7 @@ export default function Log(props){
         <View>
             <Text>{props.date}</Text>
             <Text>{props.cycleLength}</Text>
+            <Text>{props.startDate}</Text>
         </View>
     )
 }

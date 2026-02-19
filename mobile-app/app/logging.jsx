@@ -10,7 +10,8 @@ const { addLog } = useContext(LogsContext);
 
  const [ formState, setFormState ] = useState({
     date: "",
-    cycleLength:""
+    cycleLength:"",
+    startDate:""
   })
 
      const formChangeHandler = (field, value) => {
@@ -21,9 +22,9 @@ const { addLog } = useContext(LogsContext);
   };
 
     const formSubmitHandler = () => {
-    if (!formState.date || !formState.cycleLength) return;
+    if (!formState.date || !formState.cycleLength || !formState.startDate) return;
     addLog(formState)
-    setFormState({ date: '', cycleLength: '' });
+    setFormState({ date: '', cycleLength: '', startDate: '' });
      router.push("/dashboard");
   };
 

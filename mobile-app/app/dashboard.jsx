@@ -13,6 +13,7 @@ const { logs } = useContext(LogsContext);
         <Log 
           date={log.date}
           cycleLength={log.cycleLength}
+          startDate={log.startDate}
           key={log.id}
         />
       ))}
