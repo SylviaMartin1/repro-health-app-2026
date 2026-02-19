@@ -15,6 +15,7 @@ const { addLog } = useContext(LogsContext);
     flowLevel:"",
     painLevel:"",
     symptoms:"",
+    emotions:""
   })
 
      const formChangeHandler = (field, value) => {
@@ -25,9 +26,9 @@ const { addLog } = useContext(LogsContext);
   };
 
     const formSubmitHandler = () => {
-    if (!formState.date || !formState.cycleLength || !formState.startDate || !formState.flowLevel || !formState.painLevel || !formState.symptoms) return;
+    if (!formState.date || !formState.cycleLength || !formState.startDate || !formState.flowLevel || !formState.painLevel || !formState.symptoms | !formState.emotions) return;
     addLog(formState)
-    setFormState({ date: '', cycleLength: '', startDate: '', flowLevel:'', painLevel:''});
+    setFormState({ date: '', cycleLength: '', startDate: '', flowLevel:'', painLevel:'', symptoms:'', emotions:''});
      router.push("/dashboard");
   };
 
