@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import uuid from 'react-native-uuid';
-// import { addLog as addLogApi} from "../api/api";
+import { addLog as addLogApi} from "../api/api";
 
 export const LogsContext = React.createContext(null)
 
@@ -17,12 +17,12 @@ const LogsContextProvider = (props) => {
       id: uuid.v4()
     };
     setLogs((prevLogs) => [...prevLogs, newLog]);
-} 
+}  
 
 /* const addLog = async (log) => {
         const newLog = await addLogApi(log)
         setLogs(prev => [...prev, newLog])
-    } */
+    }  */
 
 return (
     <LogsContext.Provider

@@ -23,19 +23,19 @@ const { addLog } = useContext(LogsContext);
     });
   };
 
-    const formSubmitHandler = () => {
+     const formSubmitHandler = () => {
     if (!formState.startDate || !formState.flowLevel || !formState.painLevel || !formState.symptoms | !formState.emotions) return;
     addLog(formState)
     setFormState({ date: '', cycleLength: '', startDate: '', flowLevel:'', painLevel:'', symptoms:'', emotions:''});
      router.push("/dashboard");
-  };
+  }; 
 
-  /*   const formSubmitHandler = async () => {
-    if (!formState.date || !formState.cycleLength) return;
+  /* const formSubmitHandler = async () => {
+    if (!formState.startDate || !formState.flowLevel || !formState.painLevel || !formState.symptoms | !formState.emotions) return;
     await addLog(formState)
-    setFormState({ date: '', cycleLength: '' });
+    setFormState({ date: '', cycleLength: '', startDate: '', flowLevel:'', painLevel:'', symptoms:'', emotions:'' });
      router.push("/dashboard");
-  }; */
+  };  */
 
   return (
     <View style={{ marginTop: 20 }}>
