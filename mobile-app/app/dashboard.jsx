@@ -11,8 +11,6 @@ const { logs } = useContext(LogsContext);
       <Text>Dashboard</Text>
       {logs.map((log) =>(
         <Log 
-          date={log.date}
-          cycleLength={log.cycleLength}
           startDate={log.startDate}
           flowLevel={log.flowLevel}
           painLevel={log.painLevel}

@@ -9,8 +9,6 @@ const router = useRouter();
 const { addLog } = useContext(LogsContext);
 
  const [ formState, setFormState ] = useState({
-    date: "",
-    cycleLength:"",
     startDate:"", 
     flowLevel:"",
     painLevel:"",
@@ -26,7 +24,7 @@ const { addLog } = useContext(LogsContext);
   };
 
     const formSubmitHandler = () => {
-    if (!formState.date || !formState.cycleLength || !formState.startDate || !formState.flowLevel || !formState.painLevel || !formState.symptoms | !formState.emotions) return;
+    if (!formState.startDate || !formState.flowLevel || !formState.painLevel || !formState.symptoms | !formState.emotions) return;
     addLog(formState)
     setFormState({ date: '', cycleLength: '', startDate: '', flowLevel:'', painLevel:'', symptoms:'', emotions:''});
      router.push("/dashboard");
