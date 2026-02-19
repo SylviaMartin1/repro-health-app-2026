@@ -72,6 +72,20 @@ export default function Form(props){
                     marginVertical: 8
                 }}
             />
+
+             <TextInput
+                value={props.formState.symptoms}
+                onChangeText={(text) => props.change('symptoms', text)}
+                placeholder="e.g. 28"
+                placeholderTextColor="#999"
+                style={{
+                    borderWidth:1,
+                    borderColor: '#ccc',
+                    borderRadius: 4,
+                    padding: 10,
+                    marginVertical: 8
+                }}
+            />
             <Button title="Submit" onPress={props.submit}/>
 
          

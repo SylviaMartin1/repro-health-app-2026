@@ -9,6 +9,7 @@ export default function Log(props){
             <Text>{props.startDate}</Text>
             <Text>{props.flowLevel}</Text>
             <Text>{props.painLevel}</Text>
+            <Text>{props.symptoms}</Text>
 
         </View>
     )
