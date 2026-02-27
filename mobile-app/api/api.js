@@ -1,3 +1,5 @@
+// Change the word 'localhost' to the current IP address
+// Open the port in middleware index.js to accept all ports
 export const getLogs = async () => {
     const  res = await fetch(
         `http://localhost:8080/api/logs`

@@ -18,6 +18,12 @@ app.use(express.json());
 app.use('/api/users', usersRouter);
 app.use('/api/logs', logsRouter);
 
+/*
+app.listen(port, '0.0.0.0',() => {
+  console.info(`Server running at ${port}`);
+});
+*/
+
 app.listen(port, () => {
   console.info(`Server running at ${port}`);
 });
