@@ -1,6 +1,6 @@
 import { View, Text, Pressable, Image } from 'react-native';
 import { useRouter } from "expo-router";
-import { colours } from '../theme/colours'
+import { colours } from "../theme/colours";
 
 export default function Index() {
   const router = useRouter();
