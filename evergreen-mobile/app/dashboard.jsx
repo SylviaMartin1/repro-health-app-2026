@@ -9,6 +9,8 @@ const { logs } = useContext(LogsContext);
   return (
     <View>
       <Text>Dashboard</Text>
+
+      <View style={{ flexDirection: 'row', flexWrap: 'wrap' }}>
       {logs.map((log) =>(
         <CycleCard
           startDate={log.startDate}
@@ -18,8 +20,9 @@ const { logs } = useContext(LogsContext);
           symptoms={log.symptoms}
           emotions={log.emotions}
           key={log.id}
-        />
+        />  
       ))}
+      </View>
     </View>
   );
 }

@@ -1,5 +1,5 @@
 import { Stack } from "expo-router";
-import LogsContextProvider from "../contexts/logsContext";
+import LogsContextProvider from "../contexts/ReproductiveLogsContext";
 
 export default function RootLayout() {
   return (

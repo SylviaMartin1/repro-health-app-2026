@@ -1,7 +1,7 @@
 /**
  * Imports View and Text core components from React Native
  */
-import { View, Text } from 'react-native';
+import { View, Text, StyleSheet } from 'react-native';
 
 /**
  * Defines the component CycleCard so it can be used in other files
@@ -11,13 +11,36 @@ import { View, Text } from 'react-native';
 export default function CycleCard(props){
     
     return(
-        <View>
-            <Text> Start Date: {props.startDate}</Text>
-            <Text>End Date: {props.endDate}</Text>
-            <Text>Flow Level: {props.flowLevel}</Text>
-            <Text>Pain Level: {props.painLevel}</Text>
-            <Text>Symptoms: {props.symptoms}</Text>
-            <Text>Emotions: {props.emotions}</Text>
+        <View style={styles.card}>
+            <Text style={styles.label}>Start Date: <Text style={styles.value}>{props.startDate}</Text></Text>
+            <Text style={styles.label}>End Date: <Text style={styles.value}>{props.endDate}</Text></Text>
+            <Text style={styles.label}>Flow Level: <Text style={styles.value}>{props.flowLevel}</Text></Text>
+            <Text style={styles.label}>Pain Level: <Text style={styles.value}>{props.painLevel}</Text></Text>
+            <Text style={styles.label}>Symptoms: <Text style={styles.value}>{props.symptoms}</Text></Text>
+            <Text style={styles.label}>Emotions: <Text style={styles.value}>{props.emotions}</Text></Text>
         </View>
     )
 }
+
+const styles = StyleSheet.create({
+  card: {
+    backgroundColor:'#fefefe',
+    color: 'black',
+    width: 180,
+    height: 240,
+    margin: 10, 
+    padding: 10,
+    borderRadius: 10
+  },
+  label: {
+    fontWeight: '700', 
+    color: 'black',
+    marginBottom: 4
+  },
+  value: {
+    fontWeight: '400', 
+    color: 'black',
+    marginBottom: 4
+  }
+
+});
