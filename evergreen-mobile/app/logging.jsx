@@ -1,7 +1,7 @@
 import { useRouter } from "expo-router";
 import { View, Text } from 'react-native';
 import { useState, useContext} from 'react'
-import { LogsContext } from '../contexts/logsContext';
+import { LogsContext } from '../contexts/ReproductiveLogsContext';
 import Form from '../components/Form';
 
 export default function Logging() {

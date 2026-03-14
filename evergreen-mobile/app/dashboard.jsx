@@ -1,7 +1,7 @@
 import { useContext } from 'react';
 import { View, Text } from 'react-native';
-import Log from '../components/Log';
-import { LogsContext } from '../contexts/logsContext';
+import CycleCard from '../components/CycleCard';
+import { LogsContext } from '../contexts/ReproductiveLogsContext';
 
 export default function Dashboard() {
 const { logs } = useContext(LogsContext);
@@ -10,8 +10,9 @@ const { logs } = useContext(LogsContext);
     <View>
       <Text>Dashboard</Text>
       {logs.map((log) =>(
-        <Log 
+        <CycleCard
           startDate={log.startDate}
+          endDate={log.endDate}
           flowLevel={log.flowLevel}
           painLevel={log.painLevel}
           symptoms={log.symptoms}
