@@ -33,15 +33,28 @@ const ReproductiveHealthContextProvider = (props) => {
      * @param cycle object
      * creates newCycle object which is a copy of the cycle object
      * adds a unique id to the newCycle object
-     * updates the cycles array by adding the newCycle object to the previous cycles array
+     * updates the cycles array by adding the newCycle object to the current cycles array
      */
     const addCycle = (cycle) => {
     const newCycle = {
       ...cycle,
       id: uuid.v4()
     };
-    setCycles((prevCycles) => [...prevCycles, newCycle]);
+    setCycles((currentCycles) => [...currentCycles, newCycle]);
 }
+
+    /**
+     * deleteCycle() function
+     * @param id attribute
+     * filters through the list of current cycles to find a specific id and rem
+     */
+    const deleteCycle = (id) => {
+    setCycles((currentCycles) =>
+      currentCycles.filter((cycle) => cycle.id !== id)
+    );
+  }
+
+
 
 /**
  * ReproductiveHealthContext Provider component
@@ -52,7 +65,8 @@ return (
     <ReproductiveHealthContext.Provider
         value={{
             cycles,
-            addCycle
+            addCycle,
+            deleteCycle
         }}
     >
         {props.children}

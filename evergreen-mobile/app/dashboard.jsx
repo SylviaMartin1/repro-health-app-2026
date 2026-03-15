@@ -20,6 +20,7 @@ const { cycles } = useContext(ReproductiveHealthContext);
           symptoms={cycle.symptoms}
           emotions={cycle.emotions}
           key={cycle.id}
+          id={cycle.id}
         />  
       ))}
       </View>
