@@ -1,25 +1,25 @@
 import { useContext } from 'react';
 import { View, Text } from 'react-native';
 import CycleCard from '../components/CycleCard';
-import { LogsContext } from '../contexts/ReproductiveLogsContext';
+import { ReproductiveHealthContext } from '../contexts/ReproductiveHealthContext';
 
 export default function Dashboard() {
-const { logs } = useContext(LogsContext);
+const { cycles } = useContext(ReproductiveHealthContext);
 
   return (
     <View>
       <Text>Dashboard</Text>
 
       <View style={{ flexDirection: 'row', flexWrap: 'wrap' }}>
-      {logs.map((log) =>(
+      {cycles.map((cycle) =>(
         <CycleCard
-          startDate={log.startDate}
-          endDate={log.endDate}
-          flowLevel={log.flowLevel}
-          painLevel={log.painLevel}
-          symptoms={log.symptoms}
-          emotions={log.emotions}
-          key={log.id}
+          startDate={cycle.startDate}
+          endDate={cycle.endDate}
+          flowLevel={cycle.flowLevel}
+          painLevel={cycle.painLevel}
+          symptoms={cycle.symptoms}
+          emotions={cycle.emotions}
+          key={cycle.id}
         />  
       ))}
       </View>

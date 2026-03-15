@@ -9,7 +9,6 @@ import { View, Text, StyleSheet } from 'react-native';
  * and thus display dynamic content
  */
 export default function CycleCard(props){
-    
     return(
         <View style={styles.card}>
             <Text style={styles.label}>Start Date: <Text style={styles.value}>{props.startDate}</Text></Text>
@@ -22,6 +21,9 @@ export default function CycleCard(props){
     )
 }
 
+/**
+ * Stylesheet to style the cycle card into its card shape and style the text within it too
+ */
 const styles = StyleSheet.create({
   card: {
     backgroundColor:'#fefefe',
