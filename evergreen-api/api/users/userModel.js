@@ -7,7 +7,8 @@ const UserSchema = new Schema ({
     displayName: { type: String, required: true},
     email: { type: String, required: true},
     password: { type: String, required: true },
-    lifeStage: { type: String, required: true},
+    sex: { type:String, enum: ["Male", "Female"], required: true },
+    lifeStage: { type: String, enum: ["Menstruating", "Menopausal", "Male"], required: true},
     height: { type: String},
     weight: { type: String}
 });
