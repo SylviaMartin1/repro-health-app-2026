@@ -1,23 +1,30 @@
+import { useState, useContext } from "react";
 import { View, Text, TextInput, Button } from "react-native";
-import { useState } from "react";
+import { AuthContext } from "../contexts/authContext";
 import { useRouter } from "expo-router";
 
 export default function Register() {
+  const { register } = useContext(AuthContext);
   const router = useRouter();
+
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [password2, setPassword2] = useState("");
+  const [passwordAgain, setPasswordAgain] = useState("");
+
+  const registerUser = async () => {
+    if (password !== passwordAgain) return alert("Passwords do not match");
+    const success = await register(email, password);
+    if (success) router.push("/login");
+    else alert("Signup failed, username may be taken");
+  };
 
   return (
     <View style={{ padding: 20 }}>
-      <Text style={{ fontSize: 18, fontWeight: "bold" }}>Sign Up Page</Text>
-
-      <TextInput placeholder="Email" value={email} onChangeText={setEmail} style={{ borderWidth: 1, marginVertical: 5, padding: 5 }} />
-      <TextInput placeholder="Password" value={password} onChangeText={setPassword} secureTextEntry style={{ borderWidth: 1, marginVertical: 5, padding: 5 }} />
-      <TextInput placeholder="Confirm Password" value={password2} onChangeText={setPassword2} secureTextEntry style={{ borderWidth: 1, marginVertical: 5, padding: 5 }} />
-
-      <Button title="Register" onPress={() => alert("Register pressed")} />
-      <Button title="Go to Login" onPress={() => router.push("/login")} />
+      <Text>Sign Up</Text>
+      <TextInput placeholder="Email" value={email} onChangeText={setEmail} style={{ borderWidth: 1, marginVertical: 8, padding: 8 }} />
+      <TextInput placeholder="Password" value={password} onChangeText={setPassword} secureTextEntry style={{ borderWidth: 1, marginVertical: 8, padding: 8 }} />
+      <TextInput placeholder="Password Again" value={passwordAgain} onChangeText={setPasswordAgain} secureTextEntry style={{ borderWidth: 1, marginVertical: 8, padding: 8 }} />
+      <Button title="Register" onPress={registerUser} />
     </View>
   );
 }

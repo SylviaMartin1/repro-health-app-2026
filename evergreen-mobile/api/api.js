@@ -45,24 +45,24 @@ export const updateCycle = async (data) => {
         return res.json();
 };
 
-export const login = async (username, password) => {
+export const login = async (email, password) => {
     const response = await fetch('http://localhost:8080/api/users', {
         headers: {
             'Content-Type': 'application/json'
         },
         method: 'post',
-        body: JSON.stringify({ username: username, password: password })
+        body: JSON.stringify({ email: email, password: password })
     });
     return response.json();
 };
 
-export const register = async (username, password) => {
+export const register = async (email, password) => {
     const response = await fetch('http://localhost:8080/api/users?action=register', {
         headers: {
             'Content-Type': 'application/json'
         },
         method: 'post',
-        body: JSON.stringify({ username: username, password: password })
+        body: JSON.stringify({ email: email, password: password })
     });
     return response.json();
 };
