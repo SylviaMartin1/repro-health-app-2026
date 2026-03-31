@@ -1,28 +1,30 @@
 import express from 'express';
 import Cycle from './cycleModel';
 import asyncHandler from 'express-async-handler';
+import authenticate from '../../authenticate/index.js';
 
 
 const router = express.Router(); 
 
 // Get all cycles
-router.get('/', async (req, res) => {
-    const cycles = await Cycle.find().populate('userId', 'username');
+router.get('/', authenticate, async (req, res) => {
+    const cycles = await Cycle.find({ userId: req.user._id });
     res.status(200).json(cycles);
 });
 
 // Create a cycle
-router.post('/', async (req, res) => {
+router.post('/', authenticate, async (req, res) => {
     const cycle = await Cycle (req.body).save();
     res.status(201).json(cycle);
 });
 
 
 // Update a cycle
-router.put('/:id', async (req, res) => {
+router.put('/:id', authenticate, async (req, res) => {
     if (req.body._id) delete req.body._id;
     const result = await Cycle.updateOne({
         _id: req.params.id,
+        userId: req.user._id
     }, req.body);
     if (result.matchedCount) {
         res.status(200).json({ code:200, msg: 'Cycle Updated Successfully' });
@@ -32,9 +34,10 @@ router.put('/:id', async (req, res) => {
 });
 
 // Delete a cycle
-router.delete('/:id', async (req, res) => {
+router.delete('/:id', authenticate, async (req, res) => {
     const result = await Cycle.deleteOne({
         _id: req.params.id,
+        userId: req.user._id
     });
     if (result.deletedCount) {
         res.status(204).json();

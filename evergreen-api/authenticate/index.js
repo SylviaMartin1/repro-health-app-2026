@@ -12,8 +12,8 @@ const authenticate = async (request, response, next) => {
         const decoded = await jwt.verify(token, process.env.SECRET); 
         console.log(decoded);
 
-        // Assuming decoded contains a username field
-        const user = await User.findByUserName(decoded.username); 
+        // Assuming decoded contains an email field
+        const user = await User.findByEmail(decoded.email); 
         if (!user) {
             throw new Error('User not found');
         }
