@@ -3,7 +3,7 @@ import dotenv from 'dotenv';
 import express from 'express';
 import './db';
 import usersRouter from './api/users';
-import logsRouter from './api/logs';
+import cyclesRouter from './api/cycles';
 import authenticate from './authenticate';
 
 dotenv.config();

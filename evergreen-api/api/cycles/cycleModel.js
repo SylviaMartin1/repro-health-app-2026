@@ -17,9 +17,4 @@ const CycleSchema = new Schema({
   }
 });
 
-const dateValidator = (date) => {
-  return date > new Date();
-}
-TaskSchema.path("deadline").validate(dateValidator);
-
 export default mongoose.model('Cycle', CycleSchema);
