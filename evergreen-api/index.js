@@ -25,10 +25,9 @@ app.use(express.static('public'));
 app.use(cors());
 app.use(express.json());
 app.use(errHandler);
-
 app.use('/api/users', usersRouter);
-app.use('/api/logs', logsRouter);
-app.use('/api/tasks', authenticate, logsRouter);
+app.use('/api/cycles', cyclesRouter);
+app.use('/api/tasks', authenticate, cyclesRouter);
 
 /*
 app.listen(port, '0.0.0.0',() => {

@@ -1,15 +1,15 @@
 // Change the word 'localhost' to the current IP address
 // Open the port in middleware index.js to accept all ports
-export const getLogs = async () => {
+export const getCycles = async () => {
     const  res = await fetch(
-        `http://localhost:8080/api/logs`
+        `http://localhost:8080/api/cycles`
     )
         return res.json();
 };
 
-export const addLog = async(data) => {
+export const addCycle = async(data) => {
     const res = await fetch(
-        `http://localhost:8080/api/logs`,
+        `http://localhost:8080/api/cycles`,
         {
             method: 'POST',
             headers: {
@@ -21,9 +21,9 @@ export const addLog = async(data) => {
         return res.json();
 };
 
-export const deleteLog = async (id) => {
+export const deleteCycle = async (id) => {
     const res =  fetch(
-        `http://localhost:8080/api/logs/${id}`,
+        `http://localhost:8080/api/cycles/${id}`,
         {
             method: 'DELETE'
         }
@@ -31,9 +31,9 @@ export const deleteLog = async (id) => {
     return res;
 };
 
-export const updateLog = async (data) => {
+export const updateCycle = async (data) => {
     const res = await fetch(
-        `http://localhost:8080/api/logs/${data._id}`,
+        `http://localhost:8080/api/cycles/${data._id}`,
         {
             method: 'PUT',
             headers: {
