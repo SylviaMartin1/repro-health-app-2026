@@ -1,12 +1,12 @@
 import { useRouter } from "expo-router";
 import { View, Text } from 'react-native';
 import { useState, useContext} from 'react'
-import { LogsContext } from '../contexts/logsContext';
+import { ReproductiveHealthContext } from '../contexts/ReproductiveHealthContext';
 import Form from '../components/Form';
 
 export default function Logging() {
 const router = useRouter();
-const { addLog } = useContext(LogsContext);
+const { addCycle } = useContext(ReproductiveHealthContext);
 
  const [ formState, setFormState ] = useState({
     startDate:"", 
@@ -25,7 +25,7 @@ const { addLog } = useContext(LogsContext);
 
      const formSubmitHandler = () => {
     if (!formState.startDate || !formState.flowLevel || !formState.painLevel || !formState.symptoms | !formState.emotions) return;
-    addLog(formState)
+    addCycle(formState)
     setFormState({ date: '', cycleLength: '', startDate: '', flowLevel:'', painLevel:'', symptoms:'', emotions:''});
      router.push("/dashboard");
   }; 
