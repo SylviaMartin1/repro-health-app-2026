@@ -6,6 +6,7 @@
 import React, {useContext} from 'react';
 import { View, Text, Button, StyleSheet } from 'react-native';
 import { ReproductiveHealthContext } from '../contexts/ReproductiveHealthContext';
+import { useRouter } from "expo-router";
 
 /**
  * CycleCard() functional component
@@ -14,6 +15,8 @@ import { ReproductiveHealthContext } from '../contexts/ReproductiveHealthContext
  */
 export default function CycleCard(props){
   const { deleteCycle } = useContext(ReproductiveHealthContext);
+  const router = useRouter();
+
     return(
         <View style={styles.card}>
             <Text style={styles.label}>Start Date: <Text style={styles.value}>{props.startDate}</Text></Text>
@@ -23,6 +26,7 @@ export default function CycleCard(props){
             <Text style={styles.label}>Symptoms: <Text style={styles.value}>{props.symptoms}</Text></Text>
             <Text style={styles.label}>Emotions: <Text style={styles.value}>{props.emotions}</Text></Text>
             <Button title="Delete" color='green' onPress={() => deleteCycle(props.id)} />
+            <Button title="Edit" color='green' onPress={() => router.push(`/logging?id=${props.id}`)} />
         </View>
     )
 }
