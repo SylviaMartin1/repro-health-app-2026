@@ -3,7 +3,7 @@ import dotenv from 'dotenv';
 import express from 'express';
 import './db';
 import usersRouter from './api/users';
-import logsRouter from './api/logs';
+import cyclesRouter from './api/cycles';
 import authenticate from './authenticate';
 
 dotenv.config();
@@ -26,8 +26,7 @@ app.use(cors());
 app.use(express.json());
 app.use(errHandler);
 app.use('/api/users', usersRouter);
-app.use('/api/cycles', cyclesRouter);
-app.use('/api/tasks', authenticate, cyclesRouter);
+app.use('/api/cycles', authenticate, cyclesRouter);
 
 /*
 app.listen(port, '0.0.0.0',() => {

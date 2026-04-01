@@ -22,16 +22,26 @@ export default function Index() {
                 <Image source={require('../assets/images/evergreen.png')} style={{ width: 300, height: 150, marginBottom: 30, backgroundColor: '#ccc' }} />
             </View>
             <Pressable 
+                onPress={() => router.push("/login")}
+                style={{ width: 280, backgroundColor: "green", paddingVertical: 10, paddingHorizontal: 20, borderRadius: 8, marginBottom: 5, alignItems: "center" }}>
+                <Text style={{ color: 'white', fontWeight: 'bold' }}>Login</Text>
+            </Pressable>
+            <Pressable 
+                onPress={() => router.push("/register")}
+                style={{ width: 280, backgroundColor: "green", paddingVertical: 10, paddingHorizontal: 20, borderRadius: 8, marginBottom: 5, alignItems: "center" }}>
+                <Text style={{ color: 'white', fontWeight: 'bold' }}>Register</Text>
+                </Pressable> 
+            <Pressable 
                 onPress={() => router.push("/dashboard")}
                 style={{ width: 280, backgroundColor: "green", paddingVertical: 10, paddingHorizontal: 20, borderRadius: 8, marginBottom: 5, alignItems: "center" }}>
                 <Text style={{ color: 'white', fontWeight: 'bold' }}>Dashboard</Text>
             </Pressable>
-
             <Pressable 
-                onPress={() => router.push("/logging")}
+                onPress={() => router.push("/profile")}
                 style={{ width: 280, backgroundColor: "green", paddingVertical: 10, paddingHorizontal: 20, borderRadius: 8, marginBottom: 5, alignItems: "center" }}>
-                <Text style={{ color: 'white', fontWeight: 'bold' }}>Logging</Text>
-                </Pressable>  
+                <Text style={{ color: 'white', fontWeight: 'bold' }}>Profile</Text>
+            </Pressable>  
+                
         </View>
     );
 }

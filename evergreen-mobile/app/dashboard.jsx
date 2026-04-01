@@ -5,7 +5,8 @@
  * Import ReproductiveHealthContext context file
  */
 import { useContext } from 'react';
-import { View, Text } from 'react-native';
+import { View, Text, Button } from 'react-native';
+import { useRouter } from 'expo-router';
 import CycleCard from '../components/CycleCard';
 import { ReproductiveHealthContext } from '../contexts/ReproductiveHealthContext';
 
@@ -16,6 +17,7 @@ import { ReproductiveHealthContext } from '../contexts/ReproductiveHealthContext
  */
 export default function Dashboard() {
 const { cycles } = useContext(ReproductiveHealthContext);
+const router = useRouter();
 
   return (
     <View>
@@ -35,6 +37,8 @@ const { cycles } = useContext(ReproductiveHealthContext);
         />  
       ))}
       </View>
+
+      <Button title="Go to Logging" onPress={() => router.push('/logging')} />
     </View>
   );
 }
