@@ -1,18 +1,8 @@
-/**
- * Import React and useContext() hook from React
- * Import View, Text, Button, and StyleSheet from React Native
- * Import ReproductiveHealthContext context object from context file
- */
 import React, {useContext} from 'react';
 import { View, Text, Button, StyleSheet } from 'react-native';
 import { ReproductiveHealthContext } from '../contexts/ReproductiveHealthContext';
 import { useRouter } from "expo-router";
 
-/**
- * CycleCard() functional component
- * Declare the deleteCycle() function from the context file
- * Return a View with text and a button
- */
 export default function CycleCard(props){
   const { deleteCycle } = useContext(ReproductiveHealthContext);
   const router = useRouter();
@@ -25,15 +15,14 @@ export default function CycleCard(props){
             <Text style={styles.label}>Pain Level: <Text style={styles.value}>{props.painLevel}</Text></Text>
             <Text style={styles.label}>Symptoms: <Text style={styles.value}>{props.symptoms}</Text></Text>
             <Text style={styles.label}>Emotions: <Text style={styles.value}>{props.emotions}</Text></Text>
+            <View style={styles.actionButtons}>
             <Button title="Delete" color='green' onPress={() => deleteCycle(props.id)} />
             <Button title="Edit" color='green' onPress={() => router.push(`/logging?id=${props.id}`)} />
+            </View>
         </View>
     )
 }
 
-/**
- * Stylesheet object to style the view into a card and the text within
- */
 const styles = StyleSheet.create({
   card: {
     backgroundColor:'#fefefe',
@@ -53,5 +42,10 @@ const styles = StyleSheet.create({
     fontWeight: '400', 
     color: 'black',
     marginBottom: 4
+  },
+  actionButtons: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    marginTop: 10
   }
 });

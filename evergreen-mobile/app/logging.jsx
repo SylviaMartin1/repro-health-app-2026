@@ -27,8 +27,8 @@ const existingCycle = cycles.find(cycle => cycle.id == params.id);
     });
   };
 
-     const formSubmitHandler = () => {
-    if (!formState.startDate || !formState.flowLevel || !formState.painLevel || !formState.symptoms | !formState.emotions) return;
+    const formSubmitHandler =  () => {
+    if (!formState.startDate || !formState.flowLevel || !formState.painLevel || !formState.symptoms || !formState.emotions) return;
     if (existingCycle) {
     updateCycle(existingCycle.id, formState);
   } else {
@@ -37,9 +37,10 @@ const existingCycle = cycles.find(cycle => cycle.id == params.id);
     setFormState({ date: '', cycleLength: '', startDate: '', flowLevel:'', painLevel:'', symptoms:'', emotions:''});
      router.push("/dashboard");
   }; 
+  
 
   /* const formSubmitHandler = async () => {
-    if (!formState.startDate || !formState.flowLevel || !formState.painLevel || !formState.symptoms | !formState.emotions) return;
+    if (!formState.startDate || !formState.flowLevel || !formState.painLevel || !formState.symptoms || !formState.emotions) return;
     await addLog(formState)
     setFormState({ date: '', cycleLength: '', startDate: '', flowLevel:'', painLevel:'', symptoms:'', emotions:'' });
      router.push("/dashboard");
