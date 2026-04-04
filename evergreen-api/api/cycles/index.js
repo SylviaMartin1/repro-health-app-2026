@@ -14,30 +14,47 @@ router.get('/', authenticate, async (req, res) => {
 
 // Create a cycle
 router.post('/', authenticate, async (req, res) => {
-    const cycle = await Cycle (req.body).save();
+    const cycle = await new Cycle({
+        ...req.body,
+        userId: req.user._id   
+    }).save();
     res.status(201).json(cycle);
 });
 
 
 // Update a cycle
-router.put('/:id', authenticate, async (req, res) => {
+/* router.put('/:id', async (req, res) => {
     if (req.body._id) delete req.body._id;
     const result = await Cycle.updateOne({
-        _id: req.params.id,
-        userId: req.user._id
+        _id: req.params.id
     }, req.body);
     if (result.matchedCount) {
         res.status(200).json({ code:200, msg: 'Cycle Updated Successfully' });
     } else {
         res.status(404).json({ code: 404, msg: 'Unable to find Cycle' });
     }
+}); */
+router.put('/:id', async (req, res) => {
+    if (req.body._id) delete req.body._id;
+
+    await Cycle.updateOne(
+        { _id: req.params.id },
+        req.body
+    );
+
+    const updatedCycle = await Cycle.findById(req.params.id);
+
+    if (updatedCycle) {
+        res.status(200).json(updatedCycle);
+    } else {
+        res.status(404).json({ msg: 'Unable to find Cycle' });
+    }
 });
 
 // Delete a cycle
-router.delete('/:id', authenticate, async (req, res) => {
+router.delete('/:id', async (req, res) => {
     const result = await Cycle.deleteOne({
-        _id: req.params.id,
-        userId: req.user._id
+        _id: req.params.id
     });
     if (result.deletedCount) {
         res.status(204).json();
@@ -48,7 +65,7 @@ router.delete('/:id', authenticate, async (req, res) => {
 
 // Get a user's cycles
 router.get('/user/:uid', async (req, res) => {
-    const cycles = await Cycle.find({ userId: `${req.params.uid}`});
+    const cycles = await Cycle.find();
     res.status(200).json(cycles);
 });
 

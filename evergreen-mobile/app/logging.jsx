@@ -2,15 +2,18 @@ import { useRouter } from "expo-router";
 import { View, Text } from 'react-native';
 import { useState, useContext} from 'react'
 import { ReproductiveHealthContext } from '../contexts/ReproductiveHealthContext';
+import { AuthContext } from '../contexts/authContext';
 import Form from '../components/Form';
 import { useLocalSearchParams } from "expo-router";
 
 export default function Logging() {
 const router = useRouter();
-const { addCycle, cycles, updateCycle } = useContext(ReproductiveHealthContext);
+const { addCycle, cycles, updateCycle} = useContext(ReproductiveHealthContext);
 const params = useLocalSearchParams();
 
-const existingCycle = cycles.find(cycle => cycle.id == params.id);
+
+// const existingCycle = cycles.find(cycle => cycle.id == params.id);
+const existingCycle = cycles.find(cycle => String(cycle._id) === String(params.id));
 
  const [ formState, setFormState ] = useState({
     startDate: existingCycle?.startDate || "", 
@@ -27,14 +30,16 @@ const existingCycle = cycles.find(cycle => cycle.id == params.id);
     });
   };
 
-    const formSubmitHandler =  () => {
+  
+
+    const formSubmitHandler = async () => {
     if (!formState.startDate || !formState.flowLevel || !formState.painLevel || !formState.symptoms || !formState.emotions) return;
     if (existingCycle) {
-    updateCycle(existingCycle.id, formState);
+    await updateCycle(existingCycle._id, formState);
   } else {
-    addCycle(formState);
+    await addCycle(formState);
   }
-    setFormState({ date: '', cycleLength: '', startDate: '', flowLevel:'', painLevel:'', symptoms:'', emotions:''});
+    setFormState({ startDate: '', flowLevel:'', painLevel:'', symptoms:[], emotions:[]});
      router.push("/dashboard");
   }; 
   

@@ -1,4 +1,5 @@
-import { useState, createContext } from "react";
+import { useState, createContext, useEffect } from "react";
+import AsyncStorage from '@react-native-async-storage/async-storage';
 import { login,  register as apiRegister  } from "../api/api.js";
 
 export const AuthContext = createContext(null); //eslint-disable-line
@@ -8,9 +9,23 @@ const AuthContextProvider = (props) => {
   const [authToken, setAuthToken] = useState(null); 
   const [email, setEmail] = useState("");
 
+  useEffect(() => {
+    const loadToken = async () => {
+      const token = await AsyncStorage.getItem('authToken');
+      if (token) {
+        setAuthToken(token);
+        setIsAuthenticated(true);
+      }
+    };
+    loadToken();
+  }, []);
+
+
   //Function to put JWT token in local storage.
-  const setToken = (data) => {
-    setAuthToken(data);
+ const setToken =  async (token) => {
+    const cleanToken = token.replace(/^BEARER\s+/i, "");
+    setAuthToken(cleanToken);
+    await AsyncStorage.setItem('authToken', cleanToken);
   }
 
   const authenticate = async (email, password) => {
@@ -31,8 +46,11 @@ const AuthContextProvider = (props) => {
     return result.success;
   };
 
-  const signout = () => {
-    setTimeout(() => setIsAuthenticated(false), 100);
+  const signout = async () => {
+    setAuthToken(null);
+    setIsAuthenticated(false);
+    setEmail("");
+    await AsyncStorage.removeItem('authToken');
   }
 
   return (
@@ -42,7 +60,8 @@ const AuthContextProvider = (props) => {
         authenticate,
         register,
         signout,
-        email
+        email, 
+        authToken
       }}
     >
       {props.children} {/* eslint-disable-line */}

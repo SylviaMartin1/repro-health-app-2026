@@ -1,28 +1,35 @@
 import jwt from 'jsonwebtoken';
-import User from '../api/users/userModel';
+import User from '../api/users/userModel.js';
 
-const authenticate = async (request, response, next) => {
-    try { 
-        const authHeader = request.headers.authorization;
-        if (!authHeader) throw new Error('No authorization header');
+const authenticate = async (req, res, next) => {
+  try {
+    // 1. Get header
+    const authHeader = req.headers.authorization;
 
-        const token = authHeader.split(" ")[1];
-        if (!token) throw new Error('Bearer token not found');
-
-        const decoded = await jwt.verify(token, process.env.SECRET); 
-        console.log(decoded);
-
-        // Assuming decoded contains an email field
-        const user = await User.findByEmail(decoded.email); 
-        if (!user) {
-            throw new Error('User not found');
-        }
-        // Optionally attach the user to the request for further use
-        request.user = user; 
-        next();
-    } catch(err) {
-        next(new Error(`Verification Failed: ${err.message}`));
+    if (!authHeader) {
+      return res.status(401).json({ msg: "No token provided" });
     }
+
+    // 2. Extract token
+    const token = authHeader.split(" ")[1];
+
+    // 3. Verify token
+    const decoded = jwt.verify(token, process.env.SECRET);
+
+    // 4. Find user
+    const user = await User.findOne({ email: decoded.email });
+
+    if (!user) {
+      return res.status(401).json({ msg: "User not found" });
+    }
+
+    // 5. Attach user
+    req.user = user;
+
+    next();
+  } catch (err) {
+    return res.status(401).json({ msg: "Invalid token" });
+  }
 };
 
 export default authenticate;

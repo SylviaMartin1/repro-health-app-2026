@@ -16,8 +16,8 @@ export default function CycleCard(props){
             <Text style={styles.label}>Symptoms: <Text style={styles.value}>{props.symptoms}</Text></Text>
             <Text style={styles.label}>Emotions: <Text style={styles.value}>{props.emotions}</Text></Text>
             <View style={styles.actionButtons}>
-            <Button title="Delete" color='green' onPress={() => deleteCycle(props.id)} />
-            <Button title="Edit" color='green' onPress={() => router.push(`/logging?id=${props.id}`)} />
+            <Button title="Delete" color='green' onPress={() => { console.log("Deleting ID:", props._id); deleteCycle(props._id)}} />
+            <Button title="Edit" color='green' onPress={() => { console.log("Editing ID:", props._id); router.push(`/logging?id=${props._id}`)}} />
             </View>
         </View>
     )
