@@ -26,7 +26,7 @@ app.use(cors());
 app.use(express.json());
 app.use(errHandler);
 app.use('/api/users', usersRouter);
-app.use('/api/cycles', authenticate, cyclesRouter);
+app.use('/api/cycles', cyclesRouter);
 
 /*
 app.listen(port, '0.0.0.0',() => {
