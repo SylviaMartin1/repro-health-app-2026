@@ -3,9 +3,8 @@ import mongoose from 'mongoose';
 const Schema = mongoose.Schema;
 
 const MedicineSchema = new Schema({
-  startDate: String,
   name: String,
-  category: { type: String, enum: ["Contraceptive", "Hormone", "Supplement", "Painkiller", "Other"]},
+  category: { type: String, enum: ["Contraceptive", "Hormone", "Supplement", "Painkiller", "Other"], default: "Other"},
   dosage: String,
   frequency: String,
   notes: String,

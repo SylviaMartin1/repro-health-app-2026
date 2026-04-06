@@ -96,3 +96,39 @@ export const updateMedicine = async (data, token) => {
   return res.json();
 };
 
+export const getHealthCheckups = async (token) => {
+  const res = await fetch("http://localhost:8080/api/health-checkups", {
+    headers: { Authorization: `Bearer ${token}` }
+  });
+  if (!res.ok) throw new Error(await res.text());
+  return res.json();
+};
+
+export const addHealthCheckup = async (data, token) => {
+  const res = await fetch("http://localhost:8080/api/health-checkups", {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json', Authorization: `Bearer ${token}` },
+    body: JSON.stringify(data)
+  });
+  if (!res.ok) throw new Error(await res.text());
+  return res.json();
+};
+
+export const deleteHealthCheckup = async (id, token) => {
+  const res = await fetch(`http://localhost:8080/api/health-checkups/${id}`, {
+    method: 'DELETE',
+    headers: { Authorization: `Bearer ${token}` }
+  });
+  if (!res.ok) throw new Error(await res.text());
+  return true; // just return success
+};
+
+export const updateHealthCheckup = async (data, token) => {
+  const res = await fetch(`http://localhost:8080/api/health-checkups/${data._id}`, {
+    method: 'PUT',
+    headers: { 'Content-Type': 'application/json', Authorization: `Bearer ${token}` },
+    body: JSON.stringify(data)
+  });
+  if (!res.ok) throw new Error(await res.text());
+  return res.json();
+};

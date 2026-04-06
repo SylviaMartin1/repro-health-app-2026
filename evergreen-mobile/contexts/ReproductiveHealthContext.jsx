@@ -1,7 +1,7 @@
 //import React, { useState } from "react";
 import React, { useState, useEffect, useContext } from "react";
 import uuid from 'react-native-uuid';
-import { getCycles, addCycle as addCycleApi, getMedicines, deleteCycle as deleteCycleApi, updateCycle as updateCycleApi, addMedicine as addMedicineApi, deleteMedicine as deleteMedicineApi, updateMedicine as updateMedicineApi} from "../api/api";
+import { getCycles, addCycle as addCycleApi, getMedicines, deleteCycle as deleteCycleApi, updateCycle as updateCycleApi, addMedicine as addMedicineApi, deleteMedicine as deleteMedicineApi, updateMedicine as updateMedicineApi, getHealthCheckups, addHealthCheckup as addHealthCheckupApi, deleteHealthCheckup as deleteHealthCheckupApi, updateHealthCheckup as updateHealthCheckupApi, deleteHealthCheckup } from "../api/api";
 import { AuthContext } from './authContext';
 
 export const ReproductiveHealthContext = React.createContext(null)
@@ -15,6 +15,8 @@ const ReproductiveHealthContextProvider = (props) => {
 
      const [cycles, setCycles] = useState([]);
      const [medicines, setMedicines] = useState([]);
+     const [healthCheckups, setHealthCheckups] = useState([]);
+
 
      const { authToken } = useContext(AuthContext);
 
@@ -51,6 +53,23 @@ const ReproductiveHealthContextProvider = (props) => {
       }
     };
     loadMedicines();
+  }, [authToken]);
+
+   useEffect(() => {
+    if (!authToken) return;
+    const loadHealthCheckups = async () => {
+      try {
+        const data = await getHealthCheckups(authToken);
+        if (Array.isArray(data)) {
+          setHealthCheckups(data);
+        } else {
+          console.error("API did not return an array:", data);
+        }
+      } catch (error) {
+        console.error("Error loading health checkups:", error);
+      }
+    };
+    loadHealthCheckups();
   }, [authToken]);
   
    
@@ -117,7 +136,24 @@ const addCycle = async (cycle) => {
     setMedicines(prev => prev.filter(medicine => String(medicine._id) !== String(_id)));
   };
 
+  const addHealthCheckup = async (healthCheckup) => {
+  console.log("TOKEN BEING SENT:", authToken);
+   if (!authToken) return;
+  const newHealthCheckup = await addHealthCheckupApi(healthCheckup, authToken);
+  setHealthCheckups(prev => [...prev, newHealthCheckup]);
+}  
 
+ const updateHealthCheckup = async (_id, updatedHealthCheckup) => {
+   if (!authToken) return;
+    const updated = await updateHealthCheckupApi({ _id, ...updatedHealthCheckup }, authToken);
+    setHealthCheckups(prev => prev.map(healthCheckup => String(healthCheckup._id) === String(_id) ? updated : healthCheckup));
+  };
+
+   const deleteHealthCheckup = async (_id) => {
+   if (!authToken) return;
+    await deleteHealthCheckupApi(_id, authToken);
+    setHealthCheckups(prev => prev.filter(healthCheckup => String(healthCheckup._id) !== String(_id)));
+  };
 
 return (
     <ReproductiveHealthContext.Provider
@@ -129,7 +165,11 @@ return (
             medicines,
             addMedicine,
             updateMedicine,
-            deleteMedicine
+            deleteMedicine, 
+            healthCheckups,
+            addHealthCheckup,
+            updateHealthCheckup,
+            deleteHealthCheckup
         }}
     >
         {props.children}

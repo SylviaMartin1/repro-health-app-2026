@@ -5,6 +5,7 @@ import './db';
 import usersRouter from './api/users';
 import cyclesRouter from './api/cycles';
 import medicinesRouter from './api/medicines'
+import healthCheckupsRouter from './api/healthCheckups'
 import authenticate from './authenticate';
 
 dotenv.config();
@@ -29,6 +30,7 @@ app.use(errHandler);
 app.use('/api/users', usersRouter);
 app.use('/api/cycles', cyclesRouter);
 app.use('/api/medicines',medicinesRouter);
+app.use('/api/health-checkups',healthCheckupsRouter);
 
 /*
 app.listen(port, '0.0.0.0',() => {
