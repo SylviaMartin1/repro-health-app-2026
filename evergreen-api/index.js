@@ -4,6 +4,9 @@ import express from 'express';
 import './db';
 import usersRouter from './api/users';
 import cyclesRouter from './api/cycles';
+import medicinesRouter from './api/medicines'
+import healthCheckupsRouter from './api/healthCheckups'
+import lifeStyleLogsRouter from './api/lifeStyleLogs'
 import authenticate from './authenticate';
 
 dotenv.config();
@@ -27,6 +30,9 @@ app.use(express.json());
 app.use(errHandler);
 app.use('/api/users', usersRouter);
 app.use('/api/cycles', cyclesRouter);
+app.use('/api/medicines',medicinesRouter);
+app.use('/api/health-checkups',healthCheckupsRouter);
+app.use('/api/lifeStyleLogs', lifeStyleLogsRouter);
 
 /*
 app.listen(port, '0.0.0.0',() => {
