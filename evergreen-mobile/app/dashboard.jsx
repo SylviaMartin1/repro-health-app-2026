@@ -10,12 +10,13 @@ import { useRouter } from 'expo-router';
 import CycleCard from '../components/CycleCard';
 import MedicineCard from '../components/MedicineCard';
 import HealthCheckupCard from '../components/HealthCheckupCard'
+import LifeStyleLogCard from '../components/LifeStyleLogCard'
 import { ReproductiveHealthContext } from '../contexts/ReproductiveHealthContext';
 import { AuthContext } from '../contexts/authContext';
 
 
 export default function Dashboard() {
-const { cycles, medicines, healthCheckups } = useContext(ReproductiveHealthContext);
+const { cycles, medicines, healthCheckups, lifeStyleLogs } = useContext(ReproductiveHealthContext);
 const { signout } = useContext(AuthContext);
 const router = useRouter();
 
@@ -75,9 +76,28 @@ const router = useRouter();
       ))}
       </View>
 
+      <Text>Life Style</Text>
+      <View style={{ flexDirection: 'row', flexWrap: 'wrap' }}>
+      {Array.isArray(lifeStyleLogs) && lifeStyleLogs.map((lifeStyleLog) => (
+        <LifeStyleLogCard
+          sleepHours={lifeStyleLog.sleepHours}
+          exerciseMins={lifeStyleLog.exerciseMins}
+          waterIntakeLevel={lifeStyleLog.waterIntakeLevel}
+          stressLevel={lifeStyleLog.stressLevel}
+          dietQuality={lifeStyleLog.dietQuality}
+          mood={lifeStyleLog.mood}
+          key={lifeStyleLog._id}
+          _id={lifeStyleLog._id}
+        />  
+      ))}
+      </View>
+
+     
+
       <Button title="Log Cycles" onPress={() => router.push('/logging')} />
       <Button title="Log Medicines" onPress={() => router.push('/medicine-logging')} />
       <Button title="Log Health Checkups" onPress={() => router.push('/healthCheckup-logging')} />
+      <Button title="Log LifeStyle Logs" onPress={() => router.push('/lifeStyle-logging')} />
       <Button title="Sign Out" onPress={handleSignOut} color="red" />
     </View>
     </ScrollView>
