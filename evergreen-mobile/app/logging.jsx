@@ -2,7 +2,6 @@ import { useRouter } from "expo-router";
 import { View, Text } from 'react-native';
 import { useState, useContext} from 'react'
 import { ReproductiveHealthContext } from '../contexts/ReproductiveHealthContext';
-import { AuthContext } from '../contexts/authContext';
 import Form from '../components/Form';
 import { useLocalSearchParams } from "expo-router";
 
@@ -43,13 +42,6 @@ const existingCycle = cycles.find(cycle => String(cycle._id) === String(params.i
      router.push("/dashboard");
   }; 
   
-
-  /* const formSubmitHandler = async () => {
-    if (!formState.startDate || !formState.flowLevel || !formState.painLevel || !formState.symptoms || !formState.emotions) return;
-    await addLog(formState)
-    setFormState({ date: '', cycleLength: '', startDate: '', flowLevel:'', painLevel:'', symptoms:'', emotions:'' });
-     router.push("/dashboard");
-  };  */
 
   return (
     <View style={{ marginTop: 20 }}>

@@ -1,7 +1,7 @@
 //import React, { useState } from "react";
 import React, { useState, useEffect, useContext } from "react";
 import uuid from 'react-native-uuid';
-import { getCycles, addCycle as addCycleApi, deleteCycle as deleteCycleApi, updateCycle as updateCycleApi} from "../api/api";
+import { getCycles, addCycle as addCycleApi, getMedicines, deleteCycle as deleteCycleApi, updateCycle as updateCycleApi, addMedicine as addMedicineApi, deleteMedicine as deleteMedicineApi, updateMedicine as updateMedicineApi} from "../api/api";
 import { AuthContext } from './authContext';
 
 export const ReproductiveHealthContext = React.createContext(null)
@@ -14,6 +14,7 @@ const ReproductiveHealthContextProvider = (props) => {
     ]) */
 
      const [cycles, setCycles] = useState([]);
+     const [medicines, setMedicines] = useState([]);
 
      const { authToken } = useContext(AuthContext);
 
@@ -26,14 +27,30 @@ const ReproductiveHealthContextProvider = (props) => {
         if (Array.isArray(data)) {
           setCycles(data);
         } else {
-          console.error("Cycles API did not return an array:", data);
+          console.error("API did not return an array:", data);
         }
       } catch (error) {
         console.error("Error loading cycles:", error);
       }
     };
-
     loadCycles();
+  }, [authToken]);
+
+  useEffect(() => {
+    if (!authToken) return;
+    const loadMedicines = async () => {
+      try {
+        const data = await getMedicines(authToken);
+        if (Array.isArray(data)) {
+          setMedicines(data);
+        } else {
+          console.error("API did not return an array:", data);
+        }
+      } catch (error) {
+        console.error("Error loading medicines:", error);
+      }
+    };
+    loadMedicines();
   }, [authToken]);
   
    
@@ -81,6 +98,26 @@ const addCycle = async (cycle) => {
     setCycles(prev => prev.map(cycle => String(cycle._id) === String(_id) ? updated : cycle));
   };
 
+  const addMedicine = async (medicine) => {
+  console.log("TOKEN BEING SENT:", authToken);
+   if (!authToken) return;
+  const newMedicine = await addMedicineApi(medicine, authToken);
+  setMedicines(prev => [...prev, newMedicine]);
+}  
+
+ const updateMedicine = async (_id, updatedMedicine) => {
+   if (!authToken) return;
+    const updated = await updateMedicineApi({ _id, ...updatedMedicine }, authToken);
+    setMedicines(prev => prev.map(medicine => String(medicine._id) === String(_id) ? updated : medicine));
+  };
+
+   const deleteMedicine = async (_id) => {
+   if (!authToken) return;
+    await deleteMedicineApi(_id, authToken);
+    setMedicines(prev => prev.filter(medicine => String(medicine._id) !== String(_id)));
+  };
+
+
 
 return (
     <ReproductiveHealthContext.Provider
@@ -88,7 +125,11 @@ return (
             cycles,
             addCycle,
             deleteCycle,
-            updateCycle
+            updateCycle,
+            medicines,
+            addMedicine,
+            updateMedicine,
+            deleteMedicine
         }}
     >
         {props.children}
