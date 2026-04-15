@@ -37,24 +37,24 @@ export const updateCycle = async (data, token) => {
   return res.json();
 };
 
-export const login = async (email, password) => {
+export const login = async (email, password, lifeStage) => {
     const response = await fetch('http://localhost:8080/api/users', {
         headers: {
             'Content-Type': 'application/json'
         },
         method: 'post',
-        body: JSON.stringify({ email: email, password: password })
+        body: JSON.stringify({ email: email, password: password, lifeStage: lifeStage })
     });
     return response.json();
 };
 
-export const register = async (email, password) => {
+export const register = async (email, password, lifeStage) => {
     const response = await fetch('http://localhost:8080/api/users?action=register', {
         headers: {
             'Content-Type': 'application/json'
         },
         method: 'post',
-        body: JSON.stringify({ email: email, password: password })
+        body: JSON.stringify({ email: email, password: password, lifeStage: lifeStage })
     });
     return response.json();
 };
