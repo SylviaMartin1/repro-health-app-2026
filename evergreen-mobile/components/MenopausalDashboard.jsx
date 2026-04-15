@@ -1,6 +1,7 @@
 import { useContext } from 'react';
 import { View, Text, Button, ScrollView } from 'react-native';
 import { useRouter } from 'expo-router';
+import MenopausalHealthLogCard from './MenopausalHealthLogCard';
 import MedicineCard from '../components/MedicineCard';
 import HealthCheckupCard from '../components/HealthCheckupCard'
 import LifeStyleLogCard from '../components/LifeStyleLogCard'
@@ -8,7 +9,7 @@ import { ReproductiveHealthContext } from '../contexts/ReproductiveHealthContext
 import { AuthContext } from '../contexts/authContext';
 
 export default function MenopausalDashboard() {
-const { medicines, healthCheckups, lifeStyleLogs } = useContext(ReproductiveHealthContext);
+const { menopausalHealthLogs, medicines, healthCheckups, lifeStyleLogs } = useContext(ReproductiveHealthContext);
 const { signout} = useContext(AuthContext);
 const router = useRouter();
 
@@ -19,6 +20,25 @@ const router = useRouter();
 
   return (
     <ScrollView style={{ flex: 1, padding: 10 }}>
+
+      <Text>Health Logs</Text>
+      <View style={{ flexDirection: 'row', flexWrap: 'wrap' }}>
+      {Array.isArray(menopausalHealthLogs) && menopausalHealthLogs.map((menopausalHealthLog) => (
+        <MenopausalHealthLogCard
+          hotFlashQuantity={menopausalHealthLog.hotFlashQuantity}
+          hotFlashIntensityScore={menopausalHealthLog.hotFlashIntensityScore}
+          nightSweatQuantity={menopausalHealthLog.nightSweatQuantity}
+          nightSweatScore={menopausalHealthLog.nightSweatScore}
+          symptoms={menopausalHealthLog.symptoms}
+          emotions={menopausalHealthLog.emotions}
+          estrogenLevels={menopausalHealthLog.estrogenLevels}
+          progesteroneLevels={menopausalHealthLog.progesteroneLevels}
+          fshLevels={menopausalHealthLog.fshLevels}
+          key={menopausalHealthLog._id}
+          _id={menopausalHealthLog._id}
+        />  
+      ))}
+      </View>
 
     <Text>Medicines</Text>
       <View style={{ flexDirection: 'row', flexWrap: 'wrap' }}>
@@ -67,6 +87,7 @@ const router = useRouter();
       ))}
       </View>
 
+      <Button title="Log Health Data" onPress={() => router.push('/menopausalHealth-logging')} />
       <Button title="Log Medicines" onPress={() => router.push('/medicine-logging')} />
       <Button title="Log Health Checkups" onPress={() => router.push('/healthCheckup-logging')} />
       <Button title="Log LifeStyle Logs" onPress={() => router.push('/lifeStyle-logging')} />

@@ -1,7 +1,7 @@
 //import React, { useState } from "react";
 import React, { useState, useEffect, useContext } from "react";
 import uuid from 'react-native-uuid';
-import { getCycles, addCycle as addCycleApi, getMedicines, deleteCycle as deleteCycleApi, updateCycle as updateCycleApi, addMedicine as addMedicineApi, deleteMedicine as deleteMedicineApi, updateMedicine as updateMedicineApi, getHealthCheckups, addHealthCheckup as addHealthCheckupApi, deleteHealthCheckup as deleteHealthCheckupApi, updateHealthCheckup as updateHealthCheckupApi, getLifeStyleLogs, addLifeStyleLog as addLifeStyleLogApi, deleteLifeStyleLog as deleteLifeStyleLogApi, updateLifeStyleLog as updateLifeStyleLogApi } from "../api/api";
+import { getCycles, addCycle as addCycleApi, getMedicines, deleteCycle as deleteCycleApi, updateCycle as updateCycleApi, addMedicine as addMedicineApi, deleteMedicine as deleteMedicineApi, updateMedicine as updateMedicineApi, getHealthCheckups, addHealthCheckup as addHealthCheckupApi, deleteHealthCheckup as deleteHealthCheckupApi, updateHealthCheckup as updateHealthCheckupApi, getLifeStyleLogs, addLifeStyleLog as addLifeStyleLogApi, deleteLifeStyleLog as deleteLifeStyleLogApi, updateLifeStyleLog as updateLifeStyleLogApi, getMenopausalHealthLogs, addMenopausalHealthLog as addMenopausalHealthLogApi, deleteMenopausalHealthLog as deleteMenopausalHealthLogApi, updateMenopausalHealthLog as updateMenopausalHealthLogApi } from "../api/api";
 import { AuthContext } from './authContext';
 
 export const ReproductiveHealthContext = React.createContext(null)
@@ -17,6 +17,7 @@ const ReproductiveHealthContextProvider = (props) => {
      const [medicines, setMedicines] = useState([]);
      const [healthCheckups, setHealthCheckups] = useState([]);
      const [lifeStyleLogs, setLifeStyleLogs] = useState([]);
+     const [menopausalHealthLogs, setMenopausalHealthLogs] = useState([]);
 
      const { authToken } = useContext(AuthContext);
 
@@ -87,6 +88,23 @@ const ReproductiveHealthContextProvider = (props) => {
       }
     };
     loadLifeStyleLogs();
+  }, [authToken]);
+
+  useEffect(() => {
+    if (!authToken) return;
+    const loadMenopausalHealthLogs = async () => {
+      try {
+        const data = await getMenopausalHealthLogs(authToken);
+        if (Array.isArray(data)) {
+          setMenopausalHealthLogs(data);
+        } else {
+          console.error("API did not return an array:", data);
+        }
+      } catch (error) {
+        console.error("Error loading health logs:", error);
+      }
+    };
+    loadMenopausalHealthLogs();
   }, [authToken]);
   
   
@@ -173,7 +191,7 @@ const addCycle = async (cycle) => {
     setHealthCheckups(prev => prev.filter(healthCheckup => String(healthCheckup._id) !== String(_id)));
   };
 
-  const addLifeStyleLog = async (lifeStyleLog) => {
+ const addLifeStyleLog = async (lifeStyleLog) => {
   console.log("TOKEN BEING SENT:", authToken);
    if (!authToken) return;
   const newLifeStyleLog = await addLifeStyleLogApi(lifeStyleLog, authToken);
@@ -190,6 +208,25 @@ const addCycle = async (cycle) => {
    if (!authToken) return;
     await deleteLifeStyleLogApi(_id, authToken);
     setLifeStyleLogs(prev => prev.filter(lifeStyleLog => String(lifeStyleLog._id) !== String(_id)));
+  };
+
+  const addMenopausalHealthLog = async (menopausalHealthLog) => {
+  console.log("TOKEN BEING SENT:", authToken);
+   if (!authToken) return;
+  const newMenopausalHealthLog = await addMenopausalHealthLogApi(menopausalHealthLog, authToken);
+  setLifeStyleLogs(prev => [...prev, newMenopausalHealthLog]);
+}  
+
+ const updateMenopausalHealthLog = async (_id, updatedMenopausalHealthLog) => {
+   if (!authToken) return;
+    const updated = await updateMenopausalHealthLogApi({ _id, ...updatedMenopausalHealthLog }, authToken);
+    setMenopausalHealthLogs(prev => prev.map(menopausalHealthLog => String(menopausalHealthLog._id) === String(_id) ? updated : menopausalHealthLog));
+  };
+
+   const deleteMenopausalHealthLog = async (_id) => {
+   if (!authToken) return;
+    await deleteMenopausalHealthLogApi(_id, authToken);
+    setMenopausalHealthLogs(prev => prev.filter(menopausalHealthLog => String(menopausalHealthLog._id) !== String(_id)));
   };
 
 return (
@@ -210,7 +247,11 @@ return (
             lifeStyleLogs,
             addLifeStyleLog,
             updateLifeStyleLog,
-            deleteLifeStyleLog
+            deleteLifeStyleLog,
+            menopausalHealthLogs,
+            addMenopausalHealthLog,
+            updateMenopausalHealthLog,
+            deleteMenopausalHealthLog,
         }}
     >
         {props.children}

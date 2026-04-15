@@ -1,9 +1,3 @@
-/**
- * Import useContext() hook from React
- * Import View and Text from React Native
- * Import custom CycleCard component
- * Import ReproductiveHealthContext context file
- */
 import { useContext } from 'react';
 import { View, Text } from 'react-native';
 import { AuthContext } from '../contexts/authContext';
