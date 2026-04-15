@@ -10,10 +10,9 @@ export default function LoginScreen() {
   const [password, setPassword] = useState("");
   const [showPassword, setShowPassword] = useState(false);
 
-
   const login = async () => {
     await authenticate(email, password);
-    router.push("/dashboard"); // redirect after login
+    router.push("/dashboard"); // redirects here after a successful login
   };
 
   return (

@@ -69,5 +69,20 @@ router.get('/user/:uid', async (req, res) => {
     res.status(200).json(cycles);
 });
 
+router.get('/partner', asyncHandler(async (req, res) => {
+    const token = req.headers.authorization?.split(" ")[1];
+    const decoded = jwt.verify(token, process.env.SECRET);
+    const user = await User.findOne({ email: decoded.email });
+
+    if (!user.partner) {
+        return res.json([]);
+    }
+    const cycles = await Cycle.find({ user: user.partner });
+
+    res.json(cycles);
+}));
+
+
+
 
 export default router;

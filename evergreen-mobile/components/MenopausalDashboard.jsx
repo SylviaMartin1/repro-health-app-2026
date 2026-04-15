@@ -87,6 +87,8 @@ const router = useRouter();
       ))}
       </View>
 
+      
+
       <Button title="Log Health Data" onPress={() => router.push('/menopausalHealth-logging')} />
       <Button title="Log Medicines" onPress={() => router.push('/medicine-logging')} />
       <Button title="Log Health Checkups" onPress={() => router.push('/healthCheckup-logging')} />

@@ -53,7 +53,8 @@ async function authenticateUser(req, res) {
             user: {
                 _id: user._id,
                 email: user.email,
-                lifeStage: user.lifeStage
+                lifeStage: user.lifeStage, 
+                role: user.role
             }
          });
     } else {
@@ -64,15 +65,11 @@ async function authenticateUser(req, res) {
 router.get('/profile', asyncHandler(async (req, res) => {
     try {
         const token = req.headers.authorization?.split(" ")[1];
-
         if (!token) {
             return res.status(401).json({ msg: "No token provided" });
         }
-
         const decoded = jwt.verify(token, process.env.SECRET);
-
         const user = await User.findOne({ email: decoded.email });
-
         if (!user) {
             return res.status(404).json({ msg: "User not found" });
         }
@@ -80,7 +77,8 @@ router.get('/profile', asyncHandler(async (req, res) => {
         res.status(200).json({
             _id: user._id,
             email: user.email,
-            lifeStage: user.lifeStage
+            lifeStage: user.lifeStage,
+            role: user.role
         });
 
     } catch (err) {
@@ -88,6 +86,29 @@ router.get('/profile', asyncHandler(async (req, res) => {
         res.status(500).json({ msg: "Server error" });
     }
 }));
+
+router.post("/make-admin", async (req, res) => {
+  const { email } = req.body;
+  const user = await User.findOne({ email });
+
+  if (!user) {
+    return res.status(404).json({ msg: "User not found" });
+  }
+
+  user.role = "admin";
+  await user.save();
+
+  res.json({
+    msg: "User promoted to admin",
+    user
+  });
+});
+
+
+
+
+
+
 
 export default router;
 

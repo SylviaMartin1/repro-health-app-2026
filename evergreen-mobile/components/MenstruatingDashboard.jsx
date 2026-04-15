@@ -84,12 +84,16 @@ const router = useRouter();
       ))}
       </View>
 
+      
+
      
       <Button title="Log Cycles" onPress={() => router.push('/logging')} />
       <Button title="Log Medicines" onPress={() => router.push('/medicine-logging')} />
       <Button title="Log Health Checkups" onPress={() => router.push('/healthCheckup-logging')} />
       <Button title="Log LifeStyle Logs" onPress={() => router.push('/lifeStyle-logging')} />
       <Button title="Sign Out" onPress={handleSignOut} color="red" />
+
+      
 
     </ScrollView>
   );
