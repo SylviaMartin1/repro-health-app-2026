@@ -5,110 +5,36 @@
  * Import ReproductiveHealthContext context file
  */
 import { useContext } from 'react';
-import { View, Text, Button, ScrollView } from 'react-native';
-import { useRouter } from 'expo-router';
-import CycleCard from '../components/CycleCard';
-import MedicineCard from '../components/MedicineCard';
-import HealthCheckupCard from '../components/HealthCheckupCard'
-import LifeStyleLogCard from '../components/LifeStyleLogCard'
-import { ReproductiveHealthContext } from '../contexts/ReproductiveHealthContext';
+import { View, Text } from 'react-native';
 import { AuthContext } from '../contexts/authContext';
+import MenstruatingDashboard from "../components/MenstruatingDashboard";
+import MenopausalDashboard from "../components/MenopausalDashboard";
+import MaleDashboard from "../components/MaleDashboard";
 
 export default function Dashboard() {
-const { cycles, medicines, healthCheckups, lifeStyleLogs } = useContext(ReproductiveHealthContext);
-const { signout, user } = useContext(AuthContext);
-const router = useRouter();
-const userLifeStage = user?.lifeStage;
+const { user } = useContext(AuthContext);
+const lifeStage = user?.lifeStage;
 
- const handleSignOut = async () => {
-    await signout();     
-    router.push('/'); 
-  };
+console.log("User:", user);
+console.log("Life Stage:", lifeStage);
 
-  console.log("User:", user);
-  console.log("Life Stage:", userLifeStage);
-
-  return (
-    <ScrollView style={{ flex: 1, padding: 10 }}>
-    <View>
-      <Text>Cycles</Text>
-
-
-
-    <View>
-      <View style={{ flexDirection: 'row', flexWrap: 'wrap' }}>
-      {Array.isArray(cycles) && cycles.map((cycle) => (
-        <CycleCard
-          startDate={cycle.startDate}
-          endDate={cycle.endDate}
-          flowLevel={cycle.flowLevel}
-          painLevel={cycle.painLevel}
-          symptoms={cycle.symptoms}
-          emotions={cycle.emotions}
-          key={cycle._id}
-          _id={cycle._id}
-        />  
-      ))}
+  if (!user || !lifeStage) {
+    return (
+      <View style={{ flex: 1, justifyContent: "center", alignItems: "center" }}>
+        <Text>Loading user...</Text>
       </View>
+    );
+  }
 
-      <Text>Medicines</Text>
-      <View style={{ flexDirection: 'row', flexWrap: 'wrap' }}>
-      {Array.isArray(medicines) && medicines.map((medicine) => (
-        <MedicineCard
-          name={medicine.name}
-          category={medicine.category}
-          dosage={medicine.dosage}
-          frequency={medicine.frequency}
-          notes={medicine.notes}
-          key={medicine._id}
-          _id={medicine._id}
-        />  
-      ))}
-      </View>
+ if (lifeStage === "Menstruating") {
+    return <MenstruatingDashboard />;
+  }
 
-      <Text>Health Checkups</Text>
-      <View style={{ flexDirection: 'row', flexWrap: 'wrap' }}>
-      {Array.isArray(healthCheckups) && healthCheckups.map((healthCheckup) => (
-        <HealthCheckupCard
-          name={healthCheckup.name}
-          date={healthCheckup.date}
-          time={healthCheckup.time}
-          results={healthCheckup.results}
-          doctorNotes={healthCheckup.doctorNotes}
-          status={healthCheckup.status}
-          key={healthCheckup._id}
-          _id={healthCheckup._id}
-        />  
-      ))}
-      </View>
+  if (lifeStage === "Menopausal") {
+    return <MenopausalDashboard />;
+  }
 
-      <Text>Life Style</Text>
-      <View style={{ flexDirection: 'row', flexWrap: 'wrap' }}>
-      {Array.isArray(lifeStyleLogs) && lifeStyleLogs.map((lifeStyleLog) => (
-        <LifeStyleLogCard
-          sleepHours={lifeStyleLog.sleepHours}
-          exerciseMins={lifeStyleLog.exerciseMins}
-          waterIntakeLevel={lifeStyleLog.waterIntakeLevel}
-          stressLevel={lifeStyleLog.stressLevel}
-          dietQuality={lifeStyleLog.dietQuality}
-          mood={lifeStyleLog.mood}
-          key={lifeStyleLog._id}
-          _id={lifeStyleLog._id}
-        />  
-      ))}
-      </View>
-
-      <Button title="Log Cycles" onPress={() => router.push('/logging')} />
-      <Button title="Log Medicines" onPress={() => router.push('/medicine-logging')} />
-      <Button title="Log Health Checkups" onPress={() => router.push('/healthCheckup-logging')} />
-      <Button title="Log LifeStyle Logs" onPress={() => router.push('/lifeStyle-logging')} />
-    </View>
-
-    <Button title="Sign Out" onPress={handleSignOut} color="red" />
-
-
-
-    </View>
-    </ScrollView>
-  );
+  if (lifeStage === "Male") {
+    return <MaleDashboard />;
+  }
 }
