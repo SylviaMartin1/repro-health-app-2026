@@ -8,6 +8,7 @@ const AuthContextProvider = (props) => {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
   const [authToken, setAuthToken] = useState(null); 
   const [email, setEmail] = useState("");
+  const [user, setUser] = useState(null);
 
   useEffect(() => {
     const loadToken = async () => {
@@ -30,10 +31,12 @@ const AuthContextProvider = (props) => {
 
   const authenticate = async (email, password) => {
     const result = await login(email, password);
+    console.log("LOGIN RESPONSE:", result);
     if (result.token) {
       setToken(result.token)
       setIsAuthenticated(true);
       setEmail(email);
+      setUser(result.user);
     }
     else {
     alert(result.error || "Login failed");
@@ -61,7 +64,9 @@ const AuthContextProvider = (props) => {
         register,
         signout,
         email, 
-        authToken
+        authToken,
+        user,
+        setUser
       }}
     >
       {props.children} {/* eslint-disable-line */}

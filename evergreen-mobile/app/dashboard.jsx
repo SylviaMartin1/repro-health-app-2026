@@ -14,10 +14,9 @@ import LifeStyleLogCard from '../components/LifeStyleLogCard'
 import { ReproductiveHealthContext } from '../contexts/ReproductiveHealthContext';
 import { AuthContext } from '../contexts/authContext';
 
-
 export default function Dashboard() {
 const { cycles, medicines, healthCheckups, lifeStyleLogs } = useContext(ReproductiveHealthContext);
-const { signout } = useContext(AuthContext);
+const { signout, user } = useContext(AuthContext);
 const router = useRouter();
 
  const handleSignOut = async () => {
@@ -25,11 +24,14 @@ const router = useRouter();
     router.push('/'); 
   };
 
+  console.log("USER:", user);
+
   return (
     <ScrollView style={{ flex: 1, padding: 10 }}>
     <View>
       <Text>Cycles</Text>
 
+<View>
       <View style={{ flexDirection: 'row', flexWrap: 'wrap' }}>
       {Array.isArray(cycles) && cycles.map((cycle) => (
         <CycleCard
@@ -92,13 +94,12 @@ const router = useRouter();
       ))}
       </View>
 
-     
-
       <Button title="Log Cycles" onPress={() => router.push('/logging')} />
       <Button title="Log Medicines" onPress={() => router.push('/medicine-logging')} />
       <Button title="Log Health Checkups" onPress={() => router.push('/healthCheckup-logging')} />
       <Button title="Log LifeStyle Logs" onPress={() => router.push('/lifeStyle-logging')} />
       <Button title="Sign Out" onPress={handleSignOut} color="red" />
+    </View>
     </View>
     </ScrollView>
   );
