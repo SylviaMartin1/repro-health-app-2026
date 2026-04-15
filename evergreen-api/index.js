@@ -8,6 +8,7 @@ import medicinesRouter from './api/medicines'
 import healthCheckupsRouter from './api/healthCheckups'
 import lifeStyleLogsRouter from './api/lifeStyleLogs'
 import menopausalHealthLogsRouter from './api/menopausalHealthLogs';
+import maleHealthLogsRouter from './api/maleHealthLogs';
 
 dotenv.config();
 
@@ -34,6 +35,7 @@ app.use('/api/medicines',medicinesRouter);
 app.use('/api/health-checkups',healthCheckupsRouter);
 app.use('/api/lifeStyleLogs', lifeStyleLogsRouter);
 app.use('/api/menopausalHealthLogs', menopausalHealthLogsRouter);
+app.use('/api/maleHealthLogs', maleHealthLogsRouter);
 
 
 /*

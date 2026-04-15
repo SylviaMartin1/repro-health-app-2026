@@ -218,3 +218,40 @@ export const updateMenopausalHealthLog = async (data, token) => {
   if (!res.ok) throw new Error(await res.text());
   return res.json();
 };
+
+export const getMaleHealthLogs = async (token) => {
+const res = await fetch("http://localhost:8080/api/maleHealthLogs", {
+    headers: { Authorization: `Bearer ${token}` }
+  });
+  if (!res.ok) throw new Error(await res.text());
+  return res.json();
+};
+
+export const addMaleHealthLog = async (data, token) => {
+  const res = await fetch("http://localhost:8080/api/maleHealthLogs", {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json', Authorization: `Bearer ${token}` },
+    body: JSON.stringify(data)
+  });
+  if (!res.ok) throw new Error(await res.text());
+  return res.json();
+};
+
+export const deleteMaleHealthLog = async (id, token) => {
+  const res = await fetch(`http://localhost:8080/api/maleHealthLogs/${id}`, {
+    method: 'DELETE',
+    headers: { Authorization: `Bearer ${token}` }
+  });
+  if (!res.ok) throw new Error(await res.text());
+  return true;
+};
+
+export const updateMaleHealthLog = async (data, token) => {
+  const res = await fetch(`http://localhost:8080/api/maleHealthLogs/${data._id}`, {
+    method: 'PUT',
+    headers: { 'Content-Type': 'application/json', Authorization: `Bearer ${token}` },
+    body: JSON.stringify(data)
+  });
+  if (!res.ok) throw new Error(await res.text());
+  return res.json();
+};

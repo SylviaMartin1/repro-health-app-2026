@@ -1,6 +1,7 @@
 import { useContext } from 'react';
 import { View, Text, Button, ScrollView } from 'react-native';
 import { useRouter } from 'expo-router';
+import MaleHealthLogCard from './MaleHealthLogCard';
 import MedicineCard from '../components/MedicineCard';
 import HealthCheckupCard from '../components/HealthCheckupCard'
 import LifeStyleLogCard from '../components/LifeStyleLogCard'
@@ -8,7 +9,7 @@ import { ReproductiveHealthContext } from '../contexts/ReproductiveHealthContext
 import { AuthContext } from '../contexts/authContext';
 
 export default function MaleDashboard() {
-const { medicines, healthCheckups, lifeStyleLogs } = useContext(ReproductiveHealthContext);
+const { maleHealthLogs, medicines, healthCheckups, lifeStyleLogs } = useContext(ReproductiveHealthContext);
 const { signout} = useContext(AuthContext);
 const router = useRouter();
 
@@ -19,6 +20,22 @@ const router = useRouter();
 
   return (
     <ScrollView style={{ flex: 1, padding: 10 }}>
+
+         <Text>Health Logs</Text>
+            <View style={{ flexDirection: 'row', flexWrap: 'wrap' }}>
+            {Array.isArray(maleHealthLogs) && maleHealthLogs.map((maleHealthLog) => (
+              <MaleHealthLogCard
+                spermVolume={maleHealthLog.spermVolume}
+                spermConcentration={maleHealthLog.spermConcentration}
+                spermMotility={maleHealthLog.spermMotility}
+                spermMorphology={maleHealthLog.spermMorphology}
+                symptoms={maleHealthLog.symptoms}
+                emotions={maleHealthLog.emotions}
+                key={maleHealthLog._id}
+                _id={maleHealthLog._id}
+              />  
+            ))}
+            </View>
 
     <Text>Medicines</Text>
       <View style={{ flexDirection: 'row', flexWrap: 'wrap' }}>
@@ -67,6 +84,7 @@ const router = useRouter();
       ))}
       </View>
       
+      <Button title="Log Health Data" onPress={() => router.push('/maleHealth-logging')} />
       <Button title="Log Medicines" onPress={() => router.push('/medicine-logging')} />
       <Button title="Log Health Checkups" onPress={() => router.push('/healthCheckup-logging')} />
       <Button title="Log LifeStyle Logs" onPress={() => router.push('/lifeStyle-logging')} />
