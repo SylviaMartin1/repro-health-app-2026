@@ -170,3 +170,14 @@ export const updateLifeStyleLog = async (data, token) => {
   if (!res.ok) throw new Error(await res.text());
   return res.json();
 };
+
+export const getProfile = async (token) => {
+  const res = await fetch("http://localhost:8080/api/users/profile", {
+    headers: {
+      Authorization: `Bearer ${token}`
+    }
+  });
+
+  if (!res.ok) throw new Error(await res.text());
+  return res.json();
+};

@@ -18,20 +18,24 @@ export default function Dashboard() {
 const { cycles, medicines, healthCheckups, lifeStyleLogs } = useContext(ReproductiveHealthContext);
 const { signout, user } = useContext(AuthContext);
 const router = useRouter();
+const userLifeStage = user?.lifeStage;
 
  const handleSignOut = async () => {
     await signout();     
     router.push('/'); 
   };
 
-  console.log("USER:", user);
+  console.log("User:", user);
+  console.log("Life Stage:", userLifeStage);
 
   return (
     <ScrollView style={{ flex: 1, padding: 10 }}>
     <View>
       <Text>Cycles</Text>
 
-<View>
+
+
+    <View>
       <View style={{ flexDirection: 'row', flexWrap: 'wrap' }}>
       {Array.isArray(cycles) && cycles.map((cycle) => (
         <CycleCard
@@ -98,8 +102,12 @@ const router = useRouter();
       <Button title="Log Medicines" onPress={() => router.push('/medicine-logging')} />
       <Button title="Log Health Checkups" onPress={() => router.push('/healthCheckup-logging')} />
       <Button title="Log LifeStyle Logs" onPress={() => router.push('/lifeStyle-logging')} />
-      <Button title="Sign Out" onPress={handleSignOut} color="red" />
     </View>
+
+    <Button title="Sign Out" onPress={handleSignOut} color="red" />
+
+
+
     </View>
     </ScrollView>
   );

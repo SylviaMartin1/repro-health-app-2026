@@ -1,6 +1,6 @@
 import { useState, createContext, useEffect } from "react";
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import { login,  register as apiRegister  } from "../api/api.js";
+import { login,  register as apiRegister, getProfile  } from "../api/api.js";
 
 export const AuthContext = createContext(null); //eslint-disable-line
 
@@ -16,6 +16,15 @@ const AuthContextProvider = (props) => {
       if (token) {
         setAuthToken(token);
         setIsAuthenticated(true);
+
+        try {
+        const userData = await getProfile(token);
+        setUser(userData);
+      } catch (err) {
+        console.log("Failed to load user:", err);
+      }
+
+
       }
     };
     loadToken();

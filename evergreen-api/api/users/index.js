@@ -29,6 +29,7 @@ router.get('/', async (req, res) => {
     res.status(200).json(users);
 });
 
+
 async function registerUser(req, res) {
     if (!/^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{8,}$/.test(req.body.password)) {
     return res.status(400).json({ msg: "Weak password." });
@@ -59,6 +60,34 @@ async function authenticateUser(req, res) {
         res.status(401).json({ success: false, msg: 'Wrong password.' });
     }
 }
+
+router.get('/profile', asyncHandler(async (req, res) => {
+    try {
+        const token = req.headers.authorization?.split(" ")[1];
+
+        if (!token) {
+            return res.status(401).json({ msg: "No token provided" });
+        }
+
+        const decoded = jwt.verify(token, process.env.SECRET);
+
+        const user = await User.findOne({ email: decoded.email });
+
+        if (!user) {
+            return res.status(404).json({ msg: "User not found" });
+        }
+
+        res.status(200).json({
+            _id: user._id,
+            email: user.email,
+            lifeStage: user.lifeStage
+        });
+
+    } catch (err) {
+        console.log(err);
+        res.status(500).json({ msg: "Server error" });
+    }
+}));
 
 export default router;
 
