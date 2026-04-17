@@ -10,7 +10,13 @@ const UserSchema = new Schema ({
     sex: { type:String, enum: ["Male", "Female"]},
     lifeStage: { type: String, enum: ["Menstruating", "Menopausal", "Male"]},
     height: { type: String},
-    weight: { type: String}
+    weight: { type: String},
+    role: { type: String, enum: ["user", "admin"], default: "user" },
+    partner:{
+       type: Schema.Types.ObjectId, 
+       ref: 'User',
+       default: null 
+    }
 });
 
 // Function to compare the candidate password to the one stored in the database

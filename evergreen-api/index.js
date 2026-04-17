@@ -7,7 +7,8 @@ import cyclesRouter from './api/cycles';
 import medicinesRouter from './api/medicines'
 import healthCheckupsRouter from './api/healthCheckups'
 import lifeStyleLogsRouter from './api/lifeStyleLogs'
-import authenticate from './authenticate';
+import menopausalHealthLogsRouter from './api/menopausalHealthLogs';
+import maleHealthLogsRouter from './api/maleHealthLogs';
 
 dotenv.config();
 
@@ -33,6 +34,9 @@ app.use('/api/cycles', cyclesRouter);
 app.use('/api/medicines',medicinesRouter);
 app.use('/api/health-checkups',healthCheckupsRouter);
 app.use('/api/lifeStyleLogs', lifeStyleLogsRouter);
+app.use('/api/menopausalHealthLogs', menopausalHealthLogsRouter);
+app.use('/api/maleHealthLogs', maleHealthLogsRouter);
+
 
 /*
 app.listen(port, '0.0.0.0',() => {
