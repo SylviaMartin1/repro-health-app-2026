@@ -1,7 +1,10 @@
 // Change the word 'localhost' to the current IP address
 // Open the port in middleware index.js to accept all ports
+//const baseUrl = "http://localhost:8080";
+const baseUrl = "http://192.168.1.8:8080";
+
 export const getCycles = async (token) => {
-  const res = await fetch("http://localhost:8080/api/cycles", {
+  const res = await fetch(`${baseUrl}/api/cycles`, {
     headers: { Authorization: `Bearer ${token}` }
   });
   if (!res.ok) throw new Error(await res.text());
@@ -9,7 +12,7 @@ export const getCycles = async (token) => {
 };
 
 export const addCycle = async (data, token) => {
-  const res = await fetch("http://localhost:8080/api/cycles", {
+  const res = await fetch(`${baseUrl}/api/cycles`, {
     method: 'POST',
     headers: { 'Content-Type': 'application/json', Authorization: `Bearer ${token}` },
     body: JSON.stringify(data)
@@ -19,7 +22,7 @@ export const addCycle = async (data, token) => {
 };
 
 export const deleteCycle = async (id, token) => {
-  const res = await fetch(`http://localhost:8080/api/cycles/${id}`, {
+  const res = await fetch(`${baseUrl}/api/cycles/${id}`, {
     method: 'DELETE',
     headers: { Authorization: `Bearer ${token}` }
   });
@@ -28,7 +31,7 @@ export const deleteCycle = async (id, token) => {
 };
 
 export const updateCycle = async (data, token) => {
-  const res = await fetch(`http://localhost:8080/api/cycles/${data._id}`, {
+  const res = await fetch(`${baseUrl}/api/cycles/${data._id}`, {
     method: 'PUT',
     headers: { 'Content-Type': 'application/json', Authorization: `Bearer ${token}` },
     body: JSON.stringify(data)
@@ -38,7 +41,7 @@ export const updateCycle = async (data, token) => {
 };
 
 export const login = async (email, password, lifeStage) => {
-    const response = await fetch('http://localhost:8080/api/users', {
+    const response = await fetch(`${baseUrl}/api/users`, {
         headers: {
             'Content-Type': 'application/json'
         },
@@ -49,7 +52,7 @@ export const login = async (email, password, lifeStage) => {
 };
 
 export const register = async (email, password, lifeStage) => {
-    const response = await fetch('http://localhost:8080/api/users?action=register', {
+    const response = await fetch(`${baseUrl}/api/users?action=register`, {
         headers: {
             'Content-Type': 'application/json'
         },
@@ -60,7 +63,7 @@ export const register = async (email, password, lifeStage) => {
 };
 
 export const getMedicines = async (token) => {
-  const res = await fetch("http://localhost:8080/api/medicines", {
+  const res = await fetch(`${baseUrl}/api/medicines`, {
     headers: { Authorization: `Bearer ${token}` }
   });
   if (!res.ok) throw new Error(await res.text());
@@ -68,7 +71,7 @@ export const getMedicines = async (token) => {
 };
 
 export const addMedicine = async (data, token) => {
-  const res = await fetch("http://localhost:8080/api/medicines", {
+  const res = await fetch(`${baseUrl}/api/medicines`, {
     method: 'POST',
     headers: { 'Content-Type': 'application/json', Authorization: `Bearer ${token}` },
     body: JSON.stringify(data)
@@ -78,7 +81,7 @@ export const addMedicine = async (data, token) => {
 };
 
 export const deleteMedicine = async (id, token) => {
-  const res = await fetch(`http://localhost:8080/api/medicines/${id}`, {
+  const res = await fetch(`${baseUrl}/api/medicines/${id}`, {
     method: 'DELETE',
     headers: { Authorization: `Bearer ${token}` }
   });
@@ -87,7 +90,7 @@ export const deleteMedicine = async (id, token) => {
 };
 
 export const updateMedicine = async (data, token) => {
-  const res = await fetch(`http://localhost:8080/api/medicines/${data._id}`, {
+  const res = await fetch(`${baseUrl}/api/medicines/${data._id}`, {
     method: 'PUT',
     headers: { 'Content-Type': 'application/json', Authorization: `Bearer ${token}` },
     body: JSON.stringify(data)
@@ -97,7 +100,7 @@ export const updateMedicine = async (data, token) => {
 };
 
 export const getHealthCheckups = async (token) => {
-  const res = await fetch("http://localhost:8080/api/health-checkups", {
+  const res = await fetch(`${baseUrl}/api/health-checkups`, {
     headers: { Authorization: `Bearer ${token}` }
   });
   if (!res.ok) throw new Error(await res.text());
@@ -105,7 +108,7 @@ export const getHealthCheckups = async (token) => {
 };
 
 export const addHealthCheckup = async (data, token) => {
-  const res = await fetch("http://localhost:8080/api/health-checkups", {
+  const res = await fetch(`${baseUrl}/api/health-checkups`, {
     method: 'POST',
     headers: { 'Content-Type': 'application/json', Authorization: `Bearer ${token}` },
     body: JSON.stringify(data)
@@ -115,7 +118,7 @@ export const addHealthCheckup = async (data, token) => {
 };
 
 export const deleteHealthCheckup = async (id, token) => {
-  const res = await fetch(`http://localhost:8080/api/health-checkups/${id}`, {
+  const res = await fetch(`${baseUrl}/api/health-checkups/${id}`, {
     method: 'DELETE',
     headers: { Authorization: `Bearer ${token}` }
   });
@@ -124,7 +127,7 @@ export const deleteHealthCheckup = async (id, token) => {
 };
 
 export const updateHealthCheckup = async (data, token) => {
-  const res = await fetch(`http://localhost:8080/api/health-checkups/${data._id}`, {
+  const res = await fetch(`${baseUrl}/api/health-checkups/${data._id}`, {
     method: 'PUT',
     headers: { 'Content-Type': 'application/json', Authorization: `Bearer ${token}` },
     body: JSON.stringify(data)
@@ -135,7 +138,7 @@ export const updateHealthCheckup = async (data, token) => {
 
 
 export const getLifeStyleLogs = async (token) => {
-  const res = await fetch("http://localhost:8080/api/lifeStyleLogs", {
+  const res = await fetch(`${baseUrl}/api/lifeStyleLogs`, {
     headers: { Authorization: `Bearer ${token}` }
   });
   if (!res.ok) throw new Error(await res.text());
@@ -143,7 +146,7 @@ export const getLifeStyleLogs = async (token) => {
 };
 
 export const addLifeStyleLog = async (data, token) => {
-  const res = await fetch("http://localhost:8080/api/lifeStyleLogs", {
+  const res = await fetch(`${baseUrl}/api/lifeStyleLogs`, {
     method: 'POST',
     headers: { 'Content-Type': 'application/json', Authorization: `Bearer ${token}` },
     body: JSON.stringify(data)
@@ -153,7 +156,7 @@ export const addLifeStyleLog = async (data, token) => {
 };
 
 export const deleteLifeStyleLog = async (id, token) => {
-  const res = await fetch(`http://localhost:8080/api/lifeStyleLogs/${id}`, {
+  const res = await fetch(`${baseUrl}/api/lifeStyleLogs/${id}`, {
     method: 'DELETE',
     headers: { Authorization: `Bearer ${token}` }
   });
@@ -162,7 +165,7 @@ export const deleteLifeStyleLog = async (id, token) => {
 };
 
 export const updateLifeStyleLog = async (data, token) => {
-  const res = await fetch(`http://localhost:8080/api/lifeStyleLogs/${data._id}`, {
+  const res = await fetch(`${baseUrl}/api/lifeStyleLogs/${data._id}`, {
     method: 'PUT',
     headers: { 'Content-Type': 'application/json', Authorization: `Bearer ${token}` },
     body: JSON.stringify(data)
@@ -172,7 +175,7 @@ export const updateLifeStyleLog = async (data, token) => {
 };
 
 export const getProfile = async (token) => {
-  const res = await fetch("http://localhost:8080/api/users/profile", {
+  const res = await fetch(`${baseUrl}/api/users/profile`, {
     headers: {
       Authorization: `Bearer ${token}`
     }
@@ -183,7 +186,7 @@ export const getProfile = async (token) => {
 };
 
 export const getMenopausalHealthLogs = async (token) => {
-  const res = await fetch("http://localhost:8080/api/menopausalHealthLogs", {
+  const res = await fetch(`${baseUrl}/api/menopausalHealthLogs`, {
     headers: { Authorization: `Bearer ${token}` }
   });
   if (!res.ok) throw new Error(await res.text());
@@ -191,7 +194,7 @@ export const getMenopausalHealthLogs = async (token) => {
 };
 
 export const addMenopausalHealthLog = async (data, token) => {
-  const res = await fetch("http://localhost:8080/api/menopausalHealthLogs", {
+  const res = await fetch(`${baseUrl}/api/menopausalHealthLogs`, {
     method: 'POST',
     headers: { 'Content-Type': 'application/json', Authorization: `Bearer ${token}` },
     body: JSON.stringify(data)
@@ -201,7 +204,7 @@ export const addMenopausalHealthLog = async (data, token) => {
 };
 
 export const deleteMenopausalHealthLog = async (id, token) => {
-  const res = await fetch(`http://localhost:8080/api/menopausalHealthLogs/${id}`, {
+  const res = await fetch(`${baseUrl}/api/menopausalHealthLogs/${id}`, {
     method: 'DELETE',
     headers: { Authorization: `Bearer ${token}` }
   });
@@ -210,7 +213,7 @@ export const deleteMenopausalHealthLog = async (id, token) => {
 };
 
 export const updateMenopausalHealthLog = async (data, token) => {
-  const res = await fetch(`http://localhost:8080/api/menopausalHealthLogs/${data._id}`, {
+  const res = await fetch(`${baseUrl}/api/menopausalHealthLogs/${data._id}`, {
     method: 'PUT',
     headers: { 'Content-Type': 'application/json', Authorization: `Bearer ${token}` },
     body: JSON.stringify(data)
@@ -220,7 +223,7 @@ export const updateMenopausalHealthLog = async (data, token) => {
 };
 
 export const getMaleHealthLogs = async (token) => {
-const res = await fetch("http://localhost:8080/api/maleHealthLogs", {
+const res = await fetch(`${baseUrl}/api/maleHealthLogs`, {
     headers: { Authorization: `Bearer ${token}` }
   });
   if (!res.ok) throw new Error(await res.text());
@@ -228,7 +231,7 @@ const res = await fetch("http://localhost:8080/api/maleHealthLogs", {
 };
 
 export const addMaleHealthLog = async (data, token) => {
-  const res = await fetch("http://localhost:8080/api/maleHealthLogs", {
+  const res = await fetch(`${baseUrl}/api/maleHealthLogs`, {
     method: 'POST',
     headers: { 'Content-Type': 'application/json', Authorization: `Bearer ${token}` },
     body: JSON.stringify(data)
@@ -238,7 +241,7 @@ export const addMaleHealthLog = async (data, token) => {
 };
 
 export const deleteMaleHealthLog = async (id, token) => {
-  const res = await fetch(`http://localhost:8080/api/maleHealthLogs/${id}`, {
+  const res = await fetch(`${baseUrl}/api/maleHealthLogs/${id}`, {
     method: 'DELETE',
     headers: { Authorization: `Bearer ${token}` }
   });
@@ -247,7 +250,7 @@ export const deleteMaleHealthLog = async (id, token) => {
 };
 
 export const updateMaleHealthLog = async (data, token) => {
-  const res = await fetch(`http://localhost:8080/api/maleHealthLogs/${data._id}`, {
+  const res = await fetch(`${baseUrl}/api/maleHealthLogs/${data._id}`, {
     method: 'PUT',
     headers: { 'Content-Type': 'application/json', Authorization: `Bearer ${token}` },
     body: JSON.stringify(data)
@@ -257,7 +260,7 @@ export const updateMaleHealthLog = async (data, token) => {
 };
 
 export const setPartner = async (email, token) => {
-  const res = await fetch("http://localhost:8080/api/users/partner", {
+  const res = await fetch(`${baseUrl}/api/users/partner`, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
@@ -271,7 +274,7 @@ export const setPartner = async (email, token) => {
 };
 
 export const getPartnerCycles = async (token) => {
-  const res = await fetch("http://localhost:8080/api/cycles/partner", {
+  const res = await fetch(`${baseUrl}/api/cycles/partner`, {
     headers: {
       Authorization: `Bearer ${token}`
     }

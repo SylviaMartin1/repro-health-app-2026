@@ -22,8 +22,11 @@ const ReproductiveHealthContextProvider = (props) => {
 
      const { authToken } = useContext(AuthContext);
 
+     console.log("Auth token in cycles context:", authToken);
+
 
   useEffect(() => {
+    console.log("Cycles token:", authToken)
     if (!authToken) return;
     const loadCycles = async () => {
       try {

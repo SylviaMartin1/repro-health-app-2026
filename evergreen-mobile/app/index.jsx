@@ -41,7 +41,6 @@ export default function Index() {
                 style={{ width: 280, backgroundColor: "green", paddingVertical: 10, paddingHorizontal: 20, borderRadius: 8, marginBottom: 5, alignItems: "center" }}>
                 <Text style={{ color: 'white', fontWeight: 'bold' }}>Profile</Text>
             </Pressable>  
-                
         </View>
     );
 }

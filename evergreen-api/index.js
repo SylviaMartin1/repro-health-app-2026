@@ -28,7 +28,6 @@ const port = process.env.PORT;
 app.use(express.static('public'));
 app.use(cors());
 app.use(express.json());
-app.use(errHandler);
 app.use('/api/users', usersRouter);
 app.use('/api/cycles', cyclesRouter);
 app.use('/api/medicines',medicinesRouter);
@@ -36,14 +35,15 @@ app.use('/api/health-checkups',healthCheckupsRouter);
 app.use('/api/lifeStyleLogs', lifeStyleLogsRouter);
 app.use('/api/menopausalHealthLogs', menopausalHealthLogsRouter);
 app.use('/api/maleHealthLogs', maleHealthLogsRouter);
+app.use(errHandler);
 
 
-/*
+
 app.listen(port, '0.0.0.0',() => {
   console.info(`Server running at ${port}`);
 });
-*/
 
-app.listen(port, () => {
+
+/* app.listen(port, () => {
   console.info(`Server running at ${port}`);
-});
+}); */

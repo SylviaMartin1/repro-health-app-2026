@@ -52,7 +52,6 @@ const AuthContextProvider = (props) => {
   }
   };
 
-
   const register = async (email, password, lifeStage) => {
     const result = await apiRegister(email, password, lifeStage);
     return result.success;

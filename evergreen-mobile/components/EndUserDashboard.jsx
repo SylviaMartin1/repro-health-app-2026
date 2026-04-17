@@ -12,6 +12,14 @@ const lifeStage = user?.lifeStage;
 console.log("User:", user);
 console.log("Life Stage:", lifeStage);
 
+if (!user) {
+  return (
+    <View>
+      <Text>Loading user...</Text>
+    </View>
+  );
+}
+
 
   if (!user || !lifeStage) {
     return (
