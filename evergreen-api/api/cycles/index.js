@@ -1,7 +1,9 @@
 import express from 'express';
 import Cycle from './cycleModel';
+import User from "../users/userModel";
 import asyncHandler from 'express-async-handler';
 import authenticate from '../../authenticate/index.js';
+import jwt from "jsonwebtoken";
 
 
 const router = express.Router(); 
@@ -70,16 +72,15 @@ router.get('/user/:uid', async (req, res) => {
 });
 
 router.get('/partner', asyncHandler(async (req, res) => {
-    const token = req.headers.authorization?.split(" ")[1];
-    const decoded = jwt.verify(token, process.env.SECRET);
-    const user = await User.findOne({ email: decoded.email });
+  const token = req.headers.authorization?.split(" ")[1];
+  const decoded = jwt.verify(token, process.env.SECRET);
+  const user = await User.findOne({ email: decoded.email });
 
-    if (!user.partner) {
-        return res.json([]);
-    }
-    const cycles = await Cycle.find({ user: user.partner });
+  if (!user?.partner) return res.json([]);
 
-    res.json(cycles);
+  const cycles = await Cycle.find({ userId: user.partner });
+
+  res.json(cycles);
 }));
 
 

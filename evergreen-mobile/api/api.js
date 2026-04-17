@@ -256,14 +256,14 @@ export const updateMaleHealthLog = async (data, token) => {
   return res.json();
 };
 
-export const setPartner = async (partnerEmail, token) => {
-  const res = await fetch("http://localhost:8080/api/users/set-partner", {
+export const setPartner = async (email, token) => {
+  const res = await fetch("http://localhost:8080/api/users/partner", {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
       Authorization: `Bearer ${token}`
     },
-    body: JSON.stringify({ partnerEmail })
+    body: JSON.stringify({ email })  
   });
 
   if (!res.ok) throw new Error(await res.text());
@@ -276,7 +276,7 @@ export const getPartnerCycles = async (token) => {
       Authorization: `Bearer ${token}`
     }
   });
-
   if (!res.ok) throw new Error(await res.text());
   return res.json();
 };
+

@@ -104,6 +104,21 @@ router.post("/make-admin", async (req, res) => {
   });
 });
 
+router.post('/partner', asyncHandler(async (req, res) => {
+  const token = req.headers.authorization?.split(" ")[1];
+  const decoded = jwt.verify(token, process.env.SECRET);
+  const user = await User.findOne({ email: decoded.email });
+  const partner = await User.findOne({ email: req.body.email });
+
+  if (!partner) {
+    return res.status(404).json({ msg: "User not found" });
+  }
+
+  user.partner = partner._id;
+  await user.save();
+  res.json({ msg: "Partner added" });
+
+}));
 
 
 

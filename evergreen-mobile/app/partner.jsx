@@ -5,22 +5,21 @@ import { setPartner, getPartnerCycles } from "../api/api";
 
 export default function PartnerScreen() {
   const { authToken } = useContext(AuthContext);
-
   const [email, setEmail] = useState("");
   const [cycles, setCycles] = useState([]);
-
-  const addPartner = async () => {
+  const handleAddPartner = async () => {
     await setPartner(email, authToken);
-    alert("Partner added!");
+    alert("Partner added");
+  };
+
+  const loadPartnerCycles = async () => {
+    const data = await getPartnerCycles(authToken);
+    setCycles(data);
   };
 
   useEffect(() => {
-    const load = async () => {
-      const data = await getPartnerCycles(authToken);
-      setCycles(data);
-    };
-
-    if (authToken) load();
+    if (!authToken) return;
+    loadPartnerCycles();
   }, [authToken]);
 
   return (
@@ -34,13 +33,21 @@ export default function PartnerScreen() {
         style={{ borderWidth: 1, marginVertical: 10 }}
       />
 
-      <Button title="Add Partner" onPress={addPartner} />
+      <Button title="Add Partner" onPress={handleAddPartner} />
 
-      <Text style={{ marginTop: 20 }}>Partner Cycles:</Text>
+      <Text style={{ marginTop: 20 }}>Partner Data</Text>
 
-      {cycles.map((c) => (
-        <Text key={c._id}>{c.startDate}</Text>
-      ))}
+  {cycles.length === 0 ? (
+  <Text>No partner cycles available yet</Text>
+) : (
+  cycles.map((c) => (
+    <View key={c._id}>
+      <Text>Start: {c.startDate}</Text>
+      <Text>End: {c.endDate}</Text>
+      <Text>Symptoms: {c.symptoms?.join(", ")}</Text>
+    </View>
+  ))
+)}
     </View>
   );
 }
