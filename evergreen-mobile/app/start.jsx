@@ -2,13 +2,7 @@ import { View, Text, Pressable, Image } from 'react-native';
 import { useRouter } from "expo-router";
 import { colours } from "../theme/colours";
 
-/**
- * Index screen declared as functional component
- * Declare useRouter() hook to make navigation possible
- * Return logo, tagline, and buttons which link to the dashboard and logging screens
- * 
- */
-export default function Index() {
+export default function StartPage() {
   const router = useRouter();
 
     return (

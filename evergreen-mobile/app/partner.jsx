@@ -2,6 +2,7 @@ import { View, Text, TextInput, Button } from "react-native";
 import { useState, useEffect, useContext } from "react";
 import { AuthContext } from "../contexts/authContext";
 import { setPartner, getPartnerCycles } from "../api/api";
+import { colours } from "../theme/colours";
 
 export default function PartnerScreen() {
   const { authToken } = useContext(AuthContext);
@@ -23,7 +24,7 @@ export default function PartnerScreen() {
   }, [authToken]);
 
   return (
-    <View style={{ padding: 20 }}>
+    <View style={{ padding: 20, backgroundColor: colours.background.default }}>
       <Text>Add Partner</Text>
 
       <TextInput

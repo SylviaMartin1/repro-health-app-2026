@@ -4,6 +4,8 @@ import { useState, useContext} from 'react'
 import { ReproductiveHealthContext } from '../contexts/ReproductiveHealthContext';
 import HealthCheckupForm from '../components/HealthCheckupForm';
 import { useLocalSearchParams } from "expo-router";
+import { colours } from "../theme/colours";
+
 
 export default function HealthCheckupLogging() {
 const router = useRouter();
@@ -42,7 +44,7 @@ const existingHealthCheckup = healthCheckups.find(healthCheckup => String(health
   
 
   return (
-    <View style={{ marginTop: 20 }}>
+    <View style={{ marginTop: 20, backgroundColor: colours.background.default}}>
       <Text>Logging</Text>
       <HealthCheckupForm
               formState={formState}

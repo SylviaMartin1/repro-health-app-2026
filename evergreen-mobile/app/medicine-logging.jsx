@@ -5,6 +5,7 @@ import { ReproductiveHealthContext } from '../contexts/ReproductiveHealthContext
 import { AuthContext } from '../contexts/authContext';
 import MedicineForm from '../components/MedicineForm';
 import { useLocalSearchParams } from "expo-router";
+import { colours } from "../theme/colours";
 
 export default function MedicineLogging() {
 const router = useRouter();
@@ -42,7 +43,7 @@ const existingMedicine = medicines.find(medicine => String(medicine._id) === Str
   
 
   return (
-    <View style={{ marginTop: 20 }}>
+    <View style={{ marginTop: 20, backgroundColor: colours.background.default }}>
       <Text>Logging</Text>
       <MedicineForm
               formState={formState}

@@ -4,6 +4,7 @@ import { useState, useContext} from 'react'
 import { ReproductiveHealthContext } from '../contexts/ReproductiveHealthContext';
 import Form from '../components/Form';
 import { useLocalSearchParams } from "expo-router";
+import { colours } from "../theme/colours";
 
 export default function Logging() {
 const router = useRouter();
@@ -44,7 +45,7 @@ const existingCycle = cycles.find(cycle => String(cycle._id) === String(params.i
   
 
   return (
-    <View style={{ marginTop: 20 }}>
+    <View style={{ marginTop: 20, backgroundColor: colours.background.default }}>
       <Text>Logging</Text>
       <Form
               formState={formState}

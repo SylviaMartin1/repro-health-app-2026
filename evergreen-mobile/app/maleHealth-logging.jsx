@@ -4,6 +4,7 @@ import { useState, useContext} from 'react'
 import { ReproductiveHealthContext } from '../contexts/ReproductiveHealthContext';
 import MaleHealthLogForm from '../components/MaleHealthLogForm';
 import { useLocalSearchParams } from "expo-router";
+import { colours } from "../theme/colours";
 
 export default function MaleHealthLogging() {
 const router = useRouter();
@@ -41,7 +42,7 @@ const existingMaleHealthLog = maleHealthLogs.find(maleHealthLog => String(maleHe
   
 
   return (
-    <ScrollView style={{ flex: 1, padding: 10 }}>
+    <ScrollView style={{ flex: 1, padding: 10, backgroundColor: colours.background.default }}>
       <Text>Logging</Text>
       <MaleHealthLogForm
               formState={formState}

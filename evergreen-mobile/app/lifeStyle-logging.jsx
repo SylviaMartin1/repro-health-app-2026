@@ -4,6 +4,7 @@ import { useState, useContext} from 'react'
 import { ReproductiveHealthContext } from '../contexts/ReproductiveHealthContext';
 import LifeStyleLogForm from '../components/LifeStyleLogForm';
 import { useLocalSearchParams } from "expo-router";
+import { colours } from "../theme/colours";
 
 export default function LifeStyleLogging() {
 const router = useRouter();
@@ -41,7 +42,7 @@ const existingLifeStyleLog = lifeStyleLogs.find(lifeStyleLog => String(lifeStyle
   
 
   return (
-    <View style={{ marginTop: 20 }}>
+    <View style={{ marginTop: 20, backgroundColor: colours.background.default}}>
       <Text>Logging</Text>
       <LifeStyleLogForm
               formState={formState}

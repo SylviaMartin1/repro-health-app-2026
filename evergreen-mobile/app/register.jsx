@@ -2,6 +2,7 @@ import { useState, useContext } from "react";
 import { View, Text, TextInput, Button } from "react-native";
 import { AuthContext } from "../contexts/authContext";
 import { useRouter } from "expo-router";
+import { colours } from "../theme/colours";
 
 export default function Register() {
   const { register } = useContext(AuthContext);
@@ -21,7 +22,7 @@ export default function Register() {
   };
 
   return (
-    <View style={{ padding: 20 }}>
+    <View style={{ padding: 20, backgroundColor: colours.background.default }}>
       <Text>Sign Up</Text>
       <TextInput placeholder="Email" value={email} onChangeText={setEmail} style={{ borderWidth: 1, marginVertical: 8, padding: 8 }} />
       <TextInput placeholder="Password" value={password} onChangeText={setPassword} secureTextEntry={!showPassword} style={{ borderWidth: 1, marginVertical: 8, padding: 8 }} />
