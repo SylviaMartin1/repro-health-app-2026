@@ -5,52 +5,81 @@ import { login,  register as apiRegister, getProfile  } from "../api/api.js";
 export const AuthContext = createContext(null); //eslint-disable-line
 
 const AuthContextProvider = (props) => {
-  const [isAuthenticated, setIsAuthenticated] = useState(false);
-  const [authToken, setAuthToken] = useState(null); 
-  const [email, setEmail] = useState("");
   const [user, setUser] = useState(null);
+  const [authToken, setAuthToken] = useState(null); 
+  const [isAuthenticated, setIsAuthenticated] = useState(false);
+  const [email, setEmail] = useState("");
+  const [loading, setLoading] = useState(true);
+  
 
-  useEffect(() => {
-    const loadToken = async () => {
-      const token = await AsyncStorage.getItem('authToken');
-      if (token) {
-        setAuthToken(token);
-        setIsAuthenticated(true);
+useEffect(() => {
+  const initAuth = async () => {
+    try {
+      const token = await AsyncStorage.getItem("authToken");
 
-        try {
-        const userData = await getProfile(token);
-        setUser(userData);
-      } catch (err) {
-        console.log("Failed to load user:", err);
+      console.log("STORED TOKEN:", token);
+
+      if (!token) {
+        setLoading(false);
+        return;
       }
 
+      setAuthToken(token);
+      setIsAuthenticated(true);
 
-      }
-    };
-    loadToken();
-  }, []);
+      const userData = await getProfile(token);
+
+      console.log("PROFILE OK:", userData);
+
+      setUser(userData);
+
+    } catch (err) {
+      console.log("INIT AUTH ERROR:", err.message);
+      setUser(null);
+      setAuthToken(null);
+      setIsAuthenticated(false);
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  initAuth();
+}, []);
 
 
   //Function to put JWT token in local storage.
- const setToken =  async (token) => {
-    const cleanToken = token.replace(/^BEARER\s+/i, "");
-    setAuthToken(cleanToken);
-    await AsyncStorage.setItem('authToken', cleanToken);
-  }
+const setToken = async (token) => {
+  const cleanToken = token.replace(/^BEARER\s+/i, "");
+  setAuthToken(cleanToken);
+  await AsyncStorage.setItem("authToken", cleanToken);
+};
 
-  const authenticate = async (email, password) => {
+const authenticate = async (email, password) => {
+  try {
     const result = await login(email, password);
-    console.log("LOGIN RESPONSE:", result);
-    if (result.token) {
-      setToken(result.token)
-      setIsAuthenticated(true);
-      setEmail(email);
-      setUser(result.user);
-    }
-    else {
-    alert(result.error || "Login failed");
+
+if (!result || !result.token) {
+  throw new Error("Login failed: no token returned");
+}
+
+const cleanToken = result.token.replace(/^BEARER\s+/i, "");
+
+    await AsyncStorage.setItem("authToken", cleanToken);
+
+    setAuthToken(cleanToken);
+    setIsAuthenticated(true);
+
+    const userData = await getProfile(cleanToken);
+
+    console.log("USER DATA:", userData);
+
+    setUser(userData);
+
+  } catch (err) {
+    console.log("LOGIN ERROR:", err.message);
+    alert(err.message);
   }
-  };
+};
 
   const register = async (email, password, lifeStage) => {
     const result = await apiRegister(email, password, lifeStage);
@@ -74,6 +103,7 @@ const AuthContextProvider = (props) => {
         email, 
         authToken,
         user,
+        loading,
         setUser
       }}
     >

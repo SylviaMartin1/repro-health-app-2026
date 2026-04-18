@@ -1,7 +1,7 @@
 // Change the word 'localhost' to the current IP address
 // Open the port in middleware index.js to accept all ports
 //const baseUrl = "http://localhost:8080";
-const baseUrl = "http://192.168.1.8:8080";
+const baseUrl = "http://172.20.10.2:8080";
 
 export const getCycles = async (token) => {
   const res = await fetch(`${baseUrl}/api/cycles`, {
@@ -41,14 +41,25 @@ export const updateCycle = async (data, token) => {
 };
 
 export const login = async (email, password, lifeStage) => {
-    const response = await fetch(`${baseUrl}/api/users`, {
-        headers: {
-            'Content-Type': 'application/json'
-        },
-        method: 'post',
-        body: JSON.stringify({ email: email, password: password, lifeStage: lifeStage })
+  try {
+    console.log("👉 LOGIN START");
+
+    const res = await fetch(`${baseUrl}/api/users`, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ email, password, lifeStage })
     });
-    return response.json();
+
+    const data = await res.json().catch(() => null);
+
+    console.log("👉 LOGIN RESPONSE:", res.status, data);
+
+    return data;
+
+  } catch (err) {
+    console.log("👉 LOGIN FAILED:", err.message);
+    return null;
+  }
 };
 
 export const register = async (email, password, lifeStage) => {

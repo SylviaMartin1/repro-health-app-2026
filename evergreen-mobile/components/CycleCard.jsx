@@ -2,6 +2,7 @@ import React, {useContext} from 'react';
 import { View, Text, Button, StyleSheet } from 'react-native';
 import { ReproductiveHealthContext } from '../contexts/ReproductiveHealthContext';
 import { useRouter } from "expo-router";
+import { safeText } from '../utils/format'
 
 export default function CycleCard(props){
   const { deleteCycle } = useContext(ReproductiveHealthContext);
@@ -13,8 +14,8 @@ export default function CycleCard(props){
             <Text style={styles.label}>End Date: <Text style={styles.value}>{props.endDate}</Text></Text>
             <Text style={styles.label}>Flow Level: <Text style={styles.value}>{props.flowLevel}</Text></Text>
             <Text style={styles.label}>Pain Level: <Text style={styles.value}>{props.painLevel}</Text></Text>
-            <Text style={styles.label}>Symptoms: <Text style={styles.value}>{props.symptoms}</Text></Text>
-            <Text style={styles.label}>Emotions: <Text style={styles.value}>{props.emotions}</Text></Text>
+            <Text style={styles.label}>Symptoms: <Text style={styles.value}>{safeText(props.symptoms)}</Text></Text>
+            <Text style={styles.label}>Emotions: <Text style={styles.value}>{safeText(props.emotions)}</Text></Text>
             <View style={styles.actionButtons}>
             <Button title="Delete" color='green' onPress={() => { console.log("Deleting ID:", props._id); deleteCycle(props._id)}} />
             <Button title="Edit" color='green' onPress={() => { console.log("Editing ID:", props._id); router.push(`/logging?id=${props._id}`)}} />

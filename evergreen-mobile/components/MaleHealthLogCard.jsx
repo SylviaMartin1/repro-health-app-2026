@@ -3,7 +3,7 @@ import { View, Text, Button, StyleSheet } from 'react-native';
 import { ReproductiveHealthContext } from '../contexts/ReproductiveHealthContext';
 import { useRouter } from "expo-router";
 
-export default function MenopausalHealthLogCard(props){
+export default function MaleHealthLogCard(props){
   const { deleteMaleHealthLog } = useContext(ReproductiveHealthContext);
   const router = useRouter();
 

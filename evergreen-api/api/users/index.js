@@ -7,6 +7,7 @@ const router = express.Router()
 
 //1. Register a user or authenticate a user
 router.post('/', asyncHandler(async (req, res) => {
+    console.log("LOGIN HIT:", req.body);
     try {
         if (!req.body.email || !req.body.password) {
             return res.status(400).json({ success: false, msg: 'Email and password are required.' });
@@ -39,7 +40,7 @@ async function registerUser(req, res) {
 }
 
 async function authenticateUser(req, res) {
-    const user = await User.findByEmail(req.body.email);
+    const user = await User.findOne({ email: req.body.email });
     if (!user) {
         return res.status(401).json({ success: false, msg: 'Authentication failed. User not found.' });
     }
