@@ -1,41 +1,50 @@
-import { View, Text, Pressable, Image } from 'react-native';
+import { useEffect } from "react";
+import { View, Image, Text, ActivityIndicator } from "react-native";
 import { useRouter } from "expo-router";
 import { colours } from "../theme/colours";
 
-/**
- * Index screen declared as functional component
- * Declare useRouter() hook to make navigation possible
- * Return logo, tagline, and buttons which link to the dashboard and logging screens
- * 
- */
 export default function Index() {
   const router = useRouter();
 
-    return (
-        <View style={{ flex: 1, alignItems: "center", backgroundColor: colours.background.default }}>
-            <View style={{alignItems: "center", marginTop: 120, width: "100%"}}>
-                <Image source={require('../assets/images/evergreen.png')} style={{ width: 300, height: 150, marginBottom: 30, backgroundColor: '#ccc' }} />
-            </View>
-            <Pressable 
-                onPress={() => router.push("/login")}
-                style={{ width: 280, backgroundColor: "green", paddingVertical: 10, paddingHorizontal: 20, borderRadius: 8, marginBottom: 5, alignItems: "center" }}>
-                <Text style={{ color: 'white', fontWeight: 'bold' }}>Login</Text>
-            </Pressable>
-            <Pressable 
-                onPress={() => router.push("/register")}
-                style={{ width: 280, backgroundColor: "green", paddingVertical: 10, paddingHorizontal: 20, borderRadius: 8, marginBottom: 5, alignItems: "center" }}>
-                <Text style={{ color: 'white', fontWeight: 'bold' }}>Register</Text>
-                </Pressable> 
-            <Pressable 
-                onPress={() => router.push("/dashboard")}
-                style={{ width: 280, backgroundColor: "green", paddingVertical: 10, paddingHorizontal: 20, borderRadius: 8, marginBottom: 5, alignItems: "center" }}>
-                <Text style={{ color: 'white', fontWeight: 'bold' }}>Dashboard</Text>
-            </Pressable>
-            <Pressable 
-                onPress={() => router.push("/profile")}
-                style={{ width: 280, backgroundColor: "green", paddingVertical: 10, paddingHorizontal: 20, borderRadius: 8, marginBottom: 5, alignItems: "center" }}>
-                <Text style={{ color: 'white', fontWeight: 'bold' }}>Profile</Text>
-            </Pressable>  
-        </View>
-    );
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      router.replace("/home");
+    }, 8000);
+    return () => clearTimeout(timer);
+  }, []);
+
+  return (
+    <View
+      style={{
+        flex: 1,
+        backgroundColor: colours.background.default,
+        justifyContent: "center",
+        alignItems: "center",
+        paddingTop: 10
+      }}
+    >
+      <Image
+        source={require("../assets/images/evergreenlogo4.png")}
+        style={{
+          width: 280,
+          height: 280,
+          resizeMode: "contain"
+        }}
+      />
+
+       <Text
+        style={{
+          fontSize: 16,
+          color: "#4A4A4A",
+          textAlign: "center",
+          marginBottom: 20,
+          fontWeight: "600"
+        }}
+      >
+        Prioritising Long Lasting Health 
+      </Text>
+
+      <ActivityIndicator size="large" color="#2E5E3E" />
+    </View>
+  );
 }

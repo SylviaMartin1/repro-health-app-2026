@@ -3,6 +3,7 @@ import { View, Text, Button, StyleSheet } from 'react-native';
 import { ReproductiveHealthContext } from '../contexts/ReproductiveHealthContext';
 import { useRouter } from "expo-router";
 import { safeText } from '../utils/format'
+import { formatDate } from "../utils/format";
 
 export default function CycleCard(props){
   const { deleteCycle } = useContext(ReproductiveHealthContext);
@@ -10,8 +11,8 @@ export default function CycleCard(props){
 
     return(
         <View style={styles.card}>
-            <Text style={styles.label}>Start Date: <Text style={styles.value}>{props.startDate}</Text></Text>
-            <Text style={styles.label}>End Date: <Text style={styles.value}>{props.endDate}</Text></Text>
+            <Text style={styles.label}>Start Date: <Text style={styles.value}>{formatDate(props.startDate)}</Text></Text>
+            <Text style={styles.label}>End Date: <Text style={styles.value}>{formatDate(props.endDate)}</Text></Text>
             <Text style={styles.label}>Flow Level: <Text style={styles.value}>{props.flowLevel}</Text></Text>
             <Text style={styles.label}>Pain Level: <Text style={styles.value}>{props.painLevel}</Text></Text>
             <Text style={styles.label}>Symptoms: <Text style={styles.value}>{safeText(props.symptoms)}</Text></Text>

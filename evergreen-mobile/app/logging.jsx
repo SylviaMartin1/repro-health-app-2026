@@ -1,5 +1,5 @@
 import { useRouter } from "expo-router";
-import { View, Text } from 'react-native';
+import { Text, ScrollView} from 'react-native';
 import { useState, useContext} from 'react'
 import { ReproductiveHealthContext } from '../contexts/ReproductiveHealthContext';
 import Form from '../components/Form';
@@ -19,8 +19,8 @@ const existingCycle = cycles.find(cycle => String(cycle._id) === String(params.i
     startDate: existingCycle?.startDate || "", 
     flowLevel: existingCycle?.flowLevel || "",
     painLevel: existingCycle?.painLevel || "",
-    symptoms:  existingCycle?.symptoms || "",
-    emotions:  existingCycle?.emotions || ""
+    symptoms:  existingCycle?.symptoms || [],
+    emotions:  existingCycle?.emotions || []
   })
 
      const formChangeHandler = (field, value) => {
@@ -29,8 +29,6 @@ const existingCycle = cycles.find(cycle => String(cycle._id) === String(params.i
       [field]: value,
     });
   };
-
-  
 
     const formSubmitHandler = async () => {
     if (!formState.startDate || !formState.flowLevel || !formState.painLevel || !formState.symptoms || !formState.emotions) return;
@@ -45,13 +43,13 @@ const existingCycle = cycles.find(cycle => String(cycle._id) === String(params.i
   
 
   return (
-    <View style={{ marginTop: 20, backgroundColor: colours.background.default }}>
-      <Text>Logging</Text>
+    <ScrollView style={{ flex: 1, marginTop: 20, backgroundColor: colours.background.default, paddingTop: 60 }}>
+      <Text style={{ fontSize: 26, fontWeight: "700", marginBottom: 20}}>Logging</Text>
       <Form
               formState={formState}
               change={formChangeHandler}
               submit={formSubmitHandler}
           />
-    </View>
+    </ScrollView>
   );
 }

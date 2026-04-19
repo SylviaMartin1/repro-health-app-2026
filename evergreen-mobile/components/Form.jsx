@@ -1,80 +1,26 @@
-import { View, Text, TextInput, Button } from 'react-native';
+import { View, Text, Pressable } from 'react-native';
+import DropdownPicker from "../components/DropdownPicker";
+import MultiSelectChips from "../components/MultiSelectChips";
+import DatePickerField from "../components/DatePickerField";
 
 export default function Form(props){
     return(
         <View>
-            <TextInput
-                value={props.formState.startDate}
-                onChangeText={(text) => props.change('startDate', text)}
-                placeholder="e.g. 28"
-                placeholderTextColor="#999"
-                style={{
-                    borderWidth:1,
-                    borderColor: '#ccc',
-                    borderRadius: 4,
-                    padding: 10,
-                    marginVertical: 8
-                }}
-            />
+          <DatePickerField label="Start Date" value={props.formState.startDate} onChange={(value) => props.change("startDate", value)}/>
 
-             <TextInput
-                value={props.formState.flowLevel}
-                onChangeText={(text) => props.change('flowLevel', text)}
-                placeholder="e.g. 28"
-                placeholderTextColor="#999"
-                style={{
-                    borderWidth:1,
-                    borderColor: '#ccc',
-                    borderRadius: 4,
-                    padding: 10,
-                    marginVertical: 8
-                }}
-            />
+          <DatePickerField label="End Date" value={props.formState.endDate}onChange={(value) => props.change("endDate", value)}/>
 
-            <TextInput
-                value={props.formState.painLevel}
-                onChangeText={(text) => props.change('painLevel', text)}
-                placeholder="e.g. 28"
-                placeholderTextColor="#999"
-                style={{
-                    borderWidth:1,
-                    borderColor: '#ccc',
-                    borderRadius: 4,
-                    padding: 10,
-                    marginVertical: 8
-                }}
-            />
+            <DropdownPicker label="Flow Level" value={props.formState.flowLevel} onChange={(value) => props.change('flowLevel', value)} options={["Low", "Medium", "High"]}/>
 
-             <TextInput
-                value={props.formState.symptoms}
-                onChangeText={(text) => props.change('symptoms', text)}
-                placeholder="e.g. 28"
-                placeholderTextColor="#999"
-                style={{
-                    borderWidth:1,
-                    borderColor: '#ccc',
-                    borderRadius: 4,
-                    padding: 10,
-                    marginVertical: 8
-                }}
-            />
+            <DropdownPicker label="Pain Level" value={props.formState.painLevel} onChange={(value) => props.change('painLevel', value)} options={["Low", "Medium", "High"]}/>
 
-            <TextInput
-                value={props.formState.emotions}
-                onChangeText={(text) => props.change('emotions', text)}
-                placeholder="e.g. 28"
-                placeholderTextColor="#999"
-                style={{
-                    borderWidth:1,
-                    borderColor: '#ccc',
-                    borderRadius: 4,
-                    padding: 10,
-                    marginVertical: 8
-                }}
-            />
-            <Button title="Submit" onPress={props.submit}/>
+            <MultiSelectChips label="Symptoms" options={["Cramps", "Headache", "Fatigue", "Bloating"]} selected={props.formState.symptoms} onChange={(value) => props.change("symptoms", value)}/>
 
-         
+           <MultiSelectChips label="Emotions" options={["Happy", "Sad", "Anxious", "Irritable", "Tired"]} selected={props.formState.emotions} onChange={(value) => props.change("emotions", value)}/> 
+     
+        <Pressable onPress={props.submit} style={{ backgroundColor: "green", paddingVertical: 14, borderRadius: 12, alignItems: "center"}}>
+        <Text style={{ color: "white", fontSize: 16, fontWeight: "600" }}> Submit </Text>
+      </Pressable>  
         </View>
     )
 }

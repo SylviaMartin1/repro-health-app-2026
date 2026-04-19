@@ -10,7 +10,7 @@ export const colours = {
         dark: '#64DD17'
     }, 
     background: {
-        default: '#FAF3E8',
+        default: '#F4E1A1',
         paper: '#AED581'
     },
 }
