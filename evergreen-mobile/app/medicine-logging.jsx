@@ -1,5 +1,5 @@
 import { useRouter } from "expo-router";
-import { View, Text } from 'react-native';
+import { Text, ScrollView } from 'react-native';
 import { useState, useContext} from 'react'
 import { ReproductiveHealthContext } from '../contexts/ReproductiveHealthContext';
 import { AuthContext } from '../contexts/authContext';
@@ -43,13 +43,13 @@ const existingMedicine = medicines.find(medicine => String(medicine._id) === Str
   
 
   return (
-    <View style={{ marginTop: 20, backgroundColor: colours.background.default }}>
-      <Text>Logging</Text>
+    <ScrollView style={{ flex: 1, marginTop: 20, backgroundColor: colours.background.default, paddingTop: 60 }}>
+      <Text style={{ fontSize: 26, fontWeight: "700", marginBottom: 20}}>Logging</Text>
       <MedicineForm
               formState={formState}
               change={formChangeHandler}
               submit={formSubmitHandler}
           />
-    </View>
+    </ScrollView>
   );
 }
