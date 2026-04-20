@@ -14,12 +14,12 @@ const params = useLocalSearchParams();
 const existingLifeStyleLog = lifeStyleLogs.find(lifeStyleLog => String(lifeStyleLog._id) === String(params.id));
 
  const [ formState, setFormState ] = useState({
-    sleepHours: existingLifeStyleLog?.sleepHours || "", 
-    exerciseMins: existingLifeStyleLog?.exerciseMins || "",
-    waterIntakeLevel: existingLifeStyleLog?.waterIntakeLevel || "",
-    stressLevel: existingLifeStyleLog?.stressLevel || "",
-    dietQuality: existingLifeStyleLog?.dietQuality || "",
-    mood:  existingLifeStyleLog?.mood || ""
+   sleepHours: existingLifeStyleLog?.sleepHours ?? 0,
+   exerciseMins: existingLifeStyleLog?.exerciseMins ?? 0,
+   waterIntakeLevel: existingLifeStyleLog?.waterIntakeLevel ?? 0,
+   stressLevel: existingLifeStyleLog?.stressLevel ?? 0,
+   dietQuality: existingLifeStyleLog?.dietQuality || "",
+   mood:  existingLifeStyleLog?.mood || ""
   })
 
      const formChangeHandler = (field, value) => {
@@ -30,7 +30,14 @@ const existingLifeStyleLog = lifeStyleLogs.find(lifeStyleLog => String(lifeStyle
   };
 
     const formSubmitHandler = async () => {
-    if (!formState.sleepHours || !formState.exerciseMins || !formState.waterIntakeLevel || !formState.stressLevel || !formState.dietQuality  || !formState.mood) return;
+    if (
+      formState.sleepHours === "" ||
+      formState.exerciseMins === "" ||
+      !formState.waterIntakeLevel ||
+      !formState.stressLevel ||
+      !formState.dietQuality ||
+      !formState.mood
+    ) return;
     if (existingLifeStyleLog) {
     await updateLifeStyleLog(existingLifeStyleLog._id, formState);
   } else {

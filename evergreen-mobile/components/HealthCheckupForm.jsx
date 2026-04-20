@@ -1,4 +1,4 @@
-import { Text, TextInput, Pressable, ScrollView } from 'react-native';
+import { Text, Pressable, ScrollView } from 'react-native';
 import DropdownPicker from "../components/DropdownPicker";
 import DatePickerField from "../components/DatePickerField";
 import TextField from "../components/TextField";
