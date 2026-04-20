@@ -2,13 +2,15 @@ import { View, Text, Pressable } from "react-native";
 import DateTimePicker from "@react-native-community/datetimepicker";
 import { useState } from "react";
 
-export default function DatePickerField({ label, value, onChange }) {
+export default function TimePickerField({ label, value, onChange }) {
   const [open, setOpen] = useState(false);
 
-  const formatDate = (date) => {
+  const formatTime = (date) => {
     if (!date) return "";
-    const d = new Date(date);
-    return d.toLocaleDateString("en-GB");
+    return new Date(date).toLocaleTimeString("en-GB", {
+      hour: "2-digit",
+      minute: "2-digit"
+    });
   };
 
   return (
@@ -22,31 +24,26 @@ export default function DatePickerField({ label, value, onChange }) {
         onPress={() => setOpen(true)}
         style={{
           borderWidth: 1,
-          borderColor: value ? "#4CAF50" : "#ccc",
+          borderColor: "#ccc",
           padding: 12,
           borderRadius: 8,
-          backgroundColor: "white",
-          flexDirection: "row",
-          justifyContent: "space-between",
-          alignItems: "center"
+          backgroundColor: "white"
         }}
       >
-        <Text style={{ color: value ? "black" : "#999" }}>
-          {value ? formatDate(value) : "Select date"}
+        <Text>
+          {value ? formatTime(value) : "Select time"}
         </Text>
-
-        <Text style={{ fontSize: 16 }}>📅</Text>
       </Pressable>
 
       {open && (
         <DateTimePicker
           value={value ? new Date(value) : new Date()}
-          mode="date"
-          display="default"
-          onChange={(event, selectedDate) => {
+          mode="time"
+          is24Hour={true}
+          onChange={(event, selectedTime) => {
             setOpen(false);
-            if (selectedDate) {
-              onChange(selectedDate.toISOString());
+            if (selectedTime) {
+              onChange(selectedTime.toISOString());
             }
           }}
         />

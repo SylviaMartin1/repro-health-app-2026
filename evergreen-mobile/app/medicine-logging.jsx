@@ -18,7 +18,7 @@ const existingMedicine = medicines.find(medicine => String(medicine._id) === Str
  const [ formState, setFormState ] = useState({
     name: existingMedicine?.name || "", 
     category: existingMedicine?.category || "",
-    dosage: existingMedicine?.dosage || "",
+    dosage: existingMedicine?.dosage?.toString() || "",
     frequency: existingMedicine?.frequency || "",
     notes:  existingMedicine?.notes || ""
   })

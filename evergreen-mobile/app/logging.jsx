@@ -17,6 +17,7 @@ const existingCycle = cycles.find(cycle => String(cycle._id) === String(params.i
 
  const [ formState, setFormState ] = useState({
     startDate: existingCycle?.startDate || "", 
+    endDate: existingCycle?.endDate || "",
     flowLevel: existingCycle?.flowLevel || "",
     painLevel: existingCycle?.painLevel || "",
     symptoms:  existingCycle?.symptoms || [],

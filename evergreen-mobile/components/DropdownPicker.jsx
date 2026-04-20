@@ -7,11 +7,11 @@ export default function DropdownPicker({label, value, onChange, options = []}) {
   return (
     <View style={{ marginVertical: 10 }}>
 
-      {/* LABEL */}
+      {/* Label */}
       {label && 
       (<Text style={{ marginBottom: 6, fontWeight: "500" }}> {label} </Text>)}
 
-      {/* SELECT FIELD */}
+      {/* Select Field*/}
       <Pressable onPress={() => setOpen(prev => !prev)} style={{ backgroundColor: "white", padding: 12, borderRadius: 10, borderWidth: 1, borderColor: "#ddd"}} >
         <Text style={{ color: value ? "black" : "#999" }}> {value || "Select an option"}
         </Text>

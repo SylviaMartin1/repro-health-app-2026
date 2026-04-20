@@ -1,4 +1,4 @@
-import { View, Text, TextInput, Button } from 'react-native';
+import { View, Text, TextInput, Pressable } from 'react-native';
 import DropdownPicker from "../components/DropdownPicker";
 
 export default function MedicineForm(props){
@@ -88,7 +88,9 @@ export default function MedicineForm(props){
             />
 
 
-            <Button title="Submit" onPress={props.submit}/>
+            <Pressable onPress={props.submit} style={{ backgroundColor: "green", paddingVertical: 14, borderRadius: 12, alignItems: "center"}}>
+                    <Text style={{ color: "white", fontSize: 16, fontWeight: "600" }}> Submit </Text>
+                  </Pressable>  
 
          
         </View>

@@ -62,7 +62,7 @@ Sprint 4 focused on expanding the functionality of the application. This involve
 ![Stats Screen](images/sprint-3/stats-screen.png)
 
 **npm run tunnel command working**
-![Stats Screen](images/npm-run-tunnel/stats-screen.png)
+![Stats Screen](images/sprint-3/npm-run-tunnel.png)
 
 **Sprint 3 application structure**
 ![Sprint 3 application structure](images/sprint-3/sprint3-application-structure.png)

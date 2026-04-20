@@ -22,12 +22,14 @@ Sprint 1 focused on setting up the backend foundation of the reproductive health
 - Installed Babel, Nodemon, and Dotenv in the backend folder.
 - Created a .env file to store environment variables which was excluded from version control.
 - Created an index.js file which implemented a HTTP server using http.createServer.
+
 - Set up the middleware folder to represent the Express server.
 - Created a package.json file in the backend folder using 'npm init'.
 - Installed Babel, Nodemon, and Dotenv in the middleware folder.
 - Created a .env file to store environment variables which was excluded from version control.
 - Created a public folder to store static content served by the Express application.
 - Added an index.html file to the public folder to verify static file serving.
+
 - Installed Mongoose in the Express app to handle data schemas.
 - Created a db folder containing an index.js file to handle database connections and logic.
 
