@@ -14,12 +14,12 @@ const params = useLocalSearchParams();
 const existingMaleHealthLog = maleHealthLogs.find(maleHealthLog => String(maleHealthLog._id) === String(params.id));
 
  const [ formState, setFormState ] = useState({
-    spermVolume: existingMaleHealthLog?.spermVolume || "", 
-    spermConcentration: existingMaleHealthLog?.spermConcentration || "",
-    spermMotility: existingMaleHealthLog?.spermMotility || "",
-    spermMorphology: existingMaleHealthLog?.spermMorphology|| "",
-    symptoms: existingMaleHealthLog?.symptoms || "",
-    emotions: existingMaleHealthLog?.emotions || "",
+    spermVolume: existingMaleHealthLog?.spermVolume ?? 0 , 
+    spermConcentration: existingMaleHealthLog?.spermConcentration ?? 0,
+    spermMotility: existingMaleHealthLog?.spermMotility ?? 0,
+    spermMorphology: existingMaleHealthLog?.spermMorphology ?? 0,
+    symptoms: existingMaleHealthLog?.symptoms || [],
+    emotions: existingMaleHealthLog?.emotions || [],
   })
 
      const formChangeHandler = (field, value) => {

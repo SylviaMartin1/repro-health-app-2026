@@ -1,5 +1,5 @@
 import { useRouter } from "expo-router";
-import { View, Text } from 'react-native';
+import { ScrollView, Text } from 'react-native';
 import { useState, useContext} from 'react'
 import { ReproductiveHealthContext } from '../contexts/ReproductiveHealthContext';
 import LifeStyleLogForm from '../components/LifeStyleLogForm';
@@ -49,13 +49,13 @@ const existingLifeStyleLog = lifeStyleLogs.find(lifeStyleLog => String(lifeStyle
   
 
   return (
-    <View style={{ marginTop: 20, backgroundColor: colours.background.default}}>
-      <Text>Logging</Text>
+    <ScrollView style={{ marginTop: 20, backgroundColor: colours.background.default}}>
+      <Text style={{ fontSize: 26, fontWeight: "700", marginBottom: 20}}>Logging</Text>
       <LifeStyleLogForm
-              formState={formState}
-              change={formChangeHandler}
-              submit={formSubmitHandler}
-          />
-    </View>
+        formState={formState}
+        change={formChangeHandler}
+        submit={formSubmitHandler}
+      />
+    </ScrollView>
   );
 }

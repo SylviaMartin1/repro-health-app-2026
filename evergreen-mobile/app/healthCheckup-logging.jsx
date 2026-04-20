@@ -45,7 +45,7 @@ const existingHealthCheckup = healthCheckups.find(healthCheckup => String(health
 
   return (
     <View style={{ flex: 1, marginTop: 20, backgroundColor: colours.background.default, paddingTop: 60 }}>
-      <Text>Logging</Text>
+      <Text style={{ fontSize: 26, fontWeight: "700", marginBottom: 20}}>Logging</Text>
       <HealthCheckupForm
               formState={formState}
               change={formChangeHandler}

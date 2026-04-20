@@ -34,7 +34,7 @@ export default function HealthCheckupForm(props){
                 onChange={(text) => props.change("results", text)}
             />
 
-             <MultiLineTextField
+            <MultiLineTextField
                 label="Doctor Notes"
                 value={props.formState.doctorNotes}
                 onChange={(text) => props.change("doctorNotes", text)}

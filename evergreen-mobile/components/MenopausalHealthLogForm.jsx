@@ -1,138 +1,94 @@
-import { View, Text, TextInput, Button } from 'react-native';
+import { View, Text, TextInput, Pressable } from 'react-native';
+import EmojiPicker from "../components/EmojiPicker";
+import MultiSelectChips from "../components/MultiSelectChips";
+import SliderField from "../components/SliderField";
+import NumberField from '../components/NumberField';
 
 export default function MenopausalHealthLogForm(props){
     return(
         <View>
-            <TextInput
+             <NumberField
+                label="Hot Flash Quantity"
                 value={props.formState.hotFlashQuantity}
-                onChangeText={(text) => props.change('hotFlashQuantity', text)}
-                placeholder="e.g. 28"
-                placeholderTextColor="#999"
-                style={{
-                    borderWidth:1,
-                    borderColor: '#ccc',
-                    borderRadius: 4,
-                    padding: 10,
-                    marginVertical: 8
-                }}
-            />
+                field="hotFlashQuantity"
+                onChange={props.change}
+             />
 
-             <TextInput
+             <SliderField
+                label="Hot Flash Intensity"
                 value={props.formState.hotFlashIntensityScore}
-                onChangeText={(text) => props.change('hotFlashIntensityScore', text)}
-                placeholder="e.g. 28"
-                placeholderTextColor="#999"
-                style={{
-                    borderWidth:1,
-                    borderColor: '#ccc',
-                    borderRadius: 4,
-                    padding: 10,
-                    marginVertical: 8
-                }}
+                onChange={(value) => props.change("hotFlashIntensityScore", value)}
+                min={0}
+                max={10}
+                step={1}
             />
 
-            <TextInput
+             <NumberField
+                label="Night Sweat Quantity"
                 value={props.formState.nightSweatQuantity}
-                onChangeText={(text) => props.change('nightSweatQuantity', text)}
-                placeholder="e.g. 28"
-                placeholderTextColor="#999"
-                style={{
-                    borderWidth:1,
-                    borderColor: '#ccc',
-                    borderRadius: 4,
-                    padding: 10,
-                    marginVertical: 8
-                }}
-            />
+                field="nightSweatQuantity"
+                onChange={props.change}
+             />
 
-             <TextInput
+             <SliderField
+                label="Night Sweat Score"
                 value={props.formState.nightSweatScore}
-                onChangeText={(text) => props.change('nightSweatScore', text)}
-                placeholder="e.g. 28"
-                placeholderTextColor="#999"
-                style={{
-                    borderWidth:1,
-                    borderColor: '#ccc',
-                    borderRadius: 4,
-                    padding: 10,
-                    marginVertical: 8
-                }}
+                onChange={(value) => props.change("nightSweatScore", value)}
+                min={0}
+                max={10}
+                step={1}
             />
 
-            <TextInput
-                value={props.formState.symptoms}
-                onChangeText={(text) => props.change('symptoms', text)}
-                placeholder="e.g. 28"
-                placeholderTextColor="#999"
-                style={{
-                    borderWidth:1,
-                    borderColor: '#ccc',
-                    borderRadius: 4,
-                    padding: 10,
-                    marginVertical: 8
-                }}
+            <MultiSelectChips 
+                label="Symptoms" 
+                options={["Cramps", "Headache", "Fatigue", "Bloating"]} 
+                selected={props.formState.symptoms} 
+                onChange={(value) => props.change("symptoms", value)}
             />
 
-             <TextInput
+            <EmojiPicker
+                label="Emotions"
                 value={props.formState.emotions}
-                onChangeText={(text) => props.change('emotions', text)}
-                placeholder="e.g. 28"
-                placeholderTextColor="#999"
-                style={{
-                    borderWidth:1,
-                    borderColor: '#ccc',
-                    borderRadius: 4,
-                    padding: 10,
-                    marginVertical: 8
-                }}
+                onChange={(value) => props.change("emotions", value)}
+                options={[
+                    "😢 Bad",
+                    "😟 Low",
+                    "😐 Neutral",
+                    "🙂 Good",
+                    "😄 Great"
+                ]}
             />
 
-              <TextInput
+            <SliderField
+                label="Estrogen Levels"
                 value={props.formState.estrogenLevels}
-                onChangeText={(text) => props.change('estrogenLevels', text)}
-                placeholder="e.g. 28"
-                placeholderTextColor="#999"
-                style={{
-                    borderWidth:1,
-                    borderColor: '#ccc',
-                    borderRadius: 4,
-                    padding: 10,
-                    marginVertical: 8
-                }}
+                onChange={(value) => props.change("estrogenLevels", value)}
+                min={0}
+                max={12}
+                step={0.5}
             />
 
-              <TextInput
+            <SliderField
+                label="Progesterone Levels"
                 value={props.formState.progesteroneLevels}
-                onChangeText={(text) => props.change('progesteroneLevels', text)}
-                placeholder="e.g. 28"
-                placeholderTextColor="#999"
-                style={{
-                    borderWidth:1,
-                    borderColor: '#ccc',
-                    borderRadius: 4,
-                    padding: 10,
-                    marginVertical: 8
-                }}
+                onChange={(value) => props.change("progesteroneLevels", value)}
+                min={0}
+                max={100}
+                step={0.5}
             />
 
-              <TextInput
+            <SliderField
+                label="FSH Levels"
                 value={props.formState.fshLevels}
-                onChangeText={(text) => props.change('fshLevels', text)}
-                placeholder="e.g. 28"
-                placeholderTextColor="#999"
-                style={{
-                    borderWidth:1,
-                    borderColor: '#ccc',
-                    borderRadius: 4,
-                    padding: 10,
-                    marginVertical: 8
-                }}
+                onChange={(value) => props.change("fshLevels", value)}
+                min={0}
+                max={100}
+                step={0.5}
             />
 
-
-            <Button title="Submit" onPress={props.submit}/>
-
-         
+            <Pressable onPress={props.submit} style={{ backgroundColor: "green", paddingVertical: 14, borderRadius: 12, alignItems: "center"}}>
+                <Text style={{ color: "white", fontSize: 16, fontWeight: "600" }}> Submit </Text>
+            </Pressable>
         </View>
     )
 }
