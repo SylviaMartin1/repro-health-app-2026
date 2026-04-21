@@ -39,13 +39,13 @@ const existingCycle = cycles.find(cycle => String(cycle._id) === String(params.i
     await addCycle(formState);
   }
     setFormState({ startDate: '', flowLevel:'', painLevel:'', symptoms:[], emotions:[]});
-     router.push("/dashboard");
+     router.push("/(tabs)/dashboard");
   }; 
   
 
   return (
-    <ScrollView style={{ flex: 1, marginTop: 20, backgroundColor: colours.background.default, paddingTop: 60 }}>
-      <Text style={{ fontSize: 26, fontWeight: "700", marginBottom: 20}}>Logging</Text>
+    <ScrollView style={{ flex: 1, marginTop: 20, backgroundColor: colours.background.default, paddingTop: 60, padding: 16 }}>
+      <Text style={{ fontSize: 26, fontWeight: "700", marginBottom: 20}}>Cycles 📅</Text>
       <Form
               formState={formState}
               change={formChangeHandler}

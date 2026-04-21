@@ -40,13 +40,13 @@ const existingMenopausalHealthLog = menopausalHealthLogs.find(menopausalHealthLo
     await addMenopausalHealthLog(formState);
   }
     setFormState({ hotFlashQuantity: 0, hotFlashIntensityScore:0, nightSweatQuantity:0, nightSweatScore:0, symptoms:[], emotions:[], estrogenLevels:0, progesteroneLevels:0, fshLevels:0});
-     router.push("/dashboard");
+     router.push("/(tabs)/dashboard");
   }; 
   
 
   return (
     <ScrollView style={{ flex: 1, padding: 10, backgroundColor: colours.background.default }}>
-      <Text style={{ fontSize: 26, fontWeight: "700", marginBottom: 20}}>Logging</Text>
+      <Text style={{ fontSize: 26, fontWeight: "700", marginBottom: 20}}>General Health👩</Text>
       <MenopausalHealthLogForm
               formState={formState}
               change={formChangeHandler}

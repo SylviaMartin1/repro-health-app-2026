@@ -20,7 +20,7 @@ const existingMedicine = medicines.find(medicine => String(medicine._id) === Str
     category: existingMedicine?.category || "",
     dosage: existingMedicine?.dosage?.toString() || "",
     frequency: existingMedicine?.frequency || "",
-    notes:  existingMedicine?.notes || ""
+    notes: existingMedicine?.notes || ""
   })
 
      const formChangeHandler = (field, value) => {
@@ -38,13 +38,13 @@ const existingMedicine = medicines.find(medicine => String(medicine._id) === Str
     await addMedicine(formState);
   }
     setFormState({ name: '', category:'', dosage:'', frequency:'', notes:''});
-     router.push("/dashboard");
+     router.push("/(tabs)/dashboard");
   }; 
   
 
   return (
     <ScrollView style={{ flex: 1, marginTop: 20, backgroundColor: colours.background.default, paddingTop: 60 }}>
-      <Text style={{ fontSize: 26, fontWeight: "700", marginBottom: 20}}>Logging</Text>
+      <Text style={{ fontSize: 26, fontWeight: "700", marginBottom: 20}}>Medicines 💊</Text>
       <MedicineForm
               formState={formState}
               change={formChangeHandler}

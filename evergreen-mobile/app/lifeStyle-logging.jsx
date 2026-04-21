@@ -44,13 +44,12 @@ const existingLifeStyleLog = lifeStyleLogs.find(lifeStyleLog => String(lifeStyle
     await addLifeStyleLog(formState);
   }
     setFormState({ sleepHours: '', exerciseMins:'', waterIntakeLevel:'', stressLevel:'', dietQuality:'', mood:''});
-     router.push("/dashboard");
+     router.push("/(tabs)/dashboard");
   }; 
   
-
   return (
-    <ScrollView style={{ marginTop: 20, backgroundColor: colours.background.default}}>
-      <Text style={{ fontSize: 26, fontWeight: "700", marginBottom: 20}}>Logging</Text>
+    <ScrollView style={{ marginTop: 20, backgroundColor: colours.background.default, padding: 16}}>
+      <Text style={{ fontSize: 26, fontWeight: "700", marginBottom: 20, }}>Lifestyle 🌿</Text>
       <LifeStyleLogForm
         formState={formState}
         change={formChangeHandler}

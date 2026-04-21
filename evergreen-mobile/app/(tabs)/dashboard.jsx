@@ -1,9 +1,9 @@
 import { useContext } from 'react';
 import { View, Text, Button } from 'react-native';
-import { AuthContext } from '../contexts/authContext';
-import EndUserDashboard from "../components/EndUserDashboard";
-import AdminDashboard from "../components/AdminDashboard";
-import { colours } from "../theme/colours";
+import { AuthContext } from '../../contexts/authContext';
+import EndUserDashboard from "../../components/EndUserDashboard";
+import AdminDashboard from "../../components/AdminDashboard";
+import { colours } from "../../theme/colours";
 
 export default function Dashboard() {
 const { user } = useContext(AuthContext);

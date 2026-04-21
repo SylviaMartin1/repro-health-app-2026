@@ -37,13 +37,13 @@ const existingMaleHealthLog = maleHealthLogs.find(maleHealthLog => String(maleHe
     await addMaleHealthLog(formState);
   }
     setFormState({ spermVolume: '', spermConcentration:'', spermMotility:'', spermMorphology:'', symptoms:'', emotions:''});
-     router.push("/dashboard");
+     router.push("/(tabs)/dashboard");
   }; 
   
 
   return (
-    <ScrollView style={{ flex: 1, padding: 10, backgroundColor: colours.background.default }}>
-      <Text>Logging</Text>
+    <ScrollView style={{ flex: 1, padding: 16, backgroundColor: colours.background.default,  }}>
+      <Text style={{ fontSize: 26, fontWeight: "700", marginBottom: 20}}>General Health 👩</Text>
       <MaleHealthLogForm
               formState={formState}
               change={formChangeHandler}

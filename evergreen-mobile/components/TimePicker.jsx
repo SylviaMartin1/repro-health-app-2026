@@ -30,7 +30,7 @@ export default function TimePickerField({ label, value, onChange }) {
           backgroundColor: "white"
         }}
       >
-        <Text>
+        <Text style={{ color: value ? "black" : "#999" }}>
           {value ? formatTime(value) : "Select time"}
         </Text>
       </Pressable>

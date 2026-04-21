@@ -1,11 +1,11 @@
 import { useEffect } from "react";
 import { View, Text } from "react-native";
-import { colours } from "../theme/colours";
+import { colours } from "../../theme/colours";
 
-export default function Articles() {
+export default function Stats() {
   return (
     <View style={{ backgroundColor: colours.background.default }}>
-      <Text>Articles Screen</Text>
+      <Text>Stats Screen</Text>
     </View>
   );
 }
