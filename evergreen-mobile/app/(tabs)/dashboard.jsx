@@ -1,8 +1,9 @@
 import { useContext } from 'react';
 import { View, Text, Button } from 'react-native';
-import { AuthContext } from '../contexts/authContext';
-import EndUserDashboard from "../components/EndUserDashboard";
-import AdminDashboard from "../components/AdminDashboard";
+import { AuthContext } from '../../contexts/authContext';
+import EndUserDashboard from "../../components/EndUserDashboard";
+import AdminDashboard from "../../components/AdminDashboard";
+import { colours } from "../../theme/colours";
 
 export default function Dashboard() {
 const { user } = useContext(AuthContext);
@@ -10,7 +11,7 @@ const { user } = useContext(AuthContext);
 console.log("User:", user);
   if (!user) {
     return (
-      <View style={{ flex: 1, justifyContent: "center", alignItems: "center" }}>
+      <View style={{ flex: 1, justifyContent: "center", alignItems: "center", backgroundColor: colours.background.default}}>
         <Text>Loading user...</Text>
       </View>
     );

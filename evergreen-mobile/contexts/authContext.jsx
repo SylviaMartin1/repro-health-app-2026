@@ -11,12 +11,10 @@ const AuthContextProvider = (props) => {
   const [email, setEmail] = useState("");
   const [loading, setLoading] = useState(true);
   
-
 useEffect(() => {
   const initAuth = async () => {
     try {
       const token = await AsyncStorage.getItem("authToken");
-
       console.log("STORED TOKEN:", token);
 
       if (!token) {
@@ -42,7 +40,6 @@ useEffect(() => {
       setLoading(false);
     }
   };
-
   initAuth();
 }, []);
 
@@ -63,7 +60,6 @@ if (!result || !result.token) {
 }
 
 const cleanToken = result.token.replace(/^BEARER\s+/i, "");
-
     await AsyncStorage.setItem("authToken", cleanToken);
 
     setAuthToken(cleanToken);
@@ -107,7 +103,7 @@ const cleanToken = result.token.replace(/^BEARER\s+/i, "");
         setUser
       }}
     >
-      {props.children} {/* eslint-disable-line */}
+      {props.children}
     </AuthContext.Provider>
   );
 };

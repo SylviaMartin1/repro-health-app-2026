@@ -4,7 +4,7 @@ const Schema = mongoose.Schema;
 
 const HealthCheckupSchema = new Schema({
   name: String,
-  date: String,
+  date: Date,
   time: String,
   results: String,
   doctorNotes: String,

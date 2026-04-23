@@ -6,7 +6,7 @@
 **Week:** 2 
 
 ## Overview
-Sprint 2 focused on setting up authentication in the application. This involved creating a user model, functionality to register and authentication users, password encryption, and JTW tokens for session management.
+Sprint 2 focused on setting up authentication in the application. This involved creating a user model, functionality to register and authentication users, password encryption, and JWT tokens for session management.
 
 ## Project Structure
 - repro-health-app: the root directory of the project containing all its files and folders.
@@ -16,13 +16,13 @@ Sprint 2 focused on setting up authentication in the application. This involved 
 
 ## Implementation
 - Created a user model with the fields displayName, email, password, lifeStage, height, weight.
-- Created a router with functions to register, authenticate, and get users.
+- Created a user router with functions to register, authenticate, and get users.
 - Implemented password encryption using bcrypt salting and hashing.
 - Implemented JSON Web Tokens for secure user login sessions and authentication.
 - Added validation to ensure passwords are eight characters long and have at least one alphanumeric character, digit, and special character.
 
 ## Testing
-- Started the Express server and added users to the database in PostMan.
+- Started the Express server and added users to the database in Postman.
 - Created GET and POST requests in Postman and ensured correct results were seen.
 
 ## Running the Application
@@ -36,7 +36,6 @@ Sprint 2 focused on setting up authentication in the application. This involved 
 ## Issues/Notes
 - Frontend functionality is yet to be implemented.
 - Issues with clashing between async function and next().
-
 
 ## Images/Screenshots
 **Successful User Registration**

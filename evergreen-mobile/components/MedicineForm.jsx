@@ -1,80 +1,67 @@
-import { View, Text, TextInput, Button } from 'react-native';
+import { ScrollView, Text, TextInput, Pressable } from 'react-native';
+import DropdownPicker from "../components/DropdownPicker";
+import TextField from "../components/TextField";
+import MultiLineTextField from '../components/MultilineTextField';
+import NumberField from '../components/NumberField';
 
 export default function MedicineForm(props){
     return(
-        <View>
-            <TextInput
-                value={props.formState.name}
-                onChangeText={(text) => props.change('name', text)}
-                placeholder="e.g. 28"
-                placeholderTextColor="#999"
-                style={{
-                    borderWidth:1,
-                    borderColor: '#ccc',
-                    borderRadius: 4,
-                    padding: 10,
-                    marginVertical: 8
-                }}
+        <ScrollView>
+           <TextField 
+            label="Name"
+            value={props.formState.name}
+            onChange={props.change}
+            field="name"
             />
 
-             <TextInput
-                value={props.formState.category}
-                onChangeText={(text) => props.change('category', text)}
-                placeholder="e.g. 28"
-                placeholderTextColor="#999"
-                style={{
-                    borderWidth:1,
-                    borderColor: '#ccc',
-                    borderRadius: 4,
-                    padding: 10,
-                    marginVertical: 8
-                }}
-            />
+        <DropdownPicker 
+              label="Category" 
+              value={props.formState.category} 
+              onChange={(value) => props.change('category', value)} 
+              options={["Contraceptive", "Hormone", "Supplement", "Painkiller", "Other"]}
+         />
 
-            <TextInput
-                value={props.formState.dosage}
-                onChangeText={(text) => props.change('dosage', text)}
-                placeholder="e.g. 28"
-                placeholderTextColor="#999"
-                style={{
-                    borderWidth:1,
-                    borderColor: '#ccc',
-                    borderRadius: 4,
-                    padding: 10,
-                    marginVertical: 8
-                }}
-            />
+          <NumberField
+            label="Dosage"
+            value={props.formState.dosage}
+            field="dosage"
+            onChange={props.change}
+            unit="ml"
+          />
 
-             <TextInput
-                value={props.formState.frequency}
-                onChangeText={(text) => props.change('frequency', text)}
-                placeholder="e.g. 28"
-                placeholderTextColor="#999"
-                style={{
-                    borderWidth:1,
-                    borderColor: '#ccc',
-                    borderRadius: 4,
-                    padding: 10,
-                    marginVertical: 8
-                }}
+            <DropdownPicker 
+              label="Frequency" 
+              value={props.formState.frequency} 
+              onChange={(value) => props.change('frequency', value)} 
+              options={["Once daily", "Twice daily", "Three times daily", "Every 8 hours", "Weekly", "As needed", "Other"]}
             />
+             {props.formState.frequency === "Other" && (
+                <TextInput
+                    value={props.formState.frequencyOther}
+                    onChangeText={(text) =>
+                        props.change("frequencyOther", text)
+                    }
+                    placeholder="e.g. every 2 days"
+                    style={{
+                        borderWidth: 1,
+                        borderColor: '#ccc',
+                        borderRadius: 10,
+                        padding: 12,
+                        backgroundColor: 'white',
+                        marginTop: 1
+                    }}
+                />
+            )}
 
-            <TextInput
+            <MultiLineTextField
+                label="Notes"
                 value={props.formState.notes}
-                onChangeText={(text) => props.change('notes', text)}
-                placeholder="e.g. 28"
-                placeholderTextColor="#999"
-                style={{
-                    borderWidth:1,
-                    borderColor: '#ccc',
-                    borderRadius: 4,
-                    padding: 10,
-                    marginVertical: 8
-                }}
+                onChange={(text) => props.change("notes", text)}
             />
-            <Button title="Submit" onPress={props.submit}/>
 
-         
-        </View>
+            <Pressable onPress={props.submit} style={{ backgroundColor: "green", paddingVertical: 14, borderRadius: 12, alignItems: "center"}}>
+                <Text style={{ color: "white", fontSize: 16, fontWeight: "600" }}> Submit </Text>
+            </Pressable>  
+        </ScrollView>
     )
 }

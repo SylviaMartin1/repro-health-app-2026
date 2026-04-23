@@ -3,27 +3,27 @@ import User from '../api/users/userModel.js';
 
 const authenticate = async (req, res, next) => {
   try {
-    // 1. Get header
+    // 1. Get the header
     const authHeader = req.headers.authorization;
 
     if (!authHeader) {
       return res.status(401).json({ msg: "No token provided" });
     }
 
-    // 2. Extract token
+    // 2. Extract the token
     const token = authHeader.split(" ")[1];
 
-    // 3. Verify token
+    // 3. Verify the token
     const decoded = jwt.verify(token, process.env.SECRET);
 
-    // 4. Find user
+    // 4. Find the  user
     const user = await User.findOne({ email: decoded.email });
 
     if (!user) {
       return res.status(401).json({ msg: "User not found" });
     }
 
-    // 5. Attach user
+    // 5. Attach the  user
     req.user = user;
 
     next();

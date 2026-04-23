@@ -1,16 +1,41 @@
 export const colours = {
-    primary: {
-        light: '#8BC34A',
-        main: '#689F38',
-        dark: '#33691E'
-    },
-    secondary: {
-        light: '#B2FF59',
-        main: '#76FF03',
-        dark: '#64DD17'
-    }, 
-    background: {
-        default: '#F1F8E9',
-        paper: '#AED581'
-    },
-}
+/**
+ * Main brand colour (yellow) - used for primary buttons and key UI elements
+ */
+  primary: {
+    main: '#C79A00',   
+    light: '#E6B800',
+    dark: '#A67C00',
+  },
+
+/**
+ * App backgrounds - screen (default) and surfaces like cards and sections
+ */
+  background: {
+    default: '#FFF4B8',
+    surface: '#FFE082', 
+  },
+
+/**
+ * Accent colour (green) - used for highlights, actions, and active states
+ */
+  accent: {
+    main: '#4CAF50',   
+    light: '#81C784',
+    dark: '#388E3C',
+  },
+
+/**
+ * Text colours - primary (main), secondary (less emphasis), and inverse (on dark area)
+ */
+  text: {
+    primary: '#000000', 
+    secondary: '#333333', 
+    inverse: '#FFFFFF',   
+  },
+
+/**
+ * Subtle borders and dividers for layout separation
+ */
+  border: '#E0C96D',
+};

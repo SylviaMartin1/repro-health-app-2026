@@ -3,8 +3,8 @@ import mongoose from 'mongoose';
 const Schema = mongoose.Schema;
 
 const CycleSchema = new Schema({
-  startDate: String,
-  endDate: String,
+  startDate: Date,
+  endDate: Date,
   flowLevel: String, 
   painLevel: String, 
   symptoms: [String],

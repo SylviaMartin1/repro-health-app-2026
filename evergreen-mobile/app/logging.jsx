@@ -1,9 +1,10 @@
 import { useRouter } from "expo-router";
-import { View, Text } from 'react-native';
+import { Text, ScrollView, StyleSheet, View} from 'react-native';
 import { useState, useContext} from 'react'
 import { ReproductiveHealthContext } from '../contexts/ReproductiveHealthContext';
 import Form from '../components/Form';
 import { useLocalSearchParams } from "expo-router";
+import { colours } from "../theme/colours";
 
 export default function Logging() {
 const router = useRouter();
@@ -16,10 +17,11 @@ const existingCycle = cycles.find(cycle => String(cycle._id) === String(params.i
 
  const [ formState, setFormState ] = useState({
     startDate: existingCycle?.startDate || "", 
+    endDate: existingCycle?.endDate || "",
     flowLevel: existingCycle?.flowLevel || "",
     painLevel: existingCycle?.painLevel || "",
-    symptoms:  existingCycle?.symptoms || "",
-    emotions:  existingCycle?.emotions || ""
+    symptoms:  existingCycle?.symptoms || [],
+    emotions:  existingCycle?.emotions || []
   })
 
      const formChangeHandler = (field, value) => {
@@ -29,8 +31,6 @@ const existingCycle = cycles.find(cycle => String(cycle._id) === String(params.i
     });
   };
 
-  
-
     const formSubmitHandler = async () => {
     if (!formState.startDate || !formState.flowLevel || !formState.painLevel || !formState.symptoms || !formState.emotions) return;
     if (existingCycle) {
@@ -39,18 +39,30 @@ const existingCycle = cycles.find(cycle => String(cycle._id) === String(params.i
     await addCycle(formState);
   }
     setFormState({ startDate: '', flowLevel:'', painLevel:'', symptoms:[], emotions:[]});
-     router.push("/dashboard");
+     router.push("/(tabs)/dashboard");
   }; 
   
 
   return (
-    <View style={{ marginTop: 20 }}>
-      <Text>Logging</Text>
+    <ScrollView style={{ flex: 1, marginTop: 20, backgroundColor: colours.background.default, paddingTop: 60, padding: 16 }}>
+      <Text style={{ fontSize: 26, fontWeight: "700", marginBottom: 20}}>Cycles 📅</Text>
+      <View style={styles.surface}>
       <Form
-              formState={formState}
-              change={formChangeHandler}
-              submit={formSubmitHandler}
+        formState={formState}
+        change={formChangeHandler}
+        submit={formSubmitHandler}
           />
-    </View>
+      </View>
+    </ScrollView>
   );
 }
+
+const styles = StyleSheet.create({
+surface: {
+  backgroundColor: 'colours.background.main',
+  borderRadius: 16,
+  padding: 16,
+  marginTop: 10,
+  elevation: 2,
+}
+});

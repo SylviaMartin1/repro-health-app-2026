@@ -1,92 +1,62 @@
-import { View, Text, TextInput, Button } from 'react-native';
+import { View, Text, Pressable } from 'react-native';
+import EmojiPicker from "../components/EmojiPicker";
+import MultiSelectChips from "../components/MultiSelectChips";
+import SliderField from "../components/SliderField";
+import NumberField from '../components/NumberField';
 
 export default function MaleHealthLogForm(props){
     return(
         <View>
-            <TextInput
+            <NumberField
+                label="Sperm Volume"
                 value={props.formState.spermVolume}
-                onChangeText={(text) => props.change('spermVolume', text)}
-                placeholder="e.g. 28"
-                placeholderTextColor="#999"
-                style={{
-                    borderWidth:1,
-                    borderColor: '#ccc',
-                    borderRadius: 4,
-                    padding: 10,
-                    marginVertical: 8
-                }}
+                field="spermVolume"
+                onChange={props.change}
             />
 
-             <TextInput
+            <NumberField
+                label="Sperm Concentration"
                 value={props.formState.spermConcentration}
-                onChangeText={(text) => props.change('spermConcentration', text)}
-                placeholder="e.g. 28"
-                placeholderTextColor="#999"
-                style={{
-                    borderWidth:1,
-                    borderColor: '#ccc',
-                    borderRadius: 4,
-                    padding: 10,
-                    marginVertical: 8
-                }}
+                field="spermConcentration"
+                onChange={props.change}
             />
 
-            <TextInput
+            <NumberField
+                label="Sperm Motility"
                 value={props.formState.spermMotility}
-                onChangeText={(text) => props.change('spermMotility', text)}
-                placeholder="e.g. 28"
-                placeholderTextColor="#999"
-                style={{
-                    borderWidth:1,
-                    borderColor: '#ccc',
-                    borderRadius: 4,
-                    padding: 10,
-                    marginVertical: 8
-                }}
+                field="spermMotility"
+                onChange={props.change}
             />
 
-             <TextInput
+            <NumberField
+                label="Sperm Morphology"
                 value={props.formState.spermMorphology}
-                onChangeText={(text) => props.change('spermMorphology', text)}
-                placeholder="e.g. 28"
-                placeholderTextColor="#999"
-                style={{
-                    borderWidth:1,
-                    borderColor: '#ccc',
-                    borderRadius: 4,
-                    padding: 10,
-                    marginVertical: 8
-                }}
+                field="spermMorphology"
+                onChange={props.change}
             />
 
-            <TextInput
-                value={props.formState.symptoms}
-                onChangeText={(text) => props.change('symptoms', text)}
-                placeholder="e.g. 28"
-                placeholderTextColor="#999"
-                style={{
-                    borderWidth:1,
-                    borderColor: '#ccc',
-                    borderRadius: 4,
-                    padding: 10,
-                    marginVertical: 8
-                }}
+            <MultiSelectChips 
+                label="Symptoms" 
+                options={["Cramps", "Headache", "Fatigue", "Bloating"]} 
+                selected={props.formState.symptoms} 
+                onChange={(value) => props.change("symptoms", value)}
             />
 
-             <TextInput
+            <EmojiPicker
+                label="Emotions"
                 value={props.formState.emotions}
-                onChangeText={(text) => props.change('emotions', text)}
-                placeholder="e.g. 28"
-                placeholderTextColor="#999"
-                style={{
-                    borderWidth:1,
-                    borderColor: '#ccc',
-                    borderRadius: 4,
-                    padding: 10,
-                    marginVertical: 8
-                }}
+                onChange={(value) => props.change("emotions", value)}
+                options={[
+                    "😢 Bad",
+                    "😟 Low",
+                    "😐 Neutral",
+                    "🙂 Good",
+                    "😄 Great"
+                ]}
             />
-            <Button title="Submit" onPress={props.submit}/>
+            <Pressable onPress={props.submit} style={{ backgroundColor: "green", paddingVertical: 14, borderRadius: 12, alignItems: "center"}}>
+                <Text style={{ color: "white", fontSize: 16, fontWeight: "600" }}> Submit </Text>
+            </Pressable>
         </View>
     )
 }

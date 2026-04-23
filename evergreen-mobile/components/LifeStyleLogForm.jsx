@@ -1,94 +1,77 @@
-import { View, Text, TextInput, Button } from 'react-native';
+import { ScrollView, TextInput, Pressable, Text } from 'react-native';
+import EmojiPicker from "../components/EmojiPicker";
+import SliderField from "../components/SliderField";
 
 export default function LifeStyleLogForm(props){
     return(
-        <View>
-            <TextInput
+        <ScrollView>
+            <SliderField
+                label="Sleep Hours"
                 value={props.formState.sleepHours}
-                onChangeText={(text) => props.change('sleepHours', text)}
-                placeholder="e.g. 28"
-                placeholderTextColor="#999"
-                style={{
-                    borderWidth:1,
-                    borderColor: '#ccc',
-                    borderRadius: 4,
-                    padding: 10,
-                    marginVertical: 8
-                }}
+                onChange={(value) => props.change("sleepHours", value)}
+                min={0}
+                max={12}
+                step={0.5}
+                unit=" hrs"
             />
 
-             <TextInput
+            <SliderField
+                label="Exercise Minutes"
                 value={props.formState.exerciseMins}
-                onChangeText={(text) => props.change('exerciseMins', text)}
-                placeholder="e.g. 28"
-                placeholderTextColor="#999"
-                style={{
-                    borderWidth:1,
-                    borderColor: '#ccc',
-                    borderRadius: 4,
-                    padding: 10,
-                    marginVertical: 8
-                }}
+                onChange={(value) => props.change("exerciseMins", value)}
+                min={0}
+                max={120}
+                step={1}
+                unit=" mins"
             />
 
-            <TextInput
+             <SliderField
+                label="Water Intake Level"
                 value={props.formState.waterIntakeLevel}
-                onChangeText={(text) => props.change('waterIntakeLevel', text)}
-                placeholder="e.g. 28"
-                placeholderTextColor="#999"
-                style={{
-                    borderWidth:1,
-                    borderColor: '#ccc',
-                    borderRadius: 4,
-                    padding: 10,
-                    marginVertical: 8
-                }}
+                onChange={(value) => props.change("waterIntakeLevel", value)}
+                min={0}
+                max={10}
+                step={0.5}
+                unit=" glasses"
             />
 
-             <TextInput
+            <SliderField
+                label="Stress Level"
                 value={props.formState.stressLevel}
-                onChangeText={(text) => props.change('stressLevel', text)}
-                placeholder="e.g. 28"
-                placeholderTextColor="#999"
-                style={{
-                    borderWidth:1,
-                    borderColor: '#ccc',
-                    borderRadius: 4,
-                    padding: 10,
-                    marginVertical: 8
-                }}
+                onChange={(value) => props.change("stressLevel", value)}
+                min={0}
+                max={10}
+                step={1}
             />
 
-            <TextInput
+            <EmojiPicker
+                label="Diet Quality"
                 value={props.formState.dietQuality}
-                onChangeText={(text) => props.change('dietQuality', text)}
-                placeholder="e.g. 28"
-                placeholderTextColor="#999"
-                style={{
-                    borderWidth:1,
-                    borderColor: '#ccc',
-                    borderRadius: 4,
-                    padding: 10,
-                    marginVertical: 8
-                }}
+                onChange={(value) => props.change("dietQuality", value)}
+                options={[
+                    "🍕 Poor",
+                    "🍟 Okay",
+                    "🥗 Good",
+                    "🍎 Excellent"
+                ]}
             />
 
-             <TextInput
+            <EmojiPicker
+                label="Mood"
                 value={props.formState.mood}
-                onChangeText={(text) => props.change('mood', text)}
-                placeholder="e.g. 28"
-                placeholderTextColor="#999"
-                style={{
-                    borderWidth:1,
-                    borderColor: '#ccc',
-                    borderRadius: 4,
-                    padding: 10,
-                    marginVertical: 8
-                }}
+                onChange={(value) => props.change("mood", value)}
+                options={[
+                    "😢 Bad",
+                    "😟 Low",
+                    "😐 Neutral",
+                    "🙂 Good",
+                    "😄 Great"
+                ]}
             />
-            <Button title="Submit" onPress={props.submit}/>
 
-         
-        </View>
+            <Pressable onPress={props.submit} style={{ backgroundColor: "green", paddingVertical: 14, borderRadius: 12, alignItems: "center"}}>
+                <Text style={{ color: "white", fontSize: 16, fontWeight: "600" }}> Submit </Text>
+            </Pressable>
+        </ScrollView>
     )
 }

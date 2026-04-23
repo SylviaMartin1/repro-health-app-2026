@@ -1,9 +1,10 @@
 import { useRouter } from "expo-router";
-import { View, Text } from 'react-native';
+import { Text, ScrollView } from 'react-native';
 import { useState, useContext} from 'react'
 import { ReproductiveHealthContext } from '../contexts/ReproductiveHealthContext';
 import HealthCheckupForm from '../components/HealthCheckupForm';
 import { useLocalSearchParams } from "expo-router";
+import { colours } from "../theme/colours";
 
 export default function HealthCheckupLogging() {
 const router = useRouter();
@@ -37,18 +38,18 @@ const existingHealthCheckup = healthCheckups.find(healthCheckup => String(health
     await addHealthCheckup(formState);
   }
     setFormState({ name: '', date:'', time:'', results:'', doctorNotes:'', status:''});
-     router.push("/dashboard");
+     router.push("/(tabs)/dashboard");
   }; 
   
 
   return (
-    <View style={{ marginTop: 20 }}>
-      <Text>Logging</Text>
+    <ScrollView style={{ flex: 1, marginTop: 20, backgroundColor: colours.background.default, paddingTop: 60 , padding: 16}}>
+      <Text style={{ fontSize: 26, fontWeight: "700", marginBottom: 20}}>Checkups 🏥</Text>
       <HealthCheckupForm
               formState={formState}
               change={formChangeHandler}
               submit={formSubmitHandler}
           />
-    </View>
+    </ScrollView>
   );
 }

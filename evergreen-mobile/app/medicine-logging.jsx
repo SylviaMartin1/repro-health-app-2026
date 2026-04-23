@@ -1,10 +1,11 @@
 import { useRouter } from "expo-router";
-import { View, Text } from 'react-native';
+import { Text, ScrollView } from 'react-native';
 import { useState, useContext} from 'react'
 import { ReproductiveHealthContext } from '../contexts/ReproductiveHealthContext';
 import { AuthContext } from '../contexts/authContext';
 import MedicineForm from '../components/MedicineForm';
 import { useLocalSearchParams } from "expo-router";
+import { colours } from "../theme/colours";
 
 export default function MedicineLogging() {
 const router = useRouter();
@@ -17,9 +18,9 @@ const existingMedicine = medicines.find(medicine => String(medicine._id) === Str
  const [ formState, setFormState ] = useState({
     name: existingMedicine?.name || "", 
     category: existingMedicine?.category || "",
-    dosage: existingMedicine?.dosage || "",
+    dosage: existingMedicine?.dosage?.toString() || "",
     frequency: existingMedicine?.frequency || "",
-    notes:  existingMedicine?.notes || ""
+    notes: existingMedicine?.notes || ""
   })
 
      const formChangeHandler = (field, value) => {
@@ -37,18 +38,18 @@ const existingMedicine = medicines.find(medicine => String(medicine._id) === Str
     await addMedicine(formState);
   }
     setFormState({ name: '', category:'', dosage:'', frequency:'', notes:''});
-     router.push("/dashboard");
+     router.push("/(tabs)/dashboard");
   }; 
   
 
   return (
-    <View style={{ marginTop: 20 }}>
-      <Text>Logging</Text>
+    <ScrollView style={{ flex: 1, marginTop: 20, backgroundColor: colours.background.default, paddingTop: 60 }}>
+      <Text style={{ fontSize: 26, fontWeight: "700", marginBottom: 20}}>Medicines 💊</Text>
       <MedicineForm
               formState={formState}
               change={formChangeHandler}
               submit={formSubmitHandler}
           />
-    </View>
+    </ScrollView>
   );
 }

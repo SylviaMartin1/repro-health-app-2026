@@ -1,94 +1,55 @@
-import { View, Text, TextInput, Button } from 'react-native';
+import { Text, Pressable, ScrollView } from 'react-native';
+import DropdownPicker from "../components/DropdownPicker";
+import DatePickerField from "../components/DatePickerField";
+import TextField from "../components/TextField";
+import TimePicker from "../components/TimePicker";
+import MultiLineTextField from '../components/MultilineTextField';
+
 
 export default function HealthCheckupForm(props){
     return(
-        <View>
-            <TextInput
+        <ScrollView>
+            <TextField 
+                label="Name"
                 value={props.formState.name}
-                onChangeText={(text) => props.change('name', text)}
-                placeholder="e.g. 28"
-                placeholderTextColor="#999"
-                style={{
-                    borderWidth:1,
-                    borderColor: '#ccc',
-                    borderRadius: 4,
-                    padding: 10,
-                    marginVertical: 8
-                }}
+                onChange={props.change}
+                field="name"
             />
 
-             <TextInput
-                value={props.formState.date}
-                onChangeText={(text) => props.change('date', text)}
-                placeholder="e.g. 28"
-                placeholderTextColor="#999"
-                style={{
-                    borderWidth:1,
-                    borderColor: '#ccc',
-                    borderRadius: 4,
-                    padding: 10,
-                    marginVertical: 8
-                }}
+            <DatePickerField 
+                label="Date" 
+                value={props.formState.date} 
+                onChange={(value) => props.change("date", value)}
             />
 
-            <TextInput
+            <TimePicker
+                label="Time"
                 value={props.formState.time}
-                onChangeText={(text) => props.change('time', text)}
-                placeholder="e.g. 28"
-                placeholderTextColor="#999"
-                style={{
-                    borderWidth:1,
-                    borderColor: '#ccc',
-                    borderRadius: 4,
-                    padding: 10,
-                    marginVertical: 8
-                }}
+                onChange={(value) => props.change("time", value)}
             />
 
-             <TextInput
+            <MultiLineTextField
+                label="Results"
                 value={props.formState.results}
-                onChangeText={(text) => props.change('results', text)}
-                placeholder="e.g. 28"
-                placeholderTextColor="#999"
-                style={{
-                    borderWidth:1,
-                    borderColor: '#ccc',
-                    borderRadius: 4,
-                    padding: 10,
-                    marginVertical: 8
-                }}
+                onChange={(text) => props.change("results", text)}
             />
 
-            <TextInput
+            <MultiLineTextField
+                label="Doctor Notes"
                 value={props.formState.doctorNotes}
-                onChangeText={(text) => props.change('doctorNotes', text)}
-                placeholder="e.g. 28"
-                placeholderTextColor="#999"
-                style={{
-                    borderWidth:1,
-                    borderColor: '#ccc',
-                    borderRadius: 4,
-                    padding: 10,
-                    marginVertical: 8
-                }}
+                onChange={(text) => props.change("doctorNotes", text)}
             />
 
-             <TextInput
-                value={props.formState.status}
-                onChangeText={(text) => props.change('status', text)}
-                placeholder="e.g. 28"
-                placeholderTextColor="#999"
-                style={{
-                    borderWidth:1,
-                    borderColor: '#ccc',
-                    borderRadius: 4,
-                    padding: 10,
-                    marginVertical: 8
-                }}
+            <DropdownPicker 
+                label="Status" 
+                value={props.formState.status} 
+                onChange={(value) => props.change('status', value)} 
+                options={["Pending", "Scheduled", "Done", "Cancelled"]}
             />
-            <Button title="Submit" onPress={props.submit}/>
-
-         
-        </View>
+          
+            <Pressable onPress={props.submit} style={{ backgroundColor: "green", paddingVertical: 14, borderRadius: 12, alignItems: "center"}}>
+                <Text style={{ color: "white", fontSize: 16, fontWeight: "600" }}> Submit </Text>
+            </Pressable>   
+        </ScrollView>
     )
 }

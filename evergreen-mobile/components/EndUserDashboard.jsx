@@ -4,6 +4,7 @@ import { AuthContext } from '../contexts/authContext';
 import MenstruatingDashboard from "../components/MenstruatingDashboard";
 import MenopausalDashboard from "../components/MenopausalDashboard";
 import MaleDashboard from "../components/MaleDashboard";
+import { colours } from "../theme/colours"
 
 export default function EndUserDashboard() {
 const { user } = useContext(AuthContext);
@@ -23,7 +24,7 @@ if (!user) {
 
   if (!user || !lifeStage) {
     return (
-      <View style={{ flex: 1, justifyContent: "center", alignItems: "center" }}>
+      <View style={{ flex: 1, justifyContent: "center", alignItems: "center", backgroundColor: colours.background.default }}>
         <Text>Loading user...</Text>
       </View>
     );
