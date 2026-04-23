@@ -1,5 +1,5 @@
 import { useRouter } from "expo-router";
-import { Text, ScrollView} from 'react-native';
+import { Text, ScrollView, StyleSheet, View} from 'react-native';
 import { useState, useContext} from 'react'
 import { ReproductiveHealthContext } from '../contexts/ReproductiveHealthContext';
 import Form from '../components/Form';
@@ -46,11 +46,23 @@ const existingCycle = cycles.find(cycle => String(cycle._id) === String(params.i
   return (
     <ScrollView style={{ flex: 1, marginTop: 20, backgroundColor: colours.background.default, paddingTop: 60, padding: 16 }}>
       <Text style={{ fontSize: 26, fontWeight: "700", marginBottom: 20}}>Cycles 📅</Text>
+      <View style={styles.surface}>
       <Form
-              formState={formState}
-              change={formChangeHandler}
-              submit={formSubmitHandler}
+        formState={formState}
+        change={formChangeHandler}
+        submit={formSubmitHandler}
           />
+      </View>
     </ScrollView>
   );
 }
+
+const styles = StyleSheet.create({
+surface: {
+  backgroundColor: 'colours.background.main',
+  borderRadius: 16,
+  padding: 16,
+  marginTop: 10,
+  elevation: 2,
+}
+});

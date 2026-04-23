@@ -1,7 +1,8 @@
 import React, {useContext} from 'react';
-import { View, Text, Button, StyleSheet } from 'react-native';
+import { View, Text, Pressable, StyleSheet } from 'react-native';
 import { ReproductiveHealthContext } from '../contexts/ReproductiveHealthContext';
 import { useRouter } from "expo-router";
+import { colours } from '../theme/colours';
 
 export default function MedicineCard(props){
   const { deleteMedicine } = useContext(ReproductiveHealthContext);
@@ -10,13 +11,23 @@ export default function MedicineCard(props){
     return(
         <View style={styles.card}>
             <Text style={styles.label}>Name: <Text style={styles.value}>{props.name}</Text></Text>
-            <Text style={styles.label}>Category: <Text style={styles.value}>{props.category}</Text></Text>
             <Text style={styles.label}>Dosage: <Text style={styles.value}>{props.dosage} ml</Text></Text>
             <Text style={styles.label}>Frequency: <Text style={styles.value}>{props.frequency}</Text></Text>
-            <Text style={styles.label}>Notes: <Text style={styles.value}>{props.notes}</Text></Text>
+
             <View style={styles.actionButtons}>
-            <Button title="Delete" color='green' onPress={() => { console.log("Deleting ID:", props._id); deleteMedicine(props._id)}} />
-            <Button title="Edit" color='green' onPress={() => { console.log("Editing ID:", props._id); router.push(`/medicine-logging?id=${props._id}`)}} />
+              <Pressable 
+                onPress={() => { deleteMedicine(props._id)}}
+                style={[styles.button, styles.deleteButton]}
+                >
+                <Text style={styles.buttonText}>Delete</Text>
+              </Pressable>
+                            
+             <Pressable
+              onPress={() => { router.push(`/medicine-logging?id=${props._id}`)}}
+              style={[styles.button, styles.editButton]}
+              >
+                <Text style={styles.buttonText}>Edit</Text>
+             </Pressable>
             </View>
         </View>
     )
@@ -24,27 +35,49 @@ export default function MedicineCard(props){
 
 const styles = StyleSheet.create({
   card: {
-    backgroundColor:'#fefefe',
-    color: 'black',
-    width: 180,
-    height: 240,
-    margin: 10, 
-    padding: 10,
-    borderRadius: 10
+    backgroundColor: colours.background.surface,
+    borderRadius: 14,
+    padding: 12,
+    margin: 10,
+    width: 160,
+    elevation: 2
   },
+
   label: {
     fontWeight: '700', 
     color: 'black',
     marginBottom: 4
   },
+
   value: {
     fontWeight: '400', 
     color: 'black',
     marginBottom: 4
   },
+
   actionButtons: {
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    marginTop: 10
-  }
+  flexDirection: 'row',
+  gap: 10,
+  marginTop: 12,
+},
+
+button: {
+  flex: 1,
+  paddingVertical: 10,
+  borderRadius: 10,
+  alignItems: 'center',
+},
+
+  deleteButton: {
+  backgroundColor: '#D32F2F',
+},
+
+editButton: {
+  backgroundColor: colours.accent.main,
+},
+
+buttonText: {
+  color: colours.text.inverse,
+  fontWeight: '600',
+},
 });

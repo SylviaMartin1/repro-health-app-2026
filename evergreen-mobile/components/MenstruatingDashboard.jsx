@@ -6,22 +6,14 @@ import MedicineCard from '../components/MedicineCard';
 import HealthCheckupCard from '../components/HealthCheckupCard'
 import LifeStyleLogCard from '../components/LifeStyleLogCard'
 import { ReproductiveHealthContext } from '../contexts/ReproductiveHealthContext';
-import { AuthContext } from '../contexts/authContext';
 import { colours } from "../theme/colours"
 import { getLatestByDate } from '../utils/helpers';
-import { MaterialIcons } from '@expo/vector-icons';
 import SectionHeader from '../components/SectionHeader';
 
 export default function MenstruatingDashboard() {
 const { cycles, medicines, healthCheckups, lifeStyleLogs } = useContext(ReproductiveHealthContext);
-const { signout} = useContext(AuthContext);
-const router = useRouter();
 
-// Handle signing out the user
- const handleSignOut = async () => {
-    await signout();     
-    router.push('/'); 
-  };
+const router = useRouter();
 
 // Display only the latest version of the log
   const latestCycle = getLatestByDate(cycles);
@@ -101,11 +93,6 @@ const router = useRouter();
       ))}
       </View>
       </ScrollView>
-
-    
-      {/* Buttons */}
-      <Button title="Partner Screen" onPress={() => router.push("/partner")}/>
-      <Button title="Sign Out" onPress={handleSignOut} color="red" />
     </ScrollView>
   );
 }

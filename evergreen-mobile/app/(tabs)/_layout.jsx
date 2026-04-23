@@ -39,7 +39,7 @@ export default function TabsLayout() {
         }}
       />
 
-        <Tabs.Screen
+      <Tabs.Screen
         name="supplements"
         options={{
           title: "Supplements",
@@ -48,6 +48,19 @@ export default function TabsLayout() {
           ),
         }}
       />
+
+        <Tabs.Screen
+        name="profile"
+        options={{
+          title: "Profile",
+          tabBarIcon: ({ color, size }) => (
+            <Ionicons name="medkit-outline" size={size} color={color} />
+          ),
+        }}
+      />
+
+
+
     </Tabs>
   );
 }

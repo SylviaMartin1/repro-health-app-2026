@@ -1,8 +1,9 @@
 import React, {useContext} from 'react';
-import { View, Text, Button, StyleSheet } from 'react-native';
+import { View, Text, Pressable, StyleSheet } from 'react-native';
 import { ReproductiveHealthContext } from '../contexts/ReproductiveHealthContext';
 import { useRouter } from "expo-router";
-import { formatDate } from "../utils/format";
+import { formatDate, formatTime } from "../utils/format";
+import { colours } from '../theme/colours';
 
 export default function HealthCheckupCard(props){
   const { deleteHealthCheckup } = useContext(ReproductiveHealthContext);
@@ -12,13 +13,22 @@ export default function HealthCheckupCard(props){
         <View style={styles.card}>
             <Text style={styles.label}>Name: <Text style={styles.value}>{props.name}</Text></Text>
             <Text style={styles.label}>Date: <Text style={styles.value}>{formatDate(props.date)}</Text></Text>
-            <Text style={styles.label}>Time: <Text style={styles.value}>{props.time}</Text></Text>
+            <Text style={styles.label}>Time: <Text style={styles.value}>{formatTime(props.time)}</Text></Text>
             <Text style={styles.label}>Status: <Text style={styles.value}>{props.status}</Text></Text>
-            <Text style={styles.label}>Results: <Text style={styles.value}>{props.results}</Text></Text>
-            <Text style={styles.label}>Doctor Notes: <Text style={styles.value}>{props.doctorNotes}</Text></Text>
             <View style={styles.actionButtons}>
-            <Button title="Delete" color='green' onPress={() => { console.log("Deleting ID:", props._id); deleteHealthCheckup(props._id)}} />
-            <Button title="Edit" color='green' onPress={() => { console.log("Editing ID:", props._id); router.push(`/healthCheckup-logging?id=${props._id}`)}} />
+              <Pressable 
+                onPress={() => { deleteHealthCheckup(props._id)}}
+                style={[styles.button, styles.deleteButton]}
+                >
+                 <Text style={styles.buttonText}>Delete</Text>
+              </Pressable>
+                                          
+              <Pressable
+                onPress={() => { router.push(`/healthCheckup-logging?id=${props._id}`)}}
+                style={[styles.button, styles.editButton]}
+                >
+              <Text style={styles.buttonText}>Edit</Text>
+              </Pressable>
             </View>
         </View>
     )
@@ -26,26 +36,49 @@ export default function HealthCheckupCard(props){
 
 const styles = StyleSheet.create({
   card: {
-    backgroundColor:'#fefefe',
-    color: 'black',
-    width: 180,
-    margin: 10, 
-    padding: 10,
-    borderRadius: 10
+    backgroundColor: colours.background.surface,
+    borderRadius: 14,
+    padding: 12,
+    margin: 10,
+    width: 160,
+    elevation: 2
   },
+
   label: {
     fontWeight: '700', 
     color: 'black',
     marginBottom: 4
   },
+
   value: {
     fontWeight: '400', 
     color: 'black',
     marginBottom: 4
   },
+
   actionButtons: {
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    marginTop: 10
-  }
+  flexDirection: 'row',
+  gap: 10,
+  marginTop: 12,
+},
+
+button: {
+  flex: 1,
+  paddingVertical: 10,
+  borderRadius: 10,
+  alignItems: 'center',
+},
+
+  deleteButton: {
+  backgroundColor: '#D32F2F',
+},
+
+editButton: {
+  backgroundColor: colours.accent.main,
+},
+
+buttonText: {
+  color: colours.text.inverse,
+  fontWeight: '600',
+},
 });

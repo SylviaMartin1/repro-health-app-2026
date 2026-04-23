@@ -6,92 +6,90 @@ import MedicineCard from '../components/MedicineCard';
 import HealthCheckupCard from '../components/HealthCheckupCard'
 import LifeStyleLogCard from '../components/LifeStyleLogCard'
 import { ReproductiveHealthContext } from '../contexts/ReproductiveHealthContext';
-import { AuthContext } from '../contexts/authContext';
 import { colours } from "../theme/colours"
+import { getLatestByDate } from '../utils/helpers';
+import SectionHeader from '../components/SectionHeader';
 
 export default function MaleDashboard() {
 const { maleHealthLogs, medicines, healthCheckups, lifeStyleLogs } = useContext(ReproductiveHealthContext);
-const { signout} = useContext(AuthContext);
 const router = useRouter();
 
- const handleSignOut = async () => {
-    await signout();     
-    router.push('/'); 
-  };
+// Display only the latest version of the log
+  const latestMaleHealthLog = getLatestByDate(maleHealthLogs);
+  const latestLifeStyleLog = getLatestByDate(lifeStyleLogs);
 
   return (
     <ScrollView style={{ flex: 1, padding: 10, backgroundColor: colours.background.default }}>
 
-         <Text>Health Logs</Text>
-            <View style={{ flexDirection: 'row', flexWrap: 'wrap' }}>
-            {Array.isArray(maleHealthLogs) && maleHealthLogs.map((maleHealthLog) => (
+      <View style={{ marginBottom: 16}}>
+            <SectionHeader title="General Health" onPress={() => router.push('/maleHealth-logging')}/>
+            {latestMaleHealthLog && (
               <MaleHealthLogCard
-                spermVolume={maleHealthLog.spermVolume}
-                spermConcentration={maleHealthLog.spermConcentration}
-                spermMotility={maleHealthLog.spermMotility}
-                spermMorphology={maleHealthLog.spermMorphology}
-                symptoms={maleHealthLog.symptoms}
-                emotions={maleHealthLog.emotions}
-                key={maleHealthLog._id}
-                _id={maleHealthLog._id}
-              />  
-            ))}
+                spermVolume={latestMaleHealthLog.spermVolume}
+                spermConcentration={latestMaleHealthLog.spermConcentration}
+                spermMotility={latestMaleHealthLog.spermMotility}
+                spermMorphology={latestMaleHealthLog.spermMorphology}
+                symptoms={latestMaleHealthLog.symptoms}
+                emotions={latestMaleHealthLog.emotions}
+                key={latestMaleHealthLog._id}
+                _id={latestMaleHealthLog._id}
+              />   
+            )}
             </View>
 
-    <Text>Medicines</Text>
-      <View style={{ flexDirection: 'row', flexWrap: 'wrap' }}>
-      {Array.isArray(medicines) && medicines.map((medicine) => (
-        <MedicineCard
-          name={medicine.name}
-          category={medicine.category}
-          dosage={medicine.dosage}
-          frequency={medicine.frequency}
-          notes={medicine.notes}
-          key={medicine._id}
-          _id={medicine._id}
-        />  
-      ))}
-      </View>
+        {/* Lifestyle Cards */}
+        <View style={{ marginBottom: 16}}>
+          <SectionHeader title="Lifestyle" onPress={() => router.push('/lifeStyle-logging')}/>
+          {latestLifeStyleLog && (
+              <LifeStyleLogCard
+              sleepHours={latestLifeStyleLog.sleepHours}
+              exerciseMins={latestLifeStyleLog.exerciseMins}
+              waterIntakeLevel={latestLifeStyleLog.waterIntakeLevel}
+              stressLevel={latestLifeStyleLog.stressLevel}
+              dietQuality={latestLifeStyleLog.dietQuality}
+              mood={latestLifeStyleLog.mood}
+              key={latestLifeStyleLog._id}
+              _id={latestLifeStyleLog._id}
+            />  
+          )}
+        </View>
 
-      <Text>Health Checkups</Text>
-      <View style={{ flexDirection: 'row', flexWrap: 'wrap' }}>
-      {Array.isArray(healthCheckups) && healthCheckups.map((healthCheckup) => (
-        <HealthCheckupCard
-          name={healthCheckup.name}
-          date={healthCheckup.date}
-          time={healthCheckup.time}
-          results={healthCheckup.results}
-          doctorNotes={healthCheckup.doctorNotes}
-          status={healthCheckup.status}
-          key={healthCheckup._id}
-          _id={healthCheckup._id}
-        />  
-      ))}
-      </View>
+        {/* Medicine Cards*/}
+        <SectionHeader title="Medicines" onPress={() => router.push('/medicine-logging')}/>
+        <ScrollView horizontal showsHorizontalScrollIndicator={false}>
+        <View style={{ flexDirection: 'row', flexWrap: 'nowrap' }}>
+        {Array.isArray(medicines) && medicines.map((medicine) => (
+          <MedicineCard
+            name={medicine.name}
+            category={medicine.category}
+            dosage={medicine.dosage}
+            frequency={medicine.frequency}
+            notes={medicine.notes}
+            key={medicine._id}
+            _id={medicine._id}
+          />  
+        ))}
+        </View>
+        </ScrollView>
 
-      <Text>Life Style</Text>
-      <View style={{ flexDirection: 'row', flexWrap: 'wrap' }}>
-      {Array.isArray(lifeStyleLogs) && lifeStyleLogs.map((lifeStyleLog) => (
-        <LifeStyleLogCard
-          sleepHours={lifeStyleLog.sleepHours}
-          exerciseMins={lifeStyleLog.exerciseMins}
-          waterIntakeLevel={lifeStyleLog.waterIntakeLevel}
-          stressLevel={lifeStyleLog.stressLevel}
-          dietQuality={lifeStyleLog.dietQuality}
-          mood={lifeStyleLog.mood}
-          key={lifeStyleLog._id}
-          _id={lifeStyleLog._id}
-        />  
-      ))}
-      </View>
-      
-      <Button title="Partner Screen" onPress={() => router.push("/partner")}/>
-      <Button title="Log Health Data" onPress={() => router.push('/maleHealth-logging')} />
-      <Button title="Log Medicines" onPress={() => router.push('/medicine-logging')} />
-      <Button title="Log Health Checkups" onPress={() => router.push('/healthCheckup-logging')} />
-      <Button title="Log LifeStyle Logs" onPress={() => router.push('/lifeStyle-logging')} />
-      <Button title="Sign Out" onPress={handleSignOut} color="red" />
-
+        {/* Health Checkup Cards*/}
+        <SectionHeader title="Checkups" onPress={() => router.push('/healthCheckup-logging')}/>
+        <ScrollView horizontal showsHorizontalScrollIndicator={false}>
+        <View style={{ flexDirection: 'row', flexWrap: 'nowrap' }}>
+        {Array.isArray(healthCheckups) && healthCheckups.map((healthCheckup) => (
+          <HealthCheckupCard
+            name={healthCheckup.name}
+            date={healthCheckup.date}
+            time={healthCheckup.time}
+            results={healthCheckup.results}
+            doctorNotes={healthCheckup.doctorNotes}
+            status={healthCheckup.status}
+            key={healthCheckup._id}
+            _id={healthCheckup._id}
+          />  
+        ))}
+        </View>
+        </ScrollView>
     </ScrollView>
   );
 }

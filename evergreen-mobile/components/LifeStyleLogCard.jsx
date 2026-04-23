@@ -24,14 +24,14 @@ export default function LifeStyleLogCard(props){
           
             <View style={styles.actionButtons}>
               <Pressable 
-                onPress={() => { console.log("Deleting ID:", props._id); deleteLifeStyleLog(props._id)}}
+                onPress={() => { deleteLifeStyleLog(props._id)}}
                 style={[styles.button, styles.deleteButton]}
                 >
                 <Text style={styles.buttonText}>Delete</Text>
               </Pressable>
               
               <Pressable
-                onPress={() => { console.log("Editing ID:", props._id); router.push(`/lifeStyle-logging?id=${props._id}`)}}
+                onPress={() => { router.push(`/lifeStyle-logging?id=${props._id}`)}}
                 style={[styles.button, styles.editButton]}
                 >
                 <Text style={styles.buttonText}>Edit</Text>
@@ -64,7 +64,7 @@ const styles = StyleSheet.create({
     color: colours.text.primary,
   },
 
-  actionButtons: {
+actionButtons: {
   flexDirection: 'row',
   gap: 10,
   marginTop: 12,
