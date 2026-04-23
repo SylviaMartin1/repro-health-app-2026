@@ -28,7 +28,8 @@ export default function Index() {
         style={{
           width: 280,
           height: 280,
-          resizeMode: "contain"
+          resizeMode: "contain", 
+          marginTop: 20
         }}
       />
 

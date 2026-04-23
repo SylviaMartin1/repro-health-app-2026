@@ -24,7 +24,7 @@ export default function PartnerScreen() {
   }, [authToken]);
 
   return (
-    <View style={{ padding: 20, backgroundColor: colours.background.default }}>
+    <View style={{ padding: 20, backgroundColor: colours.background.default, flex: 1}}>
       <Text>Add Partner</Text>
 
       <TextInput

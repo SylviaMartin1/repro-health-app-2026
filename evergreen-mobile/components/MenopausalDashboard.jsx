@@ -7,6 +7,7 @@ import HealthCheckupCard from '../components/HealthCheckupCard'
 import LifeStyleLogCard from '../components/LifeStyleLogCard'
 import { ReproductiveHealthContext } from '../contexts/ReproductiveHealthContext';
 import { AuthContext } from '../contexts/authContext';
+import { colours } from "../theme/colours"
 
 export default function MenopausalDashboard() {
 const { menopausalHealthLogs, medicines, healthCheckups, lifeStyleLogs } = useContext(ReproductiveHealthContext);
@@ -19,7 +20,7 @@ const router = useRouter();
   };
 
   return (
-    <ScrollView style={{ flex: 1, padding: 10 }}>
+    <ScrollView style={{ flex: 1, padding: 10, backgroundColor: colours.background.default }}>
 
       <Text>Health Logs</Text>
       <View style={{ flexDirection: 'row', flexWrap: 'wrap' }}>
