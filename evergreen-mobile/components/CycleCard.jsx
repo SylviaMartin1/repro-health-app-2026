@@ -10,7 +10,6 @@ export default function CycleCard(props){
   const router = useRouter();
 
     return(
-
         <View style={styles.card}>
           <View>
             <View style={styles.section}>
@@ -22,7 +21,6 @@ export default function CycleCard(props){
             <Text style={styles.label}>Emotions: <Text style={styles.value}>{safeText(props.emotions)}</Text></Text>
             </View>
           </View>
-           
 
             <View style={styles.actionButtons}>
             <Pressable 
