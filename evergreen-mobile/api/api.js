@@ -42,8 +42,6 @@ export const updateCycle = async (data, token) => {
 
 export const login = async (email, password, lifeStage) => {
   try {
-    console.log("👉 LOGIN START");
-
     const res = await fetch(`${baseUrl}/api/users`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
@@ -51,13 +49,9 @@ export const login = async (email, password, lifeStage) => {
     });
 
     const data = await res.json().catch(() => null);
-
-    console.log("👉 LOGIN RESPONSE:", res.status, data);
-
     return data;
 
   } catch (err) {
-    console.log("👉 LOGIN FAILED:", err.message);
     return null;
   }
 };
