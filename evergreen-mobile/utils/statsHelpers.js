@@ -1,25 +1,16 @@
-// Averages
+// 1. Average function helpers
 /**
- * Level conversion
+ * Function to convert labels to numbers so math functions can be used on them
  */
-export const convertLevel = (value) => {
+export const convertLabel = (value) => {
   if (value === "Low") return 1;
   if (value === "Medium") return 2;
   if (value === "High") return 3;
   return 0;
 };
 
-//Convert back
-export const convertLevelToLabel = (value) => {
-  if (value <= 1.5) return "Low";
-  if (value <= 2.5) return "Medium";
-  return "High";
-};
-
-
-
 /**
- * Average function
+ * Average function which divided the sum of the array by the length
  */
 export const average = (array) => {
   if (!array.length) return 0;
@@ -33,10 +24,10 @@ export const average = (array) => {
   return sum/array.length;
 };
 
-// Most Common
 
+// 2. Most Common Function helpers
 /**
- * Count function
+ * Function to count the items in an array
  */
 export const countItems = (data, key) => {
   const counts = {};
@@ -59,8 +50,11 @@ export const countItems = (data, key) => {
 };
 
 /**
- * Most common function
+ * 
+ * Most Common function which checks the key of the items in an array
+ * to find which one shows up the most 
  */
+
 export const getMostCommon = (counts) => {
   let mostCommon = null;
   let maxCount = 0;
@@ -73,4 +67,14 @@ export const getMostCommon = (counts) => {
   }
 
   return mostCommon;
+};
+
+// 3. Display Helpers
+/**
+ * Converts the label which was changed to a number back to a label
+ */
+export const convertNumberBackToLabel = (value) => {
+  if (value <= 1.5) return "Low";
+  if (value <= 2.5) return "Medium";
+  return "High";
 };
