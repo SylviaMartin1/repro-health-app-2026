@@ -54,7 +54,6 @@ export const countItems = (data, key) => {
  * Most Common function which checks the key of the items in an array
  * to find which one shows up the most 
  */
-
 export const getMostCommon = (counts) => {
   let mostCommon = null;
   let maxCount = 0;
@@ -68,6 +67,7 @@ export const getMostCommon = (counts) => {
 
   return mostCommon;
 };
+
 
 // 3. Display Helpers
 /**

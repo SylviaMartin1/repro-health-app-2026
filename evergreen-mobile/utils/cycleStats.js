@@ -1,4 +1,57 @@
-import { convertLevel, average, countItems, getMostCommon, convertLevelToLabel} from "./statsHelpers";
+import { convertLabel, average, countItems, getMostCommon, convertNumberBackToLabel} from "./statsHelpers";
+
+// Functions
+/**
+ * AverageFlowLevel
+ */
+export const getAverageFlowLevel = (cycles) => {
+  if (!cycles || cycles.length === 0) return null;
+
+  const values = cycles
+    .map(cycle => convertLabel(cycle.flowLevel))
+    .filter(v => v !== 0);
+
+  const avg = average(values);
+
+  return convertNumberBackToLabel(avg);
+};
+
+/**
+ * AveragePainLevel
+ */
+export const getAveragePainLevel = (cycles) => {
+  if (!cycles || cycles.length === 0) return null;
+
+  const values = cycles
+    .map(cycle => convertLabel(cycle.painLevel))
+    .filter(v => v !== 0);
+
+  const avg = average(values);
+
+  return convertNumberBackToLabel(avg);
+};
+
+/**
+ * MostCommonSymptom
+ */
+export const getMostCommonSymptom = (cycles) => {
+  if (!cycles || cycles.length === 0) return null;
+
+  const counts = countItems(cycles, "symptoms");
+  return getMostCommon(counts);
+};
+
+
+/**
+ * MostCommonEmotion
+ */
+export const getMostCommonEmotion = (cycles) => {
+  if (!cycles || cycles.length === 0) return null;
+
+  const counts = countItems(cycles, "emotions");
+  return getMostCommon(counts);
+};
+
 
 /**
  * getNextPeriod()
@@ -64,56 +117,9 @@ export const getFertileWindowEndDate = (cycles) => {
   return startDate;
 };
 
-/**
- * AverageFlowLevel
- */
-export const getAverageFlowLevel = (cycles) => {
-  if (!cycles || cycles.length === 0) return null;
-
-  const values = cycles
-    .map(cycle => convertLevel(cycle.flowLevel))
-    .filter(v => v !== 0);
-
-  const avg = average(values);
-
-  return convertLevelToLabel(avg);
-};
-
-/**
- * AveragePainLevel
- */
-export const getAveragePainLevel = (cycles) => {
-  if (!cycles || cycles.length === 0) return null;
-
-  const values = cycles
-    .map(cycle => convertLevel(cycle.painLevel))
-    .filter(v => v !== 0);
-
-  const avg = average(values);
-
-  return convertLevelToLabel(avg);
-};
-
-/**
- * MostCommonSymptom
- */
-export const getMostCommonSymptom = (cycles) => {
-  if (!cycles || cycles.length === 0) return null;
-
-  const counts = countItems(cycles, "symptoms");
-  return getMostCommon(counts);
-};
 
 
-/**
- * MostCommonEmotion
- */
-export const getMostCommonEmotion = (cycles) => {
-  if (!cycles || cycles.length === 0) return null;
 
-  const counts = countItems(cycles, "emotions");
-  return getMostCommon(counts);
-};
 
 
 
