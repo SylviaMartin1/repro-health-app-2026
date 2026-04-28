@@ -5,8 +5,8 @@ const Schema = mongoose.Schema;
 const LifeStyleLogSchema = new Schema({
   sleepHours: Number,
   exerciseMins: Number,
-  waterIntakeLevel: String,
-  stressLevel: String,
+  waterIntakeLevel: Number,
+  stressLevel: Number,
   dietQuality: String,
   mood: String,
   created_at:{ type: Date, default: Date.now },
