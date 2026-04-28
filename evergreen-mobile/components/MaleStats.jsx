@@ -5,16 +5,15 @@ import KpiCard from "./KPICard";
 import { ReproductiveHealthContext } from "../contexts/ReproductiveHealthContext";
 import { getAverageExerciseMins, getAverageSleepHours, getAverageStressLevel, getAverageWaterIntakeLevel} from "../utils/lifestyleStats";
 import ReusableLineChart from "./ReusableLineChart";
+import { getAverageSpermConcentration, getAverageSpermVolume, getMostCommonSymptom, getMostCommonEmotion } from "../utils/maleStats";
 
 export default function MaleStats() {
-     const { lifeStyleLogs } = useContext(ReproductiveHealthContext);
+     const { maleHealthLogs, lifeStyleLogs } = useContext(ReproductiveHealthContext);
     
       const sleepData = lifeStyleLogs.map(lifeStyleLog => ({
         value: lifeStyleLog.sleepHours
       }));
 
-      
-    
       const exerciseData = lifeStyleLogs.map(lifeStyleLog => ({
         value: lifeStyleLog.exerciseMins
       }));
@@ -28,6 +27,39 @@ export default function MaleStats() {
           <Text style={{ fontSize: 24, fontWeight: "700", marginBottom: 5, marginTop:2 }}> Your Insights </Text>
 
           <Text style={{ fontSize: 18, fontWeight: "600", marginTop: 15 }}>General Health Insights</Text>
+          <View style={{ flexDirection: "row", flexWrap: "wrap", justifyContent: "space-between", marginTop: 10 }}>
+          <KpiCard
+            icon="moon-outline"
+            value={getAverageSpermVolume(maleHealthLogs)}
+            label="Avg Sperm Volume"
+            color="#4da3ff"
+          />
+
+          <KpiCard
+            icon="moon-outline"
+            value={getAverageSpermConcentration(maleHealthLogs)}
+            label="Avg Sperm Conc"
+            color="#4da3ff"
+          />
+
+          <KpiCard
+            icon="moon-outline"
+            value={getMostCommonSymptom(maleHealthLogs)}
+            label="Common Symptom"
+            color="#4da3ff"
+          />
+
+          <KpiCard
+            icon="moon-outline"
+            value={getMostCommonEmotion(maleHealthLogs)}
+            label="Common Emotion"
+            color="#4da3ff"
+          />
+
+          
+                    
+        
+        </View>
     
         <Text style={{ fontSize: 18, fontWeight: "600", marginTop: 15 }}>Lifestyle Insights</Text>
         <View style={{ flexDirection: "row", flexWrap: "wrap", justifyContent: "space-between", marginTop: 10 }}>
@@ -60,7 +92,7 @@ export default function MaleStats() {
           />
         </View>
     
-        <Text style={{ fontSize: 18, fontWeight: "600", marginTop: 15 }}>Trends</Text>
+      <Text style={{ fontSize: 18, fontWeight: "600", marginTop: 15 }}>Trends</Text>
       <ReusableLineChart
         title="Sleep Trends"
         data={sleepData}
@@ -72,7 +104,6 @@ export default function MaleStats() {
         data={exerciseData}
         color="#ff6b6b"
       />
-    
     
       <ReusableLineChart
         title="Stress Trends"
