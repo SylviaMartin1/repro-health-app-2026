@@ -12,6 +12,8 @@ export default function MaleStats() {
       const sleepData = lifeStyleLogs.map(lifeStyleLog => ({
         value: lifeStyleLog.sleepHours
       }));
+
+      
     
       const exerciseData = lifeStyleLogs.map(lifeStyleLog => ({
         value: lifeStyleLog.exerciseMins
@@ -24,6 +26,8 @@ export default function MaleStats() {
       return (
         <ScrollView style={{ flex: 1, padding: 10, backgroundColor: colours.background.default }}>
           <Text style={{ fontSize: 24, fontWeight: "700", marginBottom: 5, marginTop:2 }}> Your Insights </Text>
+
+          <Text style={{ fontSize: 18, fontWeight: "600", marginTop: 15 }}>General Health Insights</Text>
     
         <Text style={{ fontSize: 18, fontWeight: "600", marginTop: 15 }}>Lifestyle Insights</Text>
         <View style={{ flexDirection: "row", flexWrap: "wrap", justifyContent: "space-between", marginTop: 10 }}>

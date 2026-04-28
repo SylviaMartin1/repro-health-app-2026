@@ -3,6 +3,7 @@ import { View, Text, Pressable, StyleSheet } from 'react-native';
 import { ReproductiveHealthContext } from '../contexts/ReproductiveHealthContext';
 import { useRouter } from "expo-router";
 import { colours } from '../theme/colours'
+import { safeText } from '../utils/format';
 
 export default function MenopausalHealthLogCard(props){
   const { deleteMenopausalHealthLog } = useContext(ReproductiveHealthContext);
@@ -16,8 +17,8 @@ export default function MenopausalHealthLogCard(props){
             <Text style={styles.label}>Hot Flash Intensity Score: <Text style={styles.value}>{props.hotFlashIntensityScore}</Text></Text>
             <Text style={styles.label}>Night Sweat Quantity: <Text style={styles.value}>{props.nightSweatQuantity}</Text></Text>
             <Text style={styles.label}>Night Sweat Score: <Text style={styles.value}>{props.nightSweatScore}</Text></Text>
-            <Text style={styles.label}>Symptoms: <Text style={styles.value}>{props.symptoms}</Text></Text>
-            <Text style={styles.label}>Emotions: <Text style={styles.value}>{props.emotions}</Text></Text>
+            <Text style={styles.label}>Symptoms: <Text style={styles.value}>{safeText(props.symptoms)}</Text></Text>
+            <Text style={styles.label}>Emotions: <Text style={styles.value}>{safeText(props.emotions)}</Text></Text>
             <Text style={styles.label}>Estrogen Levels: <Text style={styles.value}>{props.estrogenLevels}</Text></Text>
             <Text style={styles.label}>Progesterone Levels: <Text style={styles.value}>{props.progesteroneLevels}</Text></Text>
             <Text style={styles.label}>FSH Levels: <Text style={styles.value}>{props.fshLevels}</Text></Text>
