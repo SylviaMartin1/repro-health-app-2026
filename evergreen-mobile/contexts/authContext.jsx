@@ -69,6 +69,8 @@ const cleanToken = result.token.replace(/^BEARER\s+/i, "");
 
     setUser(userData);
 
+    return true; 
+
   } catch (err) {
   console.log("LOGIN ERROR:", err.message);
   setAuthToken(null);
