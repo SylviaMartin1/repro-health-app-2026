@@ -24,8 +24,10 @@ export async function enableDailyReminder() {
     } */
 
     //For demo purposes
-    trigger: {
-    seconds: 10
+     trigger: {
+      type: "timeInterval",
+      seconds: 10,   
+      repeats: false
     }
   });
 

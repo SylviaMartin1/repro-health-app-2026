@@ -7,8 +7,8 @@ const LifeStyleLogSchema = new Schema({
   exerciseMins: Number,
   waterIntakeLevel: Number,
   stressLevel: Number,
-  dietQuality: String,
-  mood: String,
+  dietQuality: [String],
+  mood: [String],
   created_at:{ type: Date, default: Date.now },
   updated_at: { type: Date, default: Date.now }, 
   userId: {

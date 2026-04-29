@@ -40,78 +40,47 @@ export default function MenopausalStats() {
             icon="flame-outline"
             value={getAverageHotFlashQuantity(menopausalHealthLogs)}
             label="Avg Hot Flash Quantity"
-            color="#4da3ff"
+            color="orange"
           />
 
            <KpiCard
-            icon="flame-outline"
+            icon="thermometer-outline"
             value={getAverageHotFlashIntensityScore(menopausalHealthLogs)}
             label="Avg Hot Intensity"
-            color="#4da3ff"
+            color="brown"
           />
 
           <KpiCard
-            icon="flame-outline"
+            icon="water-outline"
             value={getAverageNightSweatQuantity(menopausalHealthLogs)}
             label="Avg Hot Intensity"
-            color="#4da3ff"
+            color="blue"
           />
 
           <KpiCard
-            icon="flame-outline"
+            icon="thermometer-outline"
             value={getAverageNightSweatIntensityScore(menopausalHealthLogs)}
             label="Avg Hot Intensity"
-            color="#4da3ff"
+            color="brown"
           />
 
             <KpiCard
-                  icon="medical-outline"
+                  icon="pulse-outline"
                   value={getMostCommonSymptom(menopausalHealthLogs)}
                   label="Common Symptom"
-                  color="#ffa502"
+                  color="red"
             />
           
            <KpiCard
                   icon="happy-outline"
                   value={getMostCommonEmotion(menopausalHealthLogs)}
                   label="Common Emotion"
-                  color="#2ed573"
+                  color="black"
            />
           </View>
 
-          <Text style={{ fontSize: 18, fontWeight: "600", marginTop: 15 }}>Hormone Insights</Text>
-          <View style={{ flexDirection: "row", flexWrap: "wrap", justifyContent: "space-between", marginTop: 10 }}>
-          <KpiCard
-            icon="moon-outline"
-            value={getAverageEstrogenLevel(menopausalHealthLogs)}
-            label="Avg Sleep Hrs"
-            color="#4da3ff"
-          />
+   
 
-          <KpiCard
-            icon="moon-outline"
-            value={getAverageProgesteroneLevel(menopausalHealthLogs)}
-            label="Avg Sleep Hrs"
-            color="#4da3ff"
-          />
-
-          <KpiCard
-            icon="moon-outline"
-            value={getAverageFSHLevel(menopausalHealthLogs)}
-            label="Avg Sleep Hrs"
-            color="#4da3ff"
-          />
-
-          <KpiCard
-            icon="moon-outline"
-            value={getAverageSleepHours(lifeStyleLogs)}
-            label="Avg Sleep Hrs"
-            color="#4da3ff"
-          />
-          </View>
-
-          
-    
         <Text style={{ fontSize: 18, fontWeight: "600", marginTop: 15 }}>Lifestyle Insights</Text>
         <View style={{ flexDirection: "row", flexWrap: "wrap", justifyContent: "space-between", marginTop: 10 }}>
           <KpiCard
@@ -125,54 +94,78 @@ export default function MenopausalStats() {
             icon="walk-outline"
             value={getAverageExerciseMins(lifeStyleLogs)}
             label="Avg Exercise Mins"
-            color="#4da3ff"
+            color="black"
           />
     
           <KpiCard
             icon="water-outline"
             value={getAverageWaterIntakeLevel(lifeStyleLogs)}
             label="Average Water Intake"
-            color="#ffa502"
+            color="blue"
           />
     
           <KpiCard
             icon="pulse-outline"
             value={getAverageStressLevel(lifeStyleLogs)}
             label="Average Stress Level"
-            color="#2ed573"
+            color="red"
           />
         </View>
+
+               <Text style={{ fontSize: 18, fontWeight: "600", marginTop: 15 }}>Hormone Insights</Text>
+          <View style={{ flexDirection: "row", flexWrap: "wrap", justifyContent: "space-between", marginTop: 10 }}>
+          <KpiCard
+            icon="leaf-outline"
+            value={getAverageEstrogenLevel(menopausalHealthLogs)}
+            label="Avg Estrogen"
+            color="green"
+          />
+
+          <KpiCard
+            icon="shield-outline"
+            value={getAverageProgesteroneLevel(menopausalHealthLogs)}
+            label="Avg Progesterone"
+            color="black"
+          />
+
+          <KpiCard
+            icon="pulse-outline"
+            value={getAverageFSHLevel(menopausalHealthLogs)}
+            label="Avg FSH"
+            color="purple"
+          />
+          </View>
     
       <Text style={{ fontSize: 18, fontWeight: "600", marginTop: 15 }}>Trends</Text>
       <ReusableLineChart
         title="Sleep Trends"
         data={sleepData}
-        color="#ff6b6b"
+        color={colours.accent.dark}
       />
     
       <ReusableLineChart
         title="Exercise Trends"
         data={exerciseData}
-        color="#ff6b6b"
+        color={colours.accent.dark}
       />
     
     
       <ReusableLineChart
         title="Stress Trends"
         data={stressData}
-        color="#ff6b6b"
+        color={colours.accent.dark}
       />
 
        <ReusableLineChart
         title="Hot Flash Trends"
         data={hotFlashData}
-        color="#ff6b6b"
+        color={colours.accent.dark}
       />
 
       <ReusableLineChart
         title="Night Sweat Trends"
         data={nightSweatData}
-        color="#ff6b6b"
+        color={colours.accent.dark}
       />
     
       </ScrollView>

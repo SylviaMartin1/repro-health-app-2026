@@ -51,28 +51,28 @@ export default function MenstruatingStats() {
         icon="water-outline"
         value={getAverageFlowLevel(cycles)}
         label="Average Flow Level"
-        color="#4da3ff"
+        color="blue"
       />
 
       <KpiCard
         icon="flame-outline"
         value={getAveragePainLevel(cycles)}
         label="Average Pain Level"
-        color="#ff6b6b"
+        color="orange"
       />
 
       <KpiCard
         icon="medical-outline"
         value={getMostCommonSymptom(cycles)}
         label="Common Symptom"
-        color="#ffa502"
+        color="red"
       />
 
       <KpiCard
         icon="happy-outline"
         value={getMostCommonEmotion(cycles)}
         label="Common Emotion"
-        color="#2ed573"
+        color="black"
       />
     </View>
 
@@ -82,28 +82,28 @@ export default function MenstruatingStats() {
         icon="moon-outline"
         value={getAverageSleepHours(lifeStyleLogs)}
         label="Avg Sleep Hrs"
-        color="#4da3ff"
+        color="black"
       />
 
       <KpiCard
         icon="walk-outline"
         value={getAverageExerciseMins(lifeStyleLogs)}
         label="Avg Exercise Mins"
-        color="#4da3ff"
+        color="black"
       />
 
       <KpiCard
         icon="water-outline"
         value={getAverageWaterIntakeLevel(lifeStyleLogs)}
         label="Average Water Intake"
-        color="#ffa502"
+        color="blue"
       />
 
       <KpiCard
         icon="pulse-outline"
         value={getAverageStressLevel(lifeStyleLogs)}
         label="Average Stress Level"
-        color="#2ed573"
+        color="red"
       />
     </View>
 
@@ -111,32 +111,32 @@ export default function MenstruatingStats() {
     <ReusableLineChart
       title="Flow Trends"
       data={flowData}
-      color="#4da3ff"
+      color={colours.accent.dark}
     />
 
     <ReusableLineChart
     title="Pain Trends"
     data={painData}
-    color="#ff6b6b"
+    color={colours.accent.dark}
   />
 
   <ReusableLineChart
     title="Sleep Trends"
     data={sleepData}
-    color="#ff6b6b"
+    color={colours.accent.dark}
   />
 
   <ReusableLineChart
     title="Exercise Trends"
     data={exerciseData}
-    color="#ff6b6b"
+    color={colours.accent.dark}
   />
 
 
   <ReusableLineChart
     title="Stress Trends"
     data={stressData}
-    color="#ff6b6b"
+    color={colours.accent.dark}
   />
 
   </ScrollView>
