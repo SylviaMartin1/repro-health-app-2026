@@ -47,7 +47,7 @@ export default function ArticlesScreen() {
             fontSize: 18,
             fontWeight: "700",
             marginBottom: 10,
-            color: "#2E7D32"
+            color: colours.accent.dark
           }}>
             {category.title}
           </Text>

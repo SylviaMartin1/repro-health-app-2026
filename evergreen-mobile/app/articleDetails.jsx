@@ -1,11 +1,12 @@
 import { Text, ScrollView } from "react-native";
 import { useLocalSearchParams } from "expo-router";
+import { colours } from "./../theme/colours";
 
 export default function ArticleDetails() {
   const { title, description } = useLocalSearchParams();
 
   return (
-    <ScrollView style={{ padding: 16, backgroundColor: "white" }}>
+    <ScrollView style={{ padding: 16, backgroundColor: colours.background.default }}>
 
       <Text style={{ fontSize: 22, fontWeight: "700", marginBottom: 12 }}>
         {title}
