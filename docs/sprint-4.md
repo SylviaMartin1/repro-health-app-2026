@@ -1,12 +1,11 @@
-# Sprint Three - Frontend Setup
+# Sprint Three - Frontend Expansion
 
 **Author:** Sylvia Martin  
 **Project:** Reproductive Health Application  
 **Sprint:** 3 
-**Week:** 4 and 5
 
 ## Overview
-Sprint 4 focused on expanding the functionality of the application. This involved implementing functionality for the logs to be saved to the database and expanding the logging functionality to include other attributes.
+Sprint 4 focused on expanding the functionality of the application. This involved implementing functionality for the logs to be saved to the database and expanding the current logging functionality to include other attributes.
 
 ## Project Structure
 - repro-health-app: the root directory of the project containing all its files and folders.

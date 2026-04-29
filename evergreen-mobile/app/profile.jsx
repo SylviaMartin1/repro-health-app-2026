@@ -1,7 +1,7 @@
 import { View, Text, Button } from "react-native";
 import { useRouter} from "expo-router";
-import { colours } from "../../theme/colours";
-import { AuthContext } from '../../contexts/authContext';
+import { colours } from "../theme/colours";
+import { AuthContext } from '../contexts/authContext';
 import { useContext } from 'react';
 
 export default function Profile() {

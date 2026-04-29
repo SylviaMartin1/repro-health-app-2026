@@ -21,6 +21,14 @@ export default function MaleStats() {
       const stressData = lifeStyleLogs.map(lifeStyleLog => ({
         value: lifeStyleLog.stressLevel
       }));
+
+      const spermVolumeData = maleHealthLogs.map(maleHealthLog=> ({
+        value: maleHealthLog.spermVolume
+      }));
+
+       const spermConcentrationData = maleHealthLogs.map(maleHealthLog => ({
+        value: maleHealthLog.spermConcentration
+      }));
     
       return (
         <ScrollView style={{ flex: 1, padding: 10, backgroundColor: colours.background.default }}>
@@ -32,7 +40,7 @@ export default function MaleStats() {
             icon="moon-outline"
             value={getAverageSpermVolume(maleHealthLogs)}
             label="Avg Sperm Volume"
-            color="#4da3ff"
+            color="blue"
           />
 
           <KpiCard
@@ -108,6 +116,18 @@ export default function MaleStats() {
       <ReusableLineChart
         title="Stress Trends"
         data={stressData}
+        color="#ff6b6b"
+      />
+
+      <ReusableLineChart
+        title="Sperm Volume Trends"
+        data={spermVolumeData}
+        color="#ff6b6b"
+      />
+
+      <ReusableLineChart
+        title="Sperm Concentration Trends"
+        data={spermConcentrationData}
         color="#ff6b6b"
       />
     

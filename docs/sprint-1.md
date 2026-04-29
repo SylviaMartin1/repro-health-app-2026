@@ -3,7 +3,6 @@
 **Author:** Sylvia Martin  
 **Project:** Reproductive Health Application  
 **Sprint:** 1  
-**Week:** 1  
 
 ## Overview
 Sprint 1 focused on setting up the backend foundation of the reproductive health application. This involved creating a Node.js HTTP server, Express JS server, and MongoDB database connection, so that all of the components could work together. 

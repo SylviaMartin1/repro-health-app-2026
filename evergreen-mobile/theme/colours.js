@@ -13,7 +13,7 @@ export const colours = {
  */
   background: {
     default: '#f4e1a1',
-    surface: '#FFE082', 
+    surface: 'white', 
   },
 
 /**

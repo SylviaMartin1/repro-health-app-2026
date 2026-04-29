@@ -14,9 +14,9 @@ const params = useLocalSearchParams();
 const existingMenopausalHealthLog = menopausalHealthLogs.find(menopausalHealthLog => String(menopausalHealthLog._id) === String(params.id));
 
  const [ formState, setFormState ] = useState({
-    hotFlashQuantity: existingMenopausalHealthLog?.hotFlashQuantity ?? 0, 
+    hotFlashQuantity: existingMenopausalHealthLog?.hotFlashQuantity.toString() ?? 0, 
     hotFlashIntensityScore: existingMenopausalHealthLog?.hotFlashIntensityScore ?? 0,
-    nightSweatQuantity: existingMenopausalHealthLog?.nightSweatQuantity ?? 0,
+    nightSweatQuantity: existingMenopausalHealthLog?.nightSweatQuantity.toString() ?? 0,
     nightSweatScore: existingMenopausalHealthLog?.nightSweatScore ?? 0,
     symptoms: existingMenopausalHealthLog?.symptoms || [],
     emotions: existingMenopausalHealthLog?.emotions || [],
