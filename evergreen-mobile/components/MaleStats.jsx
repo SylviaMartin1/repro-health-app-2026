@@ -37,35 +37,32 @@ export default function MaleStats() {
           <Text style={{ fontSize: 18, fontWeight: "600", marginTop: 15 }}>General Health Insights</Text>
           <View style={{ flexDirection: "row", flexWrap: "wrap", justifyContent: "space-between", marginTop: 10 }}>
           <KpiCard
-            icon="moon-outline"
+            icon="beaker-outline"
             value={getAverageSpermVolume(maleHealthLogs)}
             label="Avg Sperm Volume"
-            color="blue"
+            color="black"
           />
 
           <KpiCard
-            icon="moon-outline"
+            icon="analytics"
             value={getAverageSpermConcentration(maleHealthLogs)}
             label="Avg Sperm Conc"
-            color="#4da3ff"
+            color="green"
           />
 
           <KpiCard
-            icon="moon-outline"
+            icon="medical-outline"
             value={getMostCommonSymptom(maleHealthLogs)}
             label="Common Symptom"
-            color="#4da3ff"
+            color="red"
           />
 
           <KpiCard
-            icon="moon-outline"
+            icon="happy-outline"
             value={getMostCommonEmotion(maleHealthLogs)}
             label="Common Emotion"
-            color="#4da3ff"
-          />
-
-          
-                    
+            color="black"
+          />      
         
         </View>
     
@@ -75,28 +72,28 @@ export default function MaleStats() {
             icon="moon-outline"
             value={getAverageSleepHours(lifeStyleLogs)}
             label="Avg Sleep Hrs"
-            color="#4da3ff"
+            color="blue"
           />
     
           <KpiCard
             icon="walk-outline"
             value={getAverageExerciseMins(lifeStyleLogs)}
             label="Avg Exercise Mins"
-            color="#4da3ff"
+            color="black"
           />
     
           <KpiCard
             icon="water-outline"
             value={getAverageWaterIntakeLevel(lifeStyleLogs)}
             label="Average Water Intake"
-            color="#ffa502"
+            color="blue"
           />
     
           <KpiCard
             icon="pulse-outline"
             value={getAverageStressLevel(lifeStyleLogs)}
             label="Average Stress Level"
-            color="#2ed573"
+            color="red"
           />
         </View>
     
@@ -104,31 +101,31 @@ export default function MaleStats() {
       <ReusableLineChart
         title="Sleep Trends"
         data={sleepData}
-        color="#ff6b6b"
+        color={colours.accent.dark}
       />
     
       <ReusableLineChart
         title="Exercise Trends"
         data={exerciseData}
-        color="#ff6b6b"
+        color={colours.accent.dark}
       />
     
       <ReusableLineChart
         title="Stress Trends"
         data={stressData}
-        color="#ff6b6b"
+        color={colours.accent.dark}
       />
 
       <ReusableLineChart
         title="Sperm Volume Trends"
         data={spermVolumeData}
-        color="#ff6b6b"
+        color={colours.accent.dark}
       />
 
       <ReusableLineChart
         title="Sperm Concentration Trends"
         data={spermConcentrationData}
-        color="#ff6b6b"
+        color={colours.accent.dark}
       />
     
       </ScrollView>

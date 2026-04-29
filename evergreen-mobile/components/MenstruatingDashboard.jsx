@@ -1,5 +1,5 @@
 import { useContext } from 'react';
-import { View, Text, Button, ScrollView } from 'react-native';
+import { View, Text, Button, ScrollView, Pressable} from 'react-native';
 import { useRouter } from 'expo-router';
 import CycleCard from '../components/CycleCard';
 import MedicineCard from '../components/MedicineCard';
@@ -10,6 +10,7 @@ import { colours } from "../theme/colours"
 import { getLatestByDate } from '../utils/helpers';
 import SectionHeader from '../components/SectionHeader';
 import { AuthContext } from '../contexts/authContext';
+import { enableDailyReminder } from "../utils/notifications";
 
 export default function MenstruatingDashboard() {
 const { cycles, medicines, healthCheckups, lifeStyleLogs } = useContext(ReproductiveHealthContext);
@@ -106,6 +107,20 @@ const router = useRouter();
     <View style={{ padding: 20, backgroundColor: colours.background.default }}>
       <Button title="Partner Screen" onPress={() => router.push("/partner")}/>
       <Button title="Sign Out" onPress={handleSignOut} color="red" />
+      <Pressable
+  onPress={enableDailyReminder}
+  style={{
+    backgroundColor: "green",
+    padding: 14,
+    borderRadius: 12,
+    marginTop: 20,
+    alignItems: "center"
+  }}
+>
+  <Text style={{ color: "white", fontWeight: "600" }}>
+    Enable Daily Reminder
+  </Text>
+</Pressable>
     </View>
     </ScrollView>
   );
