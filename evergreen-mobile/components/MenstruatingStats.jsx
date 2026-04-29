@@ -1,0 +1,144 @@
+import { useContext } from "react";
+import { View, Text, ScrollView } from "react-native";
+import { colours } from "../theme/colours";
+import KpiCard from "./KPICard";
+import PredictionCard from "./PredictionCard";
+import { ReproductiveHealthContext } from "../contexts/ReproductiveHealthContext";
+import { getMostCommonSymptom,getMostCommonEmotion, getAverageFlowLevel, getAveragePainLevel, 
+getNextPeriod,getOvulationDate,getFertileWindowStartDate, getFertileWindowEndDate,} from "../utils/cycleStats";
+import { getAverageExerciseMins, getAverageSleepHours, getAverageStressLevel, getAverageWaterIntakeLevel} from "../utils/lifestyleStats";
+import { convertLabel } from "../utils/statsHelpers";
+import ReusableLineChart from "./ReusableLineChart";
+
+export default function MenstruatingStats() {
+  const { cycles, lifeStyleLogs } = useContext(ReproductiveHealthContext);
+
+  const flowData = cycles.map(cycle => ({
+    value: convertLabel(cycle.flowLevel)
+  }));
+
+  const painData = cycles.map(cycle => ({
+    value: convertLabel(cycle.painLevel)
+  }));
+
+  const sleepData = lifeStyleLogs.map(lifeStyleLog => ({
+    value: lifeStyleLog.sleepHours
+  }));
+
+  const exerciseData = lifeStyleLogs.map(lifeStyleLog => ({
+    value: lifeStyleLog.exerciseMins
+  }));
+
+  const stressData = lifeStyleLogs.map(lifeStyleLog => ({
+    value: lifeStyleLog.stressLevel
+  }));
+
+  return (
+    <ScrollView style={{ flex: 1, padding: 10, backgroundColor: colours.background.default }}>
+      <Text style={{ fontSize: 24, fontWeight: "700", marginBottom: 5, marginTop:2 }}> Your Insights </Text>
+
+     <PredictionCard
+      nextPeriod={getNextPeriod(cycles)}
+      ovulation={getOvulationDate(cycles)}
+      fertileStart={getFertileWindowStartDate(cycles)}
+      fertileEnd={getFertileWindowEndDate(cycles)}
+     />
+
+     <Text style={{ fontSize: 18, fontWeight: "600", marginTop: 15 }}>Cycle Insights</Text>
+      <View style={{ flexDirection: "row", flexWrap: "wrap", justifyContent: "space-between", marginTop: 10 }}>
+      
+      <KpiCard
+        icon="water-outline"
+        value={getAverageFlowLevel(cycles)}
+        label="Average Flow Level"
+        color="#4da3ff"
+      />
+
+      <KpiCard
+        icon="flame-outline"
+        value={getAveragePainLevel(cycles)}
+        label="Average Pain Level"
+        color="#ff6b6b"
+      />
+
+      <KpiCard
+        icon="medical-outline"
+        value={getMostCommonSymptom(cycles)}
+        label="Common Symptom"
+        color="#ffa502"
+      />
+
+      <KpiCard
+        icon="happy-outline"
+        value={getMostCommonEmotion(cycles)}
+        label="Common Emotion"
+        color="#2ed573"
+      />
+    </View>
+
+    <Text style={{ fontSize: 18, fontWeight: "600", marginTop: 15 }}>Lifestyle Insights</Text>
+    <View style={{ flexDirection: "row", flexWrap: "wrap", justifyContent: "space-between", marginTop: 10 }}>
+      <KpiCard
+        icon="moon-outline"
+        value={getAverageSleepHours(lifeStyleLogs)}
+        label="Avg Sleep Hrs"
+        color="#4da3ff"
+      />
+
+      <KpiCard
+        icon="walk-outline"
+        value={getAverageExerciseMins(lifeStyleLogs)}
+        label="Avg Exercise Mins"
+        color="#4da3ff"
+      />
+
+      <KpiCard
+        icon="water-outline"
+        value={getAverageWaterIntakeLevel(lifeStyleLogs)}
+        label="Average Water Intake"
+        color="#ffa502"
+      />
+
+      <KpiCard
+        icon="pulse-outline"
+        value={getAverageStressLevel(lifeStyleLogs)}
+        label="Average Stress Level"
+        color="#2ed573"
+      />
+    </View>
+
+    <Text style={{ fontSize: 18, fontWeight: "600", marginTop: 15 }}>Trends</Text>
+    <ReusableLineChart
+      title="Flow Trends"
+      data={flowData}
+      color="#4da3ff"
+    />
+
+    <ReusableLineChart
+    title="Pain Trends"
+    data={painData}
+    color="#ff6b6b"
+  />
+
+  <ReusableLineChart
+    title="Sleep Trends"
+    data={sleepData}
+    color="#ff6b6b"
+  />
+
+  <ReusableLineChart
+    title="Exercise Trends"
+    data={exerciseData}
+    color="#ff6b6b"
+  />
+
+
+  <ReusableLineChart
+    title="Stress Trends"
+    data={stressData}
+    color="#ff6b6b"
+  />
+
+  </ScrollView>
+  );
+}

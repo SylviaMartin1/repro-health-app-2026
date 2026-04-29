@@ -1,9 +1,8 @@
-# Sprint Two - Authentication Setup
+# Sprint Two - Backend Authentication Setup
 
 **Author:** Sylvia Martin  
 **Project:** Reproductive Health Application  
 **Sprint:** 2  
-**Week:** 2 
 
 ## Overview
 Sprint 2 focused on setting up authentication in the application. This involved creating a user model, functionality to register and authentication users, password encryption, and JWT tokens for session management.

@@ -10,12 +10,12 @@ const AuthContextProvider = (props) => {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
   const [email, setEmail] = useState("");
   const [loading, setLoading] = useState(true);
+   const [error, setError] = useState(null);
   
 useEffect(() => {
   const initAuth = async () => {
     try {
       const token = await AsyncStorage.getItem("authToken");
-      console.log("STORED TOKEN:", token);
 
       if (!token) {
         setLoading(false);
@@ -26,8 +26,6 @@ useEffect(() => {
       setIsAuthenticated(true);
 
       const userData = await getProfile(token);
-
-      console.log("PROFILE OK:", userData);
 
       setUser(userData);
 
@@ -71,10 +69,20 @@ const cleanToken = result.token.replace(/^BEARER\s+/i, "");
 
     setUser(userData);
 
+    return true; 
+
   } catch (err) {
-    console.log("LOGIN ERROR:", err.message);
-    alert(err.message);
-  }
+  console.log("LOGIN ERROR:", err.message);
+  setAuthToken(null);
+  setIsAuthenticated(false);
+  setUser(null);
+
+  await AsyncStorage.removeItem("authToken");
+
+  setError("Incorrect email or password. Please try again.");
+
+  return false;
+}
 };
 
   const register = async (email, password, lifeStage) => {
@@ -100,7 +108,9 @@ const cleanToken = result.token.replace(/^BEARER\s+/i, "");
         authToken,
         user,
         loading,
-        setUser
+        setUser, 
+        error,  
+        setError
       }}
     >
       {props.children}

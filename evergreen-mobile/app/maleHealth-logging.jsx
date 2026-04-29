@@ -13,14 +13,14 @@ const params = useLocalSearchParams();
 
 const existingMaleHealthLog = maleHealthLogs.find(maleHealthLog => String(maleHealthLog._id) === String(params.id));
 
- const [ formState, setFormState ] = useState({
-    spermVolume: existingMaleHealthLog?.spermVolume ?? 0 , 
-    spermConcentration: existingMaleHealthLog?.spermConcentration ?? 0,
-    spermMotility: existingMaleHealthLog?.spermMotility ?? 0,
-    spermMorphology: existingMaleHealthLog?.spermMorphology ?? 0,
-    symptoms: existingMaleHealthLog?.symptoms || [],
-    emotions: existingMaleHealthLog?.emotions || [],
-  })
+ const [formState, setFormState] = useState({
+spermVolume: existingMaleHealthLog?.spermVolume?.toString() ?? "",
+spermConcentration: existingMaleHealthLog?.spermConcentration?.toString() ?? "",
+spermMotility: existingMaleHealthLog?.spermMotility?.toString() ?? "",
+spermMorphology: existingMaleHealthLog?.spermMorphology?.toString() ?? "",
+  symptoms: existingMaleHealthLog?.symptoms ?? [],
+  emotions: existingMaleHealthLog?.emotions ?? [],
+});
 
      const formChangeHandler = (field, value) => {
     setFormState({
@@ -43,7 +43,7 @@ const existingMaleHealthLog = maleHealthLogs.find(maleHealthLog => String(maleHe
 
   return (
     <ScrollView style={{ flex: 1, padding: 16, backgroundColor: colours.background.default,  }}>
-      <Text style={{ fontSize: 26, fontWeight: "700", marginBottom: 20}}>General Health 👩</Text>
+      <Text style={{ fontSize: 26, fontWeight: "700", marginBottom: 20}}>General Health </Text>
       <MaleHealthLogForm
               formState={formState}
               change={formChangeHandler}

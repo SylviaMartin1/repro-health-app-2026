@@ -9,11 +9,19 @@ import { ReproductiveHealthContext } from '../contexts/ReproductiveHealthContext
 import { colours } from "../theme/colours"
 import { getLatestByDate } from '../utils/helpers';
 import SectionHeader from '../components/SectionHeader';
+import { AuthContext } from '../contexts/authContext';
 
 export default function MenstruatingDashboard() {
 const { cycles, medicines, healthCheckups, lifeStyleLogs } = useContext(ReproductiveHealthContext);
 
 const router = useRouter();
+
+ const { signout} = useContext(AuthContext);
+
+  const handleSignOut = async () => {
+    await signout();     
+    router.push('/'); 
+  };
 
 // Display only the latest version of the log
   const latestCycle = getLatestByDate(cycles);
@@ -93,6 +101,12 @@ const router = useRouter();
       ))}
       </View>
       </ScrollView>
+
+
+    <View style={{ padding: 20, backgroundColor: colours.background.default }}>
+      <Button title="Partner Screen" onPress={() => router.push("/partner")}/>
+      <Button title="Sign Out" onPress={handleSignOut} color="red" />
+    </View>
     </ScrollView>
   );
 }

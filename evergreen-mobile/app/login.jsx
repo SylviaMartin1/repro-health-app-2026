@@ -6,21 +6,31 @@ import { colours } from "../theme/colours";
 import { Ionicons } from "@expo/vector-icons";
 
 export default function LoginScreen() {
-  const { authenticate } = useContext(AuthContext);
+  const { authenticate, error, setError } = useContext(AuthContext);
   const router = useRouter();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [showPassword, setShowPassword] = useState(false);
 
-  const login = async () => {
-    await authenticate(email, password);
-    router.push("/dashboard"); // redirects here after a successful login
-  };
+const login = async () => {
+  const success = await authenticate(email, password);
+
+  if (success) {
+    router.replace("/(tabs)/dashboard");
+  }
+};
+
 
   return (
     <View style={{ flex: 1, padding: 20, backgroundColor: colours.background.default, justifyContent: "flex-start", paddingTop: 100 }}>
 
       <Text style={{ fontSize: 26, fontWeight: "700", marginBottom: 20 }}>Login</Text>
+
+       {error && (
+        <Text style={{ color: "red", marginVertical: 10 }}>
+          {error}
+        </Text>
+      )}
 
       <Text style={{ marginBottom: 6, fontWeight: "500" }}>Email</Text>
       <TextInput placeholder="Enter Email" value={email} onChangeText={setEmail} style={{ borderRadius: 10, marginBottom: 16, padding: 12, backgroundColor: 'white' }} />

@@ -12,8 +12,8 @@ export const colours = {
  * App backgrounds - screen (default) and surfaces like cards and sections
  */
   background: {
-    default: '#FFF4B8',
-    surface: '#FFE082', 
+    default: '#f4e1a1',
+    surface: 'white', 
   },
 
 /**

@@ -1,24 +1,32 @@
 import { View, Text, Pressable } from "react-native";
 
-export default function EmojiPicker({ label, value, onChange,options = []}) 
-{
+export default function EmojiPicker({ label, value = [], onChange, options = [] }) {
+
+  const toggle = (option) => {
+    const exists = value.includes(option);
+
+    const updated = exists
+      ? value.filter(e => e !== option)
+      : [...value, option];
+
+    onChange(updated);
+  };
+
   return (
     <View style={{ marginVertical: 12 }}>
 
-      {/* Label */}
       <Text style={{ fontWeight: "500", marginBottom: 6 }}>
         {label}
       </Text>
 
-      {/* Emoji Row */}
       <View style={{ flexDirection: "row", flexWrap: "wrap" }}>
         {options.map((option) => {
-          const selected = value === option;
+          const selected = value.includes(option);
 
           return (
             <Pressable
               key={option}
-              onPress={() => onChange(option)}
+              onPress={() => toggle(option)}
               style={{
                 padding: 10,
                 marginRight: 8,

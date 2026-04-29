@@ -1,13 +1,24 @@
-import { useEffect } from "react";
-import { View, Text } from "react-native";
-import { colours } from "../../theme/colours";
-import StatsCard from "../../components/StatsCard";
+import { useContext } from "react";
+import { AuthContext } from "../../contexts/authContext";
+import MenstruatingStats from "../../components/MenstruatingStats";
+import MenopausalStats from "../../components/MenopausalStats";
+import MaleStats from "../../components/MaleStats";
 
 export default function Stats() {
-  return (
-    <View style={{ flex: 1, paddingHorizontal: 16, paddingTop: 16, backgroundColor: colours.background.default }}>
-      <Text>Stats Screen</Text>
-      <StatsCard/>
-    </View>
-  );
+  const { user } = useContext(AuthContext);
+  
+
+  if (user.lifeStage === "Menstruating") {
+    return <MenstruatingStats />;
+  }
+
+  if (user.lifeStage === "Male") {
+    return <MaleStats />;
+  }
+
+  if (user.lifeStage === "Menopausal") {
+    return <MenopausalStats />;
+  }
+
+  return null;
 }

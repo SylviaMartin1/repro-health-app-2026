@@ -3,7 +3,6 @@
 **Author:** Sylvia Martin  
 **Project:** Reproductive Health Application  
 **Sprint:** 3 
-**Week:** 3
 
 ## Overview
 Sprint 3 focused on setting up the frontend of the application. This involved implementing a start screen, log component, dashboard screen to display logs, stats screen to contain basic statistics on the logs, and a logging screen with a form component on which users can input details to create a log.
@@ -64,9 +63,6 @@ Sprint 3 focused on setting up the frontend of the application. This involved im
 
 **Stats Screen**
 ![Stats Screen](images/sprint-3/stats-screen.png)
-
-**npm run tunnel command working**
-![Stats Screen](images/npm-run-tunnel/stats-screen.png)
 
 **Sprint 3 application structure**
 ![Sprint 3 application structure](images/sprint-3/sprint3-application-structure.png)

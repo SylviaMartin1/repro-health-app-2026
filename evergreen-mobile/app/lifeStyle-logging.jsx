@@ -22,19 +22,28 @@ const existingLifeStyleLog = lifeStyleLogs.find(lifeStyleLog => String(lifeStyle
    mood:  existingLifeStyleLog?.mood || ""
   })
 
-     const formChangeHandler = (field, value) => {
-    setFormState({
-      ...formState,
-      [field]: value,
-    });
-  };
+const numericFields = [
+  "sleepHours",
+  "exerciseMins",
+  "waterIntakeLevel",
+  "stressLevel",
+];
+
+const formChangeHandler = (field, value) => {
+  setFormState({
+    ...formState,
+    [field]: numericFields.includes(field)
+      ? Number(value)
+      : value,
+  });
+};
 
     const formSubmitHandler = async () => {
     if (
-      formState.sleepHours === "" ||
-      formState.exerciseMins === "" ||
-      !formState.waterIntakeLevel ||
-      !formState.stressLevel ||
+      formState.sleepHours === 0 ||
+      formState.exerciseMins === 0 ||
+      !formState.waterIntakeLevel === 0 ||
+      !formState.stressLevel === 0 ||
       !formState.dietQuality ||
       !formState.mood
     ) return;

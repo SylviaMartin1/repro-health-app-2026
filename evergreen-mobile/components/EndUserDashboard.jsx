@@ -1,5 +1,5 @@
 import { useContext } from 'react';
-import { View, Text, Button } from 'react-native';
+import { View, Text } from 'react-native';
 import { AuthContext } from '../contexts/authContext';
 import MenstruatingDashboard from "../components/MenstruatingDashboard";
 import MenopausalDashboard from "../components/MenopausalDashboard";
@@ -20,7 +20,6 @@ if (!user) {
     </View>
   );
 }
-
 
   if (!user || !lifeStage) {
     return (
