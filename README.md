@@ -7,11 +7,12 @@ Built with a **React Native (Expo)** frontend, a **Node.js/Express** backend API
 ## 📋 Table of Contents
 - [Features](#features)
 - [Tech Stack](#tech-stack)
-- [Project Structure](#project-structure)
 - [Getting Started](#getting-started)
 - [Environment Variables](#environment-variables)
-- [API Overview](#api-overview)
+- [Demo](#demo)
 - [Screenshots](#screenshots)
+- [Author](#author)
+- [Licence](#licence)
 
 ---
 
@@ -127,20 +128,3 @@ JWT_SECRET=your_jwt_secret_key
 © 2026 Sylvia Martin.
 
 This project was developed as an academic final year project and is intended for viewing and running purposes only. It may not be copied, modified, or redistributed without permission.
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
