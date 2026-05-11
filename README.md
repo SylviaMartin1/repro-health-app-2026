@@ -98,14 +98,18 @@ JWT_SECRET=your_jwt_secret_key
 ---
 
 ## 🎥 Demo
-[Watch the demo video](https://youtube.com/your-link)
+[Watch the demo video](https://youtu.be/rNAOGEu9YU0?is=COScSeMTaJS8SOdA)
 
 ---
 
 
 ## 📸 Screenshots
-
-_Add screenshots of your app here once available._
+<img width="1170" height="2229" alt="login" src="https://github.com/user-attachments/assets/4c9be62e-35af-4d9b-b03e-dafd75714801" />
+<img width="585" height="1266" alt="dashboard" src="https://github.com/user-attachments/assets/a288699d-1f48-418b-afe9-a0bfdd7ad6f9" />
+<img width="296" height="640" alt="stats" src="https://github.com/user-attachments/assets/1afe4325-6ae0-440c-88e3-055777947088" />
+<img width="585" height="1266" alt="stats2" src="https://github.com/user-attachments/assets/56ee51ab-c255-4f29-86ed-3a05d2eb1742" />
+<img width="296" height="640" alt="articles" src="https://github.com/user-attachments/assets/d663bd39-9e4c-4af2-b27d-5170c2b51288" />
+<img width="148" height="320" alt="supplements" src="https://github.com/user-attachments/assets/7f2dadcd-6c05-4169-abb1-af572aafd546" />
 
 ---
 
