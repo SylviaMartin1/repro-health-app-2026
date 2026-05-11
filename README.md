@@ -114,13 +114,18 @@ JWT_SECRET=your_jwt_secret_key
 ---
 
 ## 👩‍💻 Author
-**[Sylvia Martin](https://github.com/SylviaMartin1)**
-Final Year Project — BSc (Hons) in Software Systems Development, 2026
-📧 sylviamartin2003@gmail.com
+**Sylvia Martin**
+🎓 Final Year Project — BSc (Hons) in Software Systems Development, 2026
+
+[![GitHub](https://img.shields.io/badge/GitHub-SylviaMartin1-black?logo=github)](https://github.com/SylviaMartin1)
+[![LinkedIn](https://img.shields.io/badge/LinkedIn-Sylvia%20Martin-blue?logo=linkedin)](https://www.linkedin.com/in/sylvia-martin/)
+[![Email](https://img.shields.io/badge/Email-sylviamartin2003%40gmail.com-red?logo=gmail)](mailto:sylviamartin2003@gmail.com)
 
 ---
 
 ## 📄 Licence
+© 2026 Sylvia Martin.
+
 This project was developed as an academic final year project and is intended for viewing and running purposes only. It may not be copied, modified, or redistributed without permission.
 
 
